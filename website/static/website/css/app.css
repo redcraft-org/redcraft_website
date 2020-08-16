@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+body {
+  background-color: #282828;
+  font-family: Poppins;
+  color: #D9DADC !important;
+}
+
+body .navbar {
+  background-color: #202020;
+}

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import "colors";
+
+body {
+    background-color: $color-gray;
+    font-family: Poppins;
+    color: $color-gray-light !important;
+
+    .navbar {
+        background-color: $color-gray-mineshaft;
+    }
+}
+

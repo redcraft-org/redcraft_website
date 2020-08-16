@@ -1,0 +1,119 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block contant %}
+<div class="row">
+    <div class="col-7">
+        <div class="row">
+            <div class="col-4">
+                <img class="w-100" src="{% static "website/img/RedCraft.svg" %}" alt="Logo de redcraft"/>
+            </div>
+            <div class="col-8 text-right">
+                <p>
+                    <b>Bienvenue sur RedCraft !</b><br>
+                    Le retour de deux grandes communautés, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo !
+                </p>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                <div class="card card-discord text-center h-100">
+                    <div class="card-body">
+                        <h5 class="">Rejoingez notre Discord</h5>
+                        <p class="card-text position-bottom"><small class="text-muted align-bottom">420 membres en ligne</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 ">
+                <div class="card card-server text-center h-100">
+                    <div class="card-body">
+                        <h5 class="">mc.RedCraft.org</h5> 
+                        <p class="card-text">Version 1.15.2</p>
+                        <p class="card-text"><small class="text-muted">69 membres en ligne</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-5">
+        <h5> Actualités </h5>
+        <div class="d-flex flex-column">
+            <div class="card card-actu mb-2">
+                <div class="card-body">
+                    <h5 class="">Last actu</h5>
+                    <p class="card-text position-bottom mb-0"><small class="text-muted">il y a 2 jours</small></p>
+                    <p class="card-text position-bottom"><small class="text-muted">Preview article ...</small></p>
+                </div>
+            </div>
+            <div class="card card-actu mb-2">
+                <div class="card-body">
+                    <h5 class="">Actu 2</h5>
+                    <p class="card-text position-bottom mb-0"><small class="text-muted">il y a 6 jours</small></p>
+                    <p class="card-text position-bottom"><small class="text-muted">Preview article ...</small></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        
+        <h4 class="text-center">Servers</h4>
+        <div class="row ">
+            <div class="col-md-3 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="">Créatif Redstone</h5> 
+                        <p>Un monde avec des parcelles pour exprimer votre créativitée avec la redstone.</p>
+                    </div>
+                </div>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h5 class="">Créatif Build</h5> 
+                        <p>Un monde avec des parcelles pour exprimer votre créativitée avec la redstone.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-5 mt-7 d-none d-sm-flex ">
+                    <img class="img-fluid" src="{% static "website/img/dynmap.png" %}" alt="Une image de la dynmap"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="">Survie</h5> 
+                        <p>Un monde avec des parcelles pour exprimer votre créativitée avec la redstone.</p>
+                    </div>
+                </div>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h5 class="">Faction</h5> 
+                        <p>Un monde avec des parcelles pour exprimer votre créativitée avec la redstone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card mt-5">
+                    <div class="card-body" style="color:#161616">
+                        <ul>
+                            <li> Plusieurs mondes plot 16x16, 32x32 </li>
+                            <li> Grade évolutif  </li>
+                            <li> Map exclusive EGW générée </li>
+                            <li> Possibilitée de création de système redstone avancée .. </li>
+                            <li> Plusieurs mondes plot 16x16, 32x32 </li>
+                            <li> (Présentation brèves de l’aspect technique du serveurs survolé/ lié à la map montrée) </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,9 @@
+from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
+from django.views import View
+from django.core.exceptions import ObjectDoesNotExist
+
+from api_v1 import models as models_api_v1
 
 
 class Home(TemplateView):
@@ -37,16 +42,14 @@ class Dons(TemplateView):
         }
 
 
-class UrlReducer(TemplateView):
-    template_name = "website/pages/url_reducer.html"
+class UrlReducer(View):
+    def get(self, request, shortened, *args, **kwargs):
+        try:
+            query_url = models_api_v1.ReducedUrl.objects.get(shortened__exact=shortened)
+        except ObjectDoesNotExist:
+            return redirect('home')
 
-    def get_context_data(self, **kwargs):
-        return {
-            'page': 'url_reducer',
-            'menu_data' : {
-                'exemple' : 1 ,
-            },
-        }
+        return redirect(query_url.url)
 
 
 class Skin(TemplateView):

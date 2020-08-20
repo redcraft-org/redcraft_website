@@ -7,14 +7,16 @@ from PIL import Image
 
 
 class Skin:
-    def __init__(self, username):
-        # Get player id
-        url = 'https://api.mojang.com/users/profiles/minecraft/' + username
-        response = requests.get(url)
-        user_id = response.json()['id']
+    def __init__(self, ref):
+
+        if len(ref) <= 16:
+            # Get player id
+            url = 'https://api.mojang.com/users/profiles/minecraft/' + ref
+            response = requests.get(url)
+            ref = response.json()['id']
         
         # Get player profile
-        url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + user_id
+        url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + ref
         response = requests.get(url)
         profile_data = response.json()['properties'][0]['value']
 

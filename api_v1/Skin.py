@@ -51,4 +51,4 @@ class Skin:
         self.image = self.image.crop((x, y, w, h))
 
     def __scale(self, size):
-        self.image = self.image.resize((size, size), Image.NEAREST)
+        if size is not None: self.image = self.image.resize((size, size), Image.NEAREST)

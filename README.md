@@ -2,7 +2,7 @@
 
 Django (Python) website for RedCraft
 
-### Setup the project
+## Setup the project
 
 First, creates the `.env` file with the help of `.env.example`.
 
@@ -10,10 +10,10 @@ Create a DB `redcraft` in your mysql server.
 
 Create your virtual env: `python3 -m venv env`
 And start your venv:
-    Window: `"env/Scripts/activate"`
-    Linux: `source env/bin/activate`
+Window: `"env/Scripts/activate"`
+Linux: `source env/bin/activate`
 
-Install  requirements: `pip install -r requirement.txt`
+Install  requirements: `pip install -r requirements.txt`
 
 Migrate DB: `python manage.py migrate`
 

@@ -7,6 +7,11 @@ from PIL import Image
 
 
 class Skin:
+
+    OUTER_CHOISE = {
+        'true': True,
+        'false': False}
+
     def __init__(self, ref):
 
         if len(ref) <= 16:
@@ -27,28 +32,47 @@ class Skin:
         # Get image template
         response = requests.get(url_texture)
         image_bytes = io.BytesIO(response.content)
-        self.image = Image.open(image_bytes)
 
-    def renderTemplate(self, size=None):
-        self.__scale(size)
-        return self.__toPng()
+        self.image = Image.open(image_bytes).convert("RGBA")
+        self.size = 0
+        self.outer = True
 
-    def renderHead(self, size=None):
-        self.__crop(8, 8, 16, 16)
-        self.__scale(size)
-        return self.__toPng()
+    def renderTemplate(self):
+        img = self.image
+        if self.size > 0: img = img.resize((self.size, self.size), Image.NEAREST)
+        return self.__toPng(img)
+
+    def renderHead(self):
+        img_head = self.image.crop((8, 8, 16, 16))
+        if self.outer:
+            img_outer = self.image.crop((40, 8, 48, 16))
+            img_head.paste(img_outer, (0, 0), img_outer)
+        img = img_head
+        if self.size > 0: img = img.resize((self.size, self.size), Image.NEAREST)
+        return self.__toPng(img)
         
-    def renderBody(self, size=None):
+    def renderBody(self):
         # TODO #
-        return self.__toPng()
+        img = self.image
+        if self.size > 0: img = img.resize((self.size, self.size), Image.NEAREST)
+        return self.__toPng(img)
 
-    def __toPng(self):
+    def loadRequest(self, request):
+        self.size = request.GET.get('size', 0)
+        try:
+            self.size = int(self.size)
+        except ValueError:
+            return 'size must be int'
+
+        self.outer = request.GET.get('outer', 'true')
+        if self.outer in self.OUTER_CHOISE: 
+            self.outer = self.OUTER_CHOISE[self.outer]
+        else:
+            return 'outer must be bool' 
+
+        return False
+
+    def __toPng(self, img):
         b = io.BytesIO()
-        self.image.save(b, 'GIF')
+        img.save(b, 'GIF')
         return b.getvalue()
-
-    def __crop(self, x, y, w, h):
-        self.image = self.image.crop((x, y, w, h))
-
-    def __scale(self, size):
-        if size is not None: self.image = self.image.resize((size, size), Image.NEAREST)

@@ -1,38 +1,22 @@
-from django.http import HttpResponse
-from django.views import View
+from django.http import HttpResponse, JsonResponse
 
 from api_v1.Skin import Skin
 
 
-class GetTemplateSkin(View):
-    def get(self, request, ref, *args, **kwargs):
-        return HttpResponse(Skin(ref).renderTemplate(), content_type="image/png")
+def getTemplateSkin(request, ref):
+    skin = Skin(ref)
+    err = skin.loadRequest(request)
+    if err: return JsonResponse({'err': err})
+    return HttpResponse(skin.renderTemplate(), content_type="image/png")
 
+def getHeadSkin(request, ref):
+    skin = Skin(ref)
+    err = skin.loadRequest(request)
+    if err: return JsonResponse({'err': err})
+    return HttpResponse(skin.renderHead(), content_type="image/png")
 
-class GetTemplateSkinScale(View):
-    def get(self, request, ref, size, *args, **kwargs):
-        return HttpResponse(Skin(ref).renderTemplate(size), content_type="image/png")
-
-
-class GetHeadSkin(View):
-    def get(self, request, ref, *args, **kwargs):
-        img = Skin(ref).renderHead()
-        return HttpResponse(img, content_type="image/png")
-
-
-class GetHeadSkinScale(View):
-    def get(self, request, ref, size, *args, **kwargs):
-        img = Skin(ref).renderHead(size)
-        return HttpResponse(img, content_type="image/png")
-
-
-class GetBodySkin(View):
-    def get(self, request, ref, *args, **kwargs):
-        img = Skin(ref).renderBody()
-        return HttpResponse(img, content_type="image/png")
-
-
-class GetBodySkinScale(View):
-    def get(self, request, ref, size, *args, **kwargs):
-        img = Skin(ref).renderBody(size)
-        return HttpResponse(img, content_type="image/png")
+def getBodySkin(request, ref):
+    skin = Skin(ref)
+    err = skin.loadRequest(request)
+    if err: return JsonResponse({'err': err})
+    return HttpResponse(skin.renderBody(), content_type="image/png")

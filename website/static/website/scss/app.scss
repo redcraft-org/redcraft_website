@@ -25,4 +25,8 @@ b {
 .btn {
     border-radius: 7px;
     color: inherit;
+
+    &:hover {
+        color: inherit!important;
+    }
 }

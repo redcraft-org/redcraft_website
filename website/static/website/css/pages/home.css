@@ -19,8 +19,12 @@ section#welcome-header .background {
   width: 100%;
   height: 100%;
   z-index: -1;
-  top: -100px;
-  transform: translateZ(-100px) scale(2);
+  top: 0px;
+  transform: translateZ(-50px) scale(2);
+}
+
+section#welcome-header .welcome-presentation {
+  margin-bottom: 6rem;
 }
 
 section#welcome-header .welcome-presentation .logo {
@@ -42,8 +46,16 @@ section#welcome-header .server-links .link-discord {
   background-color: #7289DA;
 }
 
+section#welcome-header .server-links .link-discord:hover {
+  background-color: #6176c4;
+}
+
 section#welcome-header .server-links .link-server {
   background-color: #AC4646;
+}
+
+section#welcome-header .server-links .link-server:hover {
+  background-color: #943a3a;
 }
 
 section#presentation {

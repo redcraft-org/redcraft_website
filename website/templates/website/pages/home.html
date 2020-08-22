@@ -1,13 +1,13 @@
 {% extends 'website/base.html' %}
 {% load static %}
 
-{% block contant %}
+{% block content %}
 <section id="welcome-header">
     <div class="background position-absolute"></div>
     <div class="container d-flex flex-column">
-        <div class="welcome-presentation d-flex flex-row mb-4">
+        <div class="welcome-presentation d-flex flex-row">
             <div class="w-50 mr-4 d-flex justify-content-center align-items-center">
-                <img class="logo" src="{% static 'website/img/compact_white.png' %}" />
+                <img class="logo" src="{% static 'website/img/animation1_6.gif' %}" />
                 {# {% include 'static/website/img/compact_white.svg' %} #}
             </div>
             <div class="w-50">
@@ -15,7 +15,7 @@
                 <p class="text-description mt-4">Le retour de deux grandes communautés, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-center server-links">
+        <div class="server-links d-flex flex-row justify-content-center">
             <div class="link-discord btn mr-4">
                 <div class="lead">Rejoindre le <b>Discord</b></div>
                 <div>420 joueurs en ligne</div>
@@ -41,6 +41,11 @@
 <section id="maps">
     <div class="container d-flex flex-column">
         <h2 class="section-titre">Maps</h2>
+    </div>
+</section>
+<section id="staff">
+    <div class="container d-flex flex-column">
+        <h2 class="section-titre">Staff</h2>
     </div>
 </section>
 {% endblock %}

@@ -20,10 +20,12 @@ section {
             height: 100%;
             z-index: -1;
             // filter: blur(7px);
-            top: -100px;
-            transform: translateZ(-100px)scale(2);
+            top: 0px;
+            transform: translateZ(-50px)scale(2);
         }
         .welcome-presentation {
+            margin-bottom: 6rem;
+
             .logo {
                 height: 85%;
                 -webkit-filter: drop-shadow(0px 12px 12px #00000091);
@@ -42,12 +44,21 @@ section {
         }
 
         .server-links {
+
             .link-discord {
                 background-color: $color-discord;
+
+                &:hover {
+                    background-color: $color-discord-dark;
+                }
             }
             
             .link-server {
                 background-color: $color-red;
+
+                &:hover {
+                    background-color: $color-red-dark;
+                }
             }
         }
 

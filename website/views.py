@@ -45,7 +45,7 @@ class Dons(TemplateView):
 class UrlReducer(View):
     def get(self, request, shortened, *args, **kwargs):
         try:
-            query_url = models_api_v1.ReducedUrl.objects.get(shortened__exact=shortened)
+            query_url = models_api_url_v1.ReducedUrl.objects.get(shortened__exact=shortened)
         except ObjectDoesNotExist:
             return redirect('home')
 

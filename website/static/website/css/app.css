@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 body {
   background-color: #282828;
   font-family: Poppins;
@@ -7,4 +7,13 @@ body {
 
 body .navbar {
   background-color: #202020;
+}
+
+b {
+  font-weight: 800;
+}
+
+.btn {
+  border-radius: 7px;
+  color: inherit;
 }

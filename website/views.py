@@ -12,6 +12,7 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
         return {
             'page': 'home',
+            'key_example': 'test_example',
             'menu_data' : {
                 'exemple' : 1 ,
             },
@@ -50,15 +51,3 @@ class UrlReducer(View):
             return redirect('home')
 
         return redirect(query_url.url)
-
-
-class Skin(TemplateView):
-    template_name = "website/pages/skin.html"
-
-    def get_context_data(self, **kwargs):
-        return {
-            'page': 'skin',
-            'menu_data' : {
-                'exemple' : 1 ,
-            },
-        }

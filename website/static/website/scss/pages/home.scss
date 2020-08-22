@@ -1,0 +1,67 @@
+@import "../colors";
+
+section {
+    padding: 7em 0em;
+    position: relative;
+
+    .section-titre {
+        font-weight: 800;
+    }
+
+    &#welcome-header {
+        padding: 15vh 0em;
+
+        .background {
+            background-image: linear-gradient(transparent 0%, #262829a6 0%), url(../../img/home-background.png);
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(7px);
+            top: 0;
+        }
+        .welcome-presentation {
+            .logo {
+                height: 85%;
+                -webkit-filter: drop-shadow(0px 12px 12px #00000091);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
+                filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
+            }
+
+            .text-description {
+                font-size: 1.2rem;
+            }
+        }
+        
+
+        .title-redcraft {
+            font-size: 3rem;
+        }
+
+        .server-links {
+            .link-discord {
+                background-color: $color-discord;
+            }
+            
+            .link-server {
+                background-color: $color-red;
+            }
+        }
+
+    }
+
+    &#presentation {
+        background-color: #202020;
+    }
+
+    #news-background {
+        background-image: linear-gradient(transparent 0%, #16161794 0%), url(../../img/gray_concrete_powder.png);
+        background-position: center;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 0;
+    }
+
+}

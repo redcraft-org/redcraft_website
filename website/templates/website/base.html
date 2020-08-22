@@ -2,46 +2,44 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Titre de la page</title>
         {# boostrap css #}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
         {% load static %}
         <link href="{% static 'website/css/app.css' %}" rel="stylesheet">
+
+        {% block extracss %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img class="d-inline-block align-top" src="{% static "website/img/RedCraft.svg" %}" alt="Logo de redcraft" width="30" height="30" loading="lazy"/>
-                RedCraft
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">Accueil</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
-                <ul class="navbar-nav flex-row-reverse">
-                    <li class="nav-item {% if page == 'home' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item {% if page == 'contact' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                    <li class="nav-item {% if page == 'dons' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'dons' %}">Dons</a>
-                    </li>
-                    <li class="nav-item {% if page == 'skin' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'skin' %}">Skin</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+                    <ul class="navbar-nav flex-row-reverse">
+                        <li class="nav-item {% if page == 'home' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item {% if page == 'contact' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item {% if page == 'dons' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'dons' %}">Dons</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
-        {{ page }}
+        {# {{ page }} #}
 
-        <div class="container my-4">
-            {% block contant %}{% endblock %}
-        </div>
+        {% block contant %}{% endblock %}
 
         {% block javascript %}{% endblock %}
 

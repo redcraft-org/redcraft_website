@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 @import "colors";
 
 body {
@@ -11,3 +11,11 @@ body {
     }
 }
 
+b {
+    font-weight: 800;
+}
+
+.btn {
+    border-radius: 7px;
+    color: inherit;
+}

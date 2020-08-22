@@ -1,6 +1,7 @@
 section {
   padding: 7em 0em;
   position: relative;
+  overflow: hidden;
 }
 
 section .section-titre {
@@ -18,10 +19,8 @@ section#welcome-header .background {
   width: 100%;
   height: 100%;
   z-index: -1;
-  filter: blur(7px);
-  top: 0;
-  transform-style: preserve-3d;
-  transform: translateZ(-100px);
+  top: -100px;
+  transform: translateZ(-100px) scale(2);
 }
 
 section#welcome-header .welcome-presentation .logo {

@@ -8,6 +8,23 @@ class ArticleService:
         self.articles = models.Article.objects.all()
         self.favorit_language = favorit_language if favorit_language else models.Language.objects.get(short_name='fr')
 
+    def getLastArticle(self, nb):
+        list_article = []
+        for article in self.articles[:-nb]:
+            article_data = article.articledata_set.get(language=self.favorit_language)
+            list_article += [
+                {
+                    'id': article.id,
+                    'title': article_data.title,
+                    'overview': article_data.overview,
+                    'url': f"/api/v1/articles/{article.id}-{article_data.language.short_name}-{article_data.slug}"
+                } 
+            ]
+
+        return {
+            'list': list_article
+        }
+
     def getList(self, current_page, per_page):
         nb_article = len(self.articles)
         nb_page = ceil(nb_article / per_page)

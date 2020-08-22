@@ -1,0 +1,43 @@
+.brand-logo {
+    color: inherit;
+}
+
+.fa-twitter {
+    transition-duration: .2s;
+    &:hover {
+        transition-duration: .2s;
+        color: #1da1f2;
+    }
+}
+
+.fa-facebook {
+    transition-duration: .2s;
+    &:hover {
+        transition-duration: .2s;
+        color: #3b5998;
+    }
+}
+
+.fa-youtube {
+    transition-duration: .2s;
+    &:hover {
+        transition-duration: .2s;
+        color: #ff0000;
+    }
+}
+
+.fa-discord {
+    transition-duration: .2s;
+    &:hover {
+        transition-duration: .2s;
+        color: #7289da;
+    }
+}
+
+.fa-instagram {
+    transition-duration: .2s;
+    &:hover {
+        transition-duration: .2s;
+        color: #fcaf45;
+    }
+}

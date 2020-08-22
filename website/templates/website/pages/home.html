@@ -8,7 +8,6 @@
         <div class="welcome-presentation d-flex flex-row">
             <div class="w-50 mr-4 d-flex justify-content-center align-items-center">
                 <img class="logo" src="{% static 'website/img/animation1_6.gif' %}" />
-                {# {% include 'static/website/img/compact_white.svg' %} #}
             </div>
             <div class="w-50">
                 <h1 class="mb-2 font-weight-bolder">Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !</h1>
@@ -18,34 +17,44 @@
         <div class="server-links d-flex flex-row justify-content-center">
             <div class="link-discord btn mr-4">
                 <div class="lead">Rejoindre le <b>Discord</b></div>
-                <div>420 joueurs en ligne</div>
+                <div>{{ discord.count_players_online }} joueurs en ligne</div>
             </div>
             <div class="link-server btn">
                 <div class="lead">Rejoindre le <b>Serveur</b></div>
-                <div>69 joueurs en ligne</div>
+                <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
             </div>
         </div>
     </div>
 </section>
 <section id="presentation">
     <div class="container d-flex flex-column">
-        <h2 class="section-titre">Présentation</h2>
+        <h3 class="section-titre">Présentation</h3>
     </div>
 </section>
 <section id="news">
     <div id="news-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
-        <h2 class="section-titre">News</h2>
+        <h3 class="section-titre">Articles</h3>
+        <div class="news-container row mb-2">
+            {% for article in articles %}
+                {% with title=article.title description=article.description url=article.url %}
+                    {% include "website/components/article.html" %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+        <div class="article-more text-right">
+            <p><a href="#" class="text-white-50">Voir tous les articles</a></p>
+        </div>
     </div>
 </section>
 <section id="maps">
     <div class="container d-flex flex-column">
-        <h2 class="section-titre">Maps</h2>
+        <h3 class="section-titre">Maps</h3>
     </div>
 </section>
 <section id="staff">
     <div class="container d-flex flex-column">
-        <h2 class="section-titre">Staff</h2>
+        <h3 class="section-titre">Staff</h3>
     </div>
 </section>
 {% endblock %}

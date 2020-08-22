@@ -30,3 +30,11 @@ b {
         color: inherit!important;
     }
 }
+
+a {
+    color: $color-red;
+}
+
+a:hover {
+    color: $color-red-dark;
+}

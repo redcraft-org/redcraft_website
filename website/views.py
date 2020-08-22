@@ -7,20 +7,40 @@ from api_v1 import models as models_api_v1
 
 
 class Home(TemplateView):
-    template_name = "website/pages/home.html"
+    template_name = 'website/pages/home.html'
 
     def get_context_data(self, **kwargs):
         return {
             'page': 'home',
-            'key_example': 'test_example',
-            'menu_data' : {
-                'exemple' : 1 ,
+            'discord': {
+                'count_players_online': 420
             },
+            'minecraft_server': {
+                'count_players_online': 69
+            },
+            'articles': [
+                {
+                    'title': 'Ouverture du faction',
+                    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt massa.',
+                    'url': '#',
+                },
+                {
+                    'title': 'Event surprise de la semaine #12',
+                    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    'url': '#',
+                },
+                {
+                    'title': 'Un nouveau site web !',
+                    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam.',
+                    'url': '#',
+                },
+
+            ]
         }
 
 
 class Contact(TemplateView):
-    template_name = "website/pages/contact.html"
+    template_name = 'website/pages/contact.html'
 
     def get_context_data(self, **kwargs):
         return {
@@ -32,7 +52,7 @@ class Contact(TemplateView):
 
 
 class Dons(TemplateView):
-    template_name = "website/pages/dons.html"
+    template_name = 'website/pages/dons.html'
 
     def get_context_data(self, **kwargs):
         return {

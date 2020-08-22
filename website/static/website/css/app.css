@@ -28,3 +28,11 @@ b {
 .btn:hover {
   color: inherit !important;
 }
+
+a {
+  color: #AC4646;
+}
+
+a:hover {
+  color: #943a3a;
+}

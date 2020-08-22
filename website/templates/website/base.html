@@ -14,34 +14,35 @@
         {% block extracss %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'home' %}">Accueil</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div id="scroller">
+            <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url 'home' %}">Accueil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
-                    <ul class="navbar-nav flex-row-reverse">
-                        <li class="nav-item {% if page == 'home' %}active{% endif %}">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item {% if page == 'contact' %}active{% endif %}">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                        </li>
-                        <li class="nav-item {% if page == 'dons' %}active{% endif %}">
-                            <a class="nav-link" href="{% url 'dons' %}">Dons</a>
-                        </li>
-                    </ul>
+                    <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+                        <ul class="navbar-nav flex-row-reverse">
+                            <li class="nav-item {% if page == 'home' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item {% if page == 'contact' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                            </li>
+                            <li class="nav-item {% if page == 'dons' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'dons' %}">Dons</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            {# {{ page }} #}
 
-        {# {{ page }} #}
+            {% block contant %}{% endblock %}
 
-        {% block contant %}{% endblock %}
-
-        {% block javascript %}{% endblock %}
+            {% block javascript %}{% endblock %}
+        </div>
 
         {# boostrap js #}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

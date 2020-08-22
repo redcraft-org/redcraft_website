@@ -2,6 +2,7 @@
 @import "colors";
 
 body {
+    overflow: hidden;
     background-color: $color-gray;
     font-family: Poppins;
     color: $color-gray-light !important;
@@ -9,6 +10,12 @@ body {
     .navbar {
         background-color: $color-gray-mineshaft;
     }
+}
+
+#scroller {
+    overflow-y: auto;
+    height: 100vh;
+    perspective: 100px;
 }
 
 b {

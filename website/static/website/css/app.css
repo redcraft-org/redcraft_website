@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 body {
+  overflow: hidden;
   background-color: #282828;
   font-family: Poppins;
   color: #D9DADC !important;
@@ -7,6 +8,12 @@ body {
 
 body .navbar {
   background-color: #202020;
+}
+
+#scroller {
+  overflow-y: auto;
+  height: 100vh;
+  perspective: 100px;
 }
 
 b {

@@ -20,6 +20,8 @@ section {
             z-index: -1;
             filter: blur(7px);
             top: 0;
+            transform-style: preserve-3d;
+            transform: translateZ(-100px);
         }
         .welcome-presentation {
             .logo {

@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 
-from api_v1 import models as models_api_v1
+from api_v1_url import models as models_api_url_v1
 
 
 class Home(TemplateView):

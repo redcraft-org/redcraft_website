@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_sass',
 
-    'api_v1.apps.ApiV1Config',
+    'api_v1_url.apps.ApiV1UrlConfig',
+    'api_v1_skin.apps.ApiV1SkinConfig',
     'user.apps.UserConfig',
-
 
     'website',
 ]

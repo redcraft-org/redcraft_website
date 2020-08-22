@@ -5,8 +5,8 @@ import json
 import numpy as np
 from PIL import Image
 
-from pprint import pprint
-class Skin:
+
+class SkinService:
 
     OUTER_CHOISE = {
         'true': True,

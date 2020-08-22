@@ -4,16 +4,20 @@ from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 
 from api_v1 import models as models_api_v1
+from .service.DiscordService import DiscordService
 
 
 class Home(TemplateView):
     template_name = 'website/pages/home.html'
 
     def get_context_data(self, **kwargs):
+
+        discordService = DiscordService()
+
         return {
             'page': 'home',
             'discord': {
-                'count_players_online': 420
+                'count_players_online': discordService.countPlayersOnline()
             },
             'minecraft_server': {
                 'count_players_online': 69

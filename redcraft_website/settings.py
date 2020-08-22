@@ -92,6 +92,16 @@ DATABASES = {
 }
 
 
+# Cache
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.getenv('PATH_FILE_CACHE'),
+    }
+}
+
+
 # User 
 
 AUTH_USER_MODEL = 'user.User'

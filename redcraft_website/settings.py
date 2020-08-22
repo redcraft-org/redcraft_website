@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_sass',
 
     'api_v1.apps.ApiV1Config',
+    'api_v1_article.apps.ApiV1ArticleConfig',
     'user.apps.UserConfig',
 
 

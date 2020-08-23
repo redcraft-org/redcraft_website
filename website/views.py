@@ -5,41 +5,45 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from api_v1 import models as models_api_v1
 from .service.DiscordService import DiscordService
+from api_v1_article.service.ArticleService import ArticleService
 
 
-class Home(TemplateView):
+class BaseViewFrontEnd(TemplateView):
+    def get_context_data(self, **kwargs):
+        return {
+            'links' : {
+                'twitter' : '#',
+                'facebook' : 'https://fb.me/RedCraftorg',
+                'youtube' : 'https://www.youtube.com/channel/UClo30bzHPYHz847o5WlfE6g',
+                'discord' : 'https://discord.gg/h9SfJmh',
+                'instagram' : 'https://www.instagram.com/redcraftorg',
+            }
+        }
+
+
+class Home(BaseViewFrontEnd):
     template_name = 'website/pages/home.html'
 
     def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
 
-        discordService = DiscordService()
+        discord_service = DiscordService()
+        article_service = ArticleService()
+        
 
         return {
-            'page': 'home',
-            'discord': {
-                'count_players_online': discordService.countPlayersOnline()
-            },
-            'minecraft_server': {
-                'count_players_online': 69
-            },
-            'articles': [
-                {
-                    'title': 'Ouverture du faction',
-                    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt massa.',
-                    'url': '#',
+            **ctx,
+            **{
+                'page': 'home',
+                'discord': {
+                    'count_players_online': discord_service.countPlayersOnline()
                 },
-                {
-                    'title': 'Event surprise de la semaine #12',
-                    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                    'url': '#',
+                'minecraft_server': {
+                    'count_players_online': 69,
+                    'ip_address': 'play.redcraft.org',
                 },
-                {
-                    'title': 'Un nouveau site web !',
-                    'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam.',
-                    'url': '#',
-                },
-
-            ]
+                'articles': article_service.getLastArticle(3),
+            }
         }
 
 

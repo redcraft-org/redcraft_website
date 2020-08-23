@@ -9,8 +9,9 @@ class ArticleService:
         self.favorit_language = favorit_language if favorit_language else models.Language.objects.get(short_name='fr')
 
     def getLastArticle(self, nb):
+        articles = list(self.articles)
         list_article = []
-        for article in self.articles[:-nb]:
+        for article in articles[-nb:]:
             article_data = article.articledata_set.get(language=self.favorit_language)
             list_article += [
                 {
@@ -21,9 +22,7 @@ class ArticleService:
                 } 
             ]
 
-        return {
-            'list': list_article
-        }
+        return list_article
 
     def getList(self, current_page, per_page):
         nb_article = len(self.articles)

@@ -47,27 +47,87 @@ class Home(BaseViewFrontEnd):
         }
 
 
-class Contact(TemplateView):
-    template_name = 'website/pages/contact.html'
+class Vote(BaseViewFrontEnd):
+    template_name = 'website/pages/vote.html'
 
     def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
         return {
-            'page': 'contact',
-            'menu_data' : {
-                'exemple' : 1 ,
-            },
+            **ctx,
+            **{
+                'page': 'vote'
+            }
         }
 
 
-class Dons(TemplateView):
+class Dons(BaseViewFrontEnd):
     template_name = 'website/pages/dons.html'
 
     def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
         return {
-            'page': 'dons',
-            'menu_data' : {
-                'exemple' : 1 ,
-            },
+            **ctx,
+            **{
+                'page': 'dons'
+            }
+        }
+
+
+class Stats(BaseViewFrontEnd):
+    template_name = 'website/pages/stats.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'stats'
+            }
+        }
+
+
+class Rules(BaseViewFrontEnd):
+    template_name = 'website/pages/rules.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'rules'
+            }
+        }
+
+
+class Contact(BaseViewFrontEnd):
+    template_name = 'website/pages/contact.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'contact'
+            }
+        }
+
+
+class Articles(BaseViewFrontEnd):
+    template_name = 'website/pages/articles.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'articles'
+            }
         }
 
 

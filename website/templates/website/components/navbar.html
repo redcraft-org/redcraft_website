@@ -8,13 +8,22 @@
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
             <ul class="navbar-nav flex-row-reverse">
                 <li class="nav-item {% if page == 'home' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
                 </li>
-                <li class="nav-item {% if page == 'contact' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                <li class="nav-item {% if page == 'vote' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'vote' %}">Vote</a>
                 </li>
                 <li class="nav-item {% if page == 'dons' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'dons' %}">Dons</a>
+                </li>
+                <li class="nav-item {% if page == 'stats' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'stats' %}">Stats</a>
+                </li>
+                <li class="nav-item {% if page == 'rules' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'rules' %}">Règles</a>
+                </li>
+                <li class="nav-item {% if page == 'contact' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 </li>
             </ul>
         </div>

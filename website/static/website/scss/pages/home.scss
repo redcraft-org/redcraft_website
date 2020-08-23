@@ -48,19 +48,52 @@ section {
 
         .server-links {
 
-            .link-discord {
-                background-color: $color-discord;
+            .btn {
+                padding: .375rem 2.75rem;
 
-                &:hover {
-                    background-color: $color-discord-dark;
+                &.link-discord {
+                    background-color: $color-discord;
+                    
+
+                    &:hover {
+                        background-color: $color-discord-dark;
+                    }
                 }
-            }
-            
-            .link-server {
-                background-color: $color-red;
+                
+                &.link-server {
+                    background-color: $color-red;
+                    overflow: hidden;
 
-                &:hover {
-                    background-color: $color-red-dark;
+                    &:hover {
+                        background-color: $color-red-dark;
+                    }
+
+                    .link-server-animation {
+                        display: flex;
+                        position: relative;
+
+                        .before-click {
+                            transition-duration: .3s;
+        
+                            &.copied {
+                                opacity: 0;
+                                transform: translateY(-20px);
+                            }
+                        }
+        
+                        .ip-copied {
+                            transform: translateY(20px);
+                            position: absolute;
+                            height: 100%;
+                            transition-duration: .3s;
+                            opacity: 0;
+        
+                            &.copied {
+                                opacity: 1;
+                                transform: translateY(0px);
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -11,17 +11,29 @@
             </div>
             <div class="w-50">
                 <h1 class="mb-2 font-weight-bolder">Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !</h1>
-                <p class="text-description mt-4">Le retour de deux grandes communautés, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
+                <p class="text-description mt-4">Le retour de deux grandes communautés Minecraft, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
             </div>
         </div>
         <div class="server-links d-flex flex-row justify-content-center">
-            <div class="link-discord btn mr-4">
-                <div class="lead">Rejoindre le <b>Discord</b></div>
+            <a class="link-discord btn mr-4" href="{{ links.discord }}" target="_blank">
+                <div class="lead">Serveur <b>Discord</b></div>
                 <div>{{ discord.count_players_online }} joueurs en ligne</div>
-            </div>
+                <small class="text-white-50">Cliquez pour rejoindre</small>
+            </a>
             <div class="link-server btn">
-                <div class="lead">Rejoindre le <b>Serveur</b></div>
-                <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
+                <div class="link-server-animation">
+                    <div class="before-click d-flex flex-column justify-content-center ">
+                        <div class="lead">Serveur <b>Minecraft</b></div>
+                        <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
+                        <small class="text-white-50">Cliquez pour rejoindre</small>
+                        
+                    </div>
+                    <div class="ip-copied d-flex flex-column justify-content-center">
+                        <div class="lead"><b>play.redcraft.org</b></div>
+                        <div>Adresse IP copiée !</div>
+                    </div>
+                </div>
+                <input type="text" value="{{ minecraft_server.ip_address }}" id="link-server-copy" style="position: absolute; z-index: -2">
             </div>
         </div>
     </div>
@@ -37,7 +49,7 @@
         <h3 class="section-titre">Articles</h3>
         <div class="news-container row mb-2">
             {% for article in articles %}
-                {% with title=article.title description=article.description url=article.url %}
+                {% with title=article.title overview=article.overview url=article.url %}
                     {% include "website/components/article.html" %}
                 {% endwith %}
             {% endfor %}
@@ -47,9 +59,9 @@
         </div>
     </div>
 </section>
-<section id="maps">
+<section id="serveurs">
     <div class="container d-flex flex-column">
-        <h3 class="section-titre">Maps</h3>
+        <h3 class="section-titre">Serveurs</h3>
     </div>
 </section>
 <section id="staff">
@@ -58,6 +70,35 @@
     </div>
 </section>
 {% endblock %}
+
 {% block extra_css %}
 <link href="{% static 'website/css/pages/home.css' %}" rel="stylesheet">
 {% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    let serverLinkAnimation = null
+
+    document.querySelector('.link-server').onclick = () => {
+        clearTimeout(serverLinkAnimation)
+        var copyText = document.getElementById("link-server-copy")
+        copyText.select()
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy")
+        // Animate "ip copied"
+        document.querySelector('.before-click').classList.add("copied")
+        document.querySelector('.ip-copied').classList.add("copied")
+        
+        serverLinkAnimation = setTimeout(() => {
+            // Reset "ip copied"
+            document.querySelector('.before-click').classList.remove("copied")
+            document.querySelector('.ip-copied').classList.remove("copied")
+        }, 5000)
+    }
+
+
+</script>
+{% endblock %}
+
+{% include "website/components/article.html" %}
+

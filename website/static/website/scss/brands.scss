@@ -18,6 +18,14 @@
     }
 }
 
+.fa-github {
+    transition-duration: .2s;
+    &:hover {
+        transition-duration: .2s;
+        color: #6cc644;
+    }
+}
+
 .fa-youtube {
     transition-duration: .2s;
     &:hover {

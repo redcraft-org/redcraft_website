@@ -14,6 +14,7 @@ class BaseViewFrontEnd(TemplateView):
             'links' : {
                 'twitter' : '#',
                 'facebook' : 'https://fb.me/RedCraftorg',
+                'github' : 'https://github.com/redcraft-org',
                 'youtube' : 'https://www.youtube.com/channel/UClo30bzHPYHz847o5WlfE6g',
                 'discord' : 'https://discord.gg/h9SfJmh',
                 'instagram' : 'https://www.instagram.com/redcraftorg',

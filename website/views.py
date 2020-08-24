@@ -63,6 +63,9 @@ class Home(BaseViewFrontEnd):
                 ],
                 'servers_list': {
 
+                },
+                'staff_list': {
+
                 }
             }
         }
@@ -148,6 +151,20 @@ class Articles(BaseViewFrontEnd):
             **ctx,
             **{
                 'page': 'articles'
+            }
+        }
+
+
+class Dynmap(BaseViewFrontEnd):
+    template_name = 'website/pages/dynmap.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'dynmap'
             }
         }
 

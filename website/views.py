@@ -12,7 +12,7 @@ class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
         return {
             'links' : {
-                'twitter' : '#',
+                'twitter' : 'https://twitter.com/RedCraftorg',
                 'facebook' : 'https://fb.me/RedCraftorg',
                 'github' : 'https://github.com/redcraft-org',
                 'youtube' : 'https://www.youtube.com/channel/UClo30bzHPYHz847o5WlfE6g',
@@ -44,6 +44,26 @@ class Home(BaseViewFrontEnd):
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),
+                'server_presentations': [
+                    {
+                        'title': 'Un serveur unique.',
+                        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo a felis cursus pharetra id vitae felis.',
+                        'img': 'dynmap.png',
+                    },
+                    {
+                        'title': 'Un staff compétent.',
+                        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo a felis.',
+                        'img': 'home-background-2.png',
+                    },
+                    {
+                        'title': 'Rejoignez-nous.',
+                        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo.',
+                        'img': 'home-background.png',
+                    },
+                ],
+                'servers_list': {
+
+                }
             }
         }
 

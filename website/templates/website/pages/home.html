@@ -12,6 +12,7 @@
             <div class="w-50">
                 <h1 class="mb-2 font-weight-bolder">Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !</h1>
                 <p class="text-description mt-4">Le retour de deux grandes communautés Minecraft, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
+                <b class="text-description">Versions 1.8 - 1.16.2</b>
             </div>
         </div>
         <div class="server-links d-flex flex-row justify-content-center">
@@ -25,11 +26,11 @@
                     <div class="before-click d-flex flex-column justify-content-center ">
                         <div class="lead">Serveur <b>Minecraft</b></div>
                         <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
-                        <small class="text-white-50">Cliquez pour rejoindre</small>
+                        <small class="text-white-50">Cliquez pour copier l'IP</small>
                         
                     </div>
                     <div class="ip-copied d-flex flex-column justify-content-center">
-                        <div class="lead"><b>play.redcraft.org</b></div>
+                        <div class="lead text-break"><b>play.redcraft.org</b></div>
                         <div>Adresse IP copiée !</div>
                     </div>
                 </div>
@@ -40,13 +41,21 @@
 </section>
 <section id="presentation">
     <div class="container d-flex flex-column">
-        <h3 class="section-titre">Présentation</h3>
+        <h4 class="section-titre">Présentation</h4>
+        <div class="presentations d-flex flex-column">
+            {% for presentation in server_presentations %}
+                {% with title=presentation.title content=presentation.content img=presentation.img %}
+                    {% include "website/components/presentation.html" %}
+                {% endwith %}
+            {% endfor %}
+        </div>
     </div>
 </section>
 <section id="news">
+    <div class="waves w-100 position-absolute"></div>
     <div id="news-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
-        <h3 class="section-titre">Articles</h3>
+        <h4 class="section-titre">Articles</h4>
         <div class="news-container row mb-2">
             {% for article in articles %}
                 {% with title=article.title overview=article.overview url=article.url %}
@@ -61,12 +70,12 @@
 </section>
 <section id="serveurs">
     <div class="container d-flex flex-column">
-        <h3 class="section-titre">Serveurs</h3>
+        <h4 class="section-titre">Serveurs</h4>
     </div>
 </section>
 <section id="staff">
     <div class="container d-flex flex-column">
-        <h3 class="section-titre">Staff</h3>
+        <h4 class="section-titre">Staff</h4>
     </div>
 </section>
 {% endblock %}
@@ -100,5 +109,5 @@
 </script>
 {% endblock %}
 
-{% include "website/components/article.html" %}
+// {% include "website/components/article.html" %}
 

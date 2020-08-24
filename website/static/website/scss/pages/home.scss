@@ -144,7 +144,7 @@ section {
     &#news {
 
         #news-background {
-            background-image: linear-gradient(transparent 0%, #16161794 0%), url(../../img/gray_concrete_powder.png);
+            background-image: linear-gradient(transparent 0%, #8c2929b8 0%), url(../../img/gray_concrete_powder.png);
             background-position: center;
             background-size: 200px;
             width: 100%;
@@ -153,6 +153,12 @@ section {
             top: 0;
             // transform: translateZ(-20px)scale(1.2);
         }
+
+    }
+
+    &#serveurs {
+        background-color: #B6B9BD;
+        color: #202020;
 
     }
 

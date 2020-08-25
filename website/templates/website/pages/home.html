@@ -82,7 +82,7 @@
         <div class="row">
             <div class="col-md-4 servers-listing">
                 {% for server in servers_list %}
-                    {% with title=server.title overview=server.overview description=server.description img=server.img %}
+                    {% with title=server.title overview=server.overview description=server.text img=server.path_img %}
                         {% include "website/components/server-list.html" %}
                     {% endwith %}
                 {% endfor %}

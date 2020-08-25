@@ -7,6 +7,7 @@ from api_v1 import models as models_api_v1
 from .service.DiscordService import DiscordService
 from api_v1_article.service.ArticleService import ArticleService
 from network_data.service.NetworkDescriptionService import NetworkDescriptionService
+from network_data.service.ServerDescriptionService import ServerDescriptionService
 
 
 class BaseViewFrontEnd(TemplateView):
@@ -32,6 +33,7 @@ class Home(BaseViewFrontEnd):
         discord_service = DiscordService()
         article_service = ArticleService()
         network_description_service = NetworkDescriptionService()
+        server_description_service = ServerDescriptionService()
 
         return {
             **ctx,
@@ -47,32 +49,7 @@ class Home(BaseViewFrontEnd):
                 'articles': article_service.getLastArticle(3),
                 
                 'network_presentations': network_description_service.getAllActive(),
-                'servers_list': [
-                    {
-                        'title': 'Créatif Build',
-                        'overview' : 'Aenean rutrum erat at neque auctor varius. Sed pellentesque tortor purus, non ultrices sem vehicula ut. Donec vel enim arcu.',
-                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
-                        'img' : 'dynmap.png',
-                    },
-                    {
-                        'title': 'Créatif Redstone',
-                        'overview' : 'Quisque sodales ante et diam tempor, id consectetur nibh scelerisque. Cras quis ex id nisi scelerisque vestibulum.',
-                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
-                        'img' : 'dynmap.png',
-                    },
-                    {
-                        'title': 'Survie',
-                        'overview' : 'Quisque ut orci semper, ullamcorper quam a, interdum turpis. Curabitur est nisl, rhoncus ac sapien quis, tempor eleifend turpis.',
-                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
-                        'img' : 'dynmap.png',
-                    },
-                    {
-                        'title': 'Factions',
-                        'overview' : 'Curabitur lobortis hendrerit leo, a porta tellus porta eu. Ut scelerisque nisi auctor iaculis pretium.',
-                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
-                        'img' : 'dynmap.png',
-                    },
-                ],
+                'servers_list': server_description_service.getAllActive(),
                 'staff_list': {
 
                 }

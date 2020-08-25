@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 @import "colors";
 
 body {
+    overflow: hidden;
     background-color: $color-gray;
     font-family: Poppins;
     color: $color-gray-light !important;
@@ -11,3 +12,29 @@ body {
     }
 }
 
+#scroller {
+    overflow-y: auto;
+    height: 100vh;
+    perspective: 100px;
+}
+
+b {
+    font-weight: 800;
+}
+
+.btn {
+    border-radius: 7px;
+    color: inherit;
+
+    &:hover {
+        color: inherit!important;
+    }
+}
+
+a {
+    color: $color-red;
+}
+
+a:hover {
+    color: $color-red-dark;
+}

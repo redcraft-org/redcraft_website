@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="presentation row justify-content-end">
+    <div class="presentation-text col-md-7 d-flex flex-column justify-content-center text-right px-4">
+        <h3 class="font-weight-bolder my-4">{{ title }}</h3>
+        <p>{{ content }}</p>
+    </div>
+    <div class="col-md-5">
+        <img src="{% static 'website/img/'%}{{ img }}" class="presentation-img w-100">
+    </div>
+</div>

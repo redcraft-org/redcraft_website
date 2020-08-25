@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'api_v1_url.apps.ApiV1UrlConfig',
     'api_v1_skin.apps.ApiV1SkinConfig',
+    'api_v1_article.apps.ApiV1ArticleConfig',
+    'network_data.apps.NetworkDataConfig',
     'user.apps.UserConfig',
 
     'website',
@@ -88,6 +90,16 @@ DATABASES = {
         'PASSWORD': os.getenv("DATABASE_PASS"),
         'HOST': os.getenv("DATABASE_HOST"),
         'PORT': os.getenv("DATABASE_PORT"),
+    }
+}
+
+
+# Cache
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.getenv('PATH_FILE_CACHE'),
     }
 }
 

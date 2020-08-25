@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">RedCraft<span class="text-white-50">.org</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-row-reverse">
+                <li class="nav-item {% if page == 'home' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                </li>
+                <li class="nav-item {% if page == 'vote' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'vote' %}">Vote</a>
+                </li>
+                <li class="nav-item {% if page == 'dons' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'dons' %}">Dons</a>
+                </li>
+                <li class="nav-item {% if page == 'stats' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'stats' %}">Stats</a>
+                </li>
+                <li class="nav-item {% if page == 'rules' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'rules' %}">Règles</a>
+                </li>
+                <li class="nav-item {% if page == 'dynmap' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'dynmap' %}">Dynmap</a>
+                </li>
+                <li class="nav-item {% if page == 'contact' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

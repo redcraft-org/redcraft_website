@@ -1,0 +1,183 @@
+@import "../colors";
+@import "../components/article";
+
+section {
+    padding: 5rem 0 5rem 0;
+    position: relative;
+    overflow: hidden;
+
+    .section-titre {
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    .waves {
+        position: absolute;
+        height: 9vw;
+        -webkit-filter: drop-shadow(0px 0px 5px #202020);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
+        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
+        &.waves-top {
+            top: 0;
+        }
+        &.waves-bottom {
+            bottom: 0;
+        }
+    }
+
+    &#welcome-header {
+        padding: 15vh 0em;
+
+        .background {
+            background-image: linear-gradient(transparent 0%, #262829a6 0%), url(../../img/home-background-2.png);
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: saturate(0.3);
+            top: 0px;
+            transform: translateZ(-50px)scale(2);
+        }
+        .welcome-presentation {
+            margin-bottom: 6rem;
+
+            .logo {
+                height: 85%;
+                -webkit-filter: drop-shadow(0px 12px 12px #00000091);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
+                filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
+            }
+
+            .text-description {
+                font-size: 1.2rem;
+            }
+        }
+        
+
+        .title-redcraft {
+            font-size: 3rem;
+        }
+
+        .server-links {
+
+            .btn {
+                padding: .375rem 2.75rem;
+
+                &.link-discord {
+                    background-color: $color-discord;
+                    
+
+                    &:hover {
+                        background-color: $color-discord-dark;
+                    }
+                }
+                
+                &.link-server {
+                    background-color: $color-red;
+                    overflow: hidden;
+
+                    &:hover {
+                        background-color: $color-red-dark;
+                    }
+
+                    .link-server-animation {
+                        display: flex;
+                        position: relative;
+
+                        .before-click {
+                            transition-duration: .3s;
+        
+                            &.copied {
+                                opacity: 0;
+                                transform: translateY(-20px);
+                            }
+                        }
+        
+                        .ip-copied {
+                            transform: translateY(20px);
+                            position: absolute;
+                            height: 100%;
+                            width: 100%;
+                            transition-duration: .3s;
+                            opacity: 0;
+        
+                            &.copied {
+                                opacity: 1;
+                                transform: translateY(0px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    &#presentation {
+        background-color: #202020;
+
+        .presentation {
+            margin-bottom: 5rem;
+
+            &:nth-child(2n) {
+                flex-direction: row-reverse;
+
+                .presentation-text {
+                    text-align: left!important;
+                    padding-left: 4rem;
+                }
+            }
+
+            .presentation-text {
+                text-align: right;
+            }
+
+            .presentation-img {
+                border-radius: 7px;
+            }
+        }
+
+    }
+
+    &#news {
+
+        #news-background {
+            background-image: linear-gradient(transparent 0%, #8c2929b8 0%), url(../../img/gray_concrete_powder.png);
+            background-position: center;
+            background-size: 200px;
+            width: 100%;
+            height: 200%;
+            z-index: -1;
+            top: 0;
+            transform: translate3d(0px, -25%, 20px)scale(0.8);
+        }
+
+    }
+
+    &#serveurs {
+        background-color: #B6B9BD;
+        color: #202020;
+
+        .servers-listing {
+            .server {
+                cursor: pointer;
+            }
+        }
+
+        .server-active {
+            .server-active-title {
+                color: #797979;
+            }
+
+            .server-active-img {
+                -webkit-filter: drop-shadow(0px 12px 12px #4e4e4e);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#4e4e4e')";
+                filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#4e4e4e')";
+            }
+        }
+
+    }
+
+}

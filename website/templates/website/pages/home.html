@@ -27,7 +27,7 @@
                         <div class="lead">Serveur <b>Minecraft</b></div>
                         <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
                         <small class="text-white-50">Cliquez pour copier l'IP</small>
-                        
+
                     </div>
                     <div class="ip-copied d-flex flex-column justify-content-center">
                         <div class="lead text-break"><b>play.redcraft.org</b></div>
@@ -79,20 +79,25 @@
 <section id="serveurs">
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Serveurs</h4>
-        <div class="row">
-            <div class="col-md-4 servers-listing">
-                {% for server in servers_list %}
-                    {% with title=server.title overview=server.overview description=server.text img=server.path_img %}
-                        {% include "website/components/server-list.html" %}
-                    {% endwith %}
-                {% endfor %}
+        <form>
+            <div class="row">
+                <div class="col-md-4 servers-listing">
+                    <p class="text-black-50"><small>Cliquez sur un serveur pour en savoir plus</small></p>
+                    {% for server in servers_list %}
+                        {% with title=server.title overview=server.overview index=forloop.counter0 %}
+                            {% include "website/components/server-list.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+                <div class="server-active-container col-md-8">
+                    {% for server in servers_list %}
+                        {% with title=server.title text=server.text img=server.path_img livemap=server.livemap index=forloop.counter0 %}
+                            {% include "website/components/server-active.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
             </div>
-            <div class="server-active col-md-8">
-                <h1 class="server-active-title font-weight-bold text-right">Survie</h1>
-                <p class="text-right">Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.</p>
-                <img class="server-active-img" src="{% static 'website/img/dynmap.png' %}" alt="server-presentation">
-            </div>
-        </div>
+        </form>
     </div>
 </section>
 <section id="staff">
@@ -119,7 +124,7 @@
         // Animate "ip copied"
         document.querySelector('.before-click').classList.add("copied")
         document.querySelector('.ip-copied').classList.add("copied")
-        
+
         serverLinkAnimation = setTimeout(() => {
             // Reset "ip copied"
             document.querySelector('.before-click').classList.remove("copied")
@@ -132,4 +137,3 @@
 {% endblock %}
 
 // {% include "website/components/article.html" %}
-

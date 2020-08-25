@@ -26,9 +26,19 @@ b {
     border-radius: 7px;
     color: inherit;
 
+    &.btn-red {
+        background-color: $color-red;
+        color: white;
+        &:hover {
+            background-color: $color-red-dark;
+            color: white!important;
+        }
+    }
+
     &:hover {
         color: inherit!important;
     }
+
 }
 
 a {

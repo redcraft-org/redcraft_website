@@ -80,10 +80,17 @@
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Serveurs</h4>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 servers-listing">
+                {% for server in servers_list %}
+                    {% with title=server.title overview=server.overview description=server.description img=server.img %}
+                        {% include "website/components/server-list.html" %}
+                    {% endwith %}
+                {% endfor %}
             </div>
-            <div class="col-md-8">
-
+            <div class="server-active col-md-8">
+                <h1 class="server-active-title font-weight-bold text-right">Survie</h1>
+                <p class="text-right">Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.</p>
+                <img class="server-active-img" src="{% static 'website/img/dynmap.png' %}" alt="server-presentation">
             </div>
         </div>
     </div>

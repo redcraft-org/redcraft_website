@@ -151,7 +151,7 @@ section {
             height: 200%;
             z-index: -1;
             top: 0;
-            // transform: translateZ(-20px)scale(1.2);
+            transform: translate3d(0px, -25%, 20px)scale(0.8);
         }
 
     }
@@ -159,6 +159,24 @@ section {
     &#serveurs {
         background-color: #B6B9BD;
         color: #202020;
+
+        .servers-listing {
+            .server {
+                cursor: pointer;
+            }
+        }
+
+        .server-active {
+            .server-active-title {
+                color: #797979;
+            }
+
+            .server-active-img {
+                -webkit-filter: drop-shadow(0px 12px 12px #4e4e4e);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#4e4e4e')";
+                filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#4e4e4e')";
+            }
+        }
 
     }
 

@@ -61,9 +61,32 @@ class Home(BaseViewFrontEnd):
                         'img': 'home-background.png',
                     },
                 ],
-                'servers_list': {
-
-                },
+                'servers_list': [
+                    {
+                        'title': 'Créatif Build',
+                        'overview' : 'Aenean rutrum erat at neque auctor varius. Sed pellentesque tortor purus, non ultrices sem vehicula ut. Donec vel enim arcu.',
+                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
+                        'img' : 'dynmap.png',
+                    },
+                    {
+                        'title': 'Créatif Redstone',
+                        'overview' : 'Quisque sodales ante et diam tempor, id consectetur nibh scelerisque. Cras quis ex id nisi scelerisque vestibulum.',
+                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
+                        'img' : 'dynmap.png',
+                    },
+                    {
+                        'title': 'Survie',
+                        'overview' : 'Quisque ut orci semper, ullamcorper quam a, interdum turpis. Curabitur est nisl, rhoncus ac sapien quis, tempor eleifend turpis.',
+                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
+                        'img' : 'dynmap.png',
+                    },
+                    {
+                        'title': 'Factions',
+                        'overview' : 'Curabitur lobortis hendrerit leo, a porta tellus porta eu. Ut scelerisque nisi auctor iaculis pretium.',
+                        'description' : 'Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.',
+                        'img' : 'dynmap.png',
+                    },
+                ],
                 'staff_list': {
 
                 }

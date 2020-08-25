@@ -1,4 +1,6 @@
 from math import *
+from django.utils.text import slugify
+
 from api_v1_article import models
 
 
@@ -8,10 +10,9 @@ class ArticleService:
         self.articles = models.Article.objects.all()
         self.favorit_language = favorit_language if favorit_language else models.Language.objects.get(short_name='fr')
 
-    def getLastArticle(self, nb):
-        articles = list(self.articles)
+    def getLastArticle(self, nb)
         list_article = []
-        for article in articles[-nb:]:
+        for article in list(self.articles)[-nb:]:
             article_data = article.articledata_set.get(language=self.favorit_language)
             list_article += [
                 {
@@ -75,3 +76,36 @@ class ArticleService:
             'slug': article_data.slug,
             'language': article_data.language.name,
         }
+
+    def createArticle(self, path_img, category_name, articles_data):
+        try:
+            category_object = models.Category.objects.get(name=category_name)
+        except models.Category.DoesNotExist:
+            return {'err': f'{category_name} not existe'}
+
+        for article_data in articles_data:
+            try:
+                language_object = models.Language.objects.get(short_name=article_data['language'])
+            except models.Language.DoesNotExist:
+                return {'err': f"{article_data['language']} language is not supported"}
+            else:
+                article_data['language_object'] = language_object
+
+        article_object = models.Article(path_img=path_img, category=category_object)
+        article_object.save()
+
+        for article_data in articles_data:
+            slug = slugify(article_data['slug'] if 'slug' in article_data else article_data['title'])
+            overview = article_data['overview'] if 'overview' in article_data else f"{article_data['text'][:60]} ..."
+
+            article_data_object = models.ArticleData(
+                title=article_data['title'],
+                text=article_data['text'],
+                language=article_data['language_object'],
+                overview=overview,
+                slug=slug,
+                article=article_object
+            )
+            article_data_object.save()
+
+        return {'response': True}

@@ -13,7 +13,7 @@ class ArticleData(models.Model):
     title = models.CharField(max_length=42)
     text = models.CharField(max_length=280) # Limit by twitter
     overview = models.CharField(max_length=64, blank=True, null=True)
-    slug = models.CharField(max_length=42, blank=True, null=True)
+    slug = models.SlugField(max_length=42, blank=True, null=True)
     language = models.ForeignKey(
         'Language',
         on_delete=models.CASCADE,
@@ -35,6 +35,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
+    path_img = models.CharField(max_length=128, blank=True, null=True)
     category = models.ForeignKey(
         'Category',
         on_delete=models.CASCADE,

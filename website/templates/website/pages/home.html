@@ -46,8 +46,8 @@
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Présentation</h4>
         <div class="presentations d-flex flex-column">
-            {% for presentation in server_presentations %}
-                {% with title=presentation.title content=presentation.content img=presentation.img %}
+            {% for presentation in network_presentations %}
+                {% with title=presentation.title content=presentation.text img=presentation.path_img overview=presentation.overview %}
                     {% include "website/components/presentation.html" %}
                 {% endwith %}
             {% endfor %}

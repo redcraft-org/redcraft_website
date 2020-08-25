@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from api_v1 import models as models_api_v1
 from .service.DiscordService import DiscordService
 from api_v1_article.service.ArticleService import ArticleService
+from network_data.service.NetworkDescriptionService import NetworkDescriptionService
 
 
 class BaseViewFrontEnd(TemplateView):
@@ -30,7 +31,7 @@ class Home(BaseViewFrontEnd):
 
         discord_service = DiscordService()
         article_service = ArticleService()
-        
+        network_description_service = NetworkDescriptionService()
 
         return {
             **ctx,
@@ -44,23 +45,8 @@ class Home(BaseViewFrontEnd):
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),
-                'server_presentations': [
-                    {
-                        'title': 'Un serveur unique.',
-                        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo a felis cursus pharetra id vitae felis.',
-                        'img': 'dynmap.png',
-                    },
-                    {
-                        'title': 'Un staff compétent.',
-                        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo a felis.',
-                        'img': 'home-background-2.png',
-                    },
-                    {
-                        'title': 'Rejoignez-nous.',
-                        'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo.',
-                        'img': 'home-background.png',
-                    },
-                ],
+                
+                'network_presentations': network_description_service.getAllActive(),
                 'servers_list': [
                     {
                         'title': 'Créatif Build',

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'api_v1.apps.ApiV1Config',
     'api_v1_article.apps.ApiV1ArticleConfig',
+    'network_data.apps.NetworkDataConfig',
     'user.apps.UserConfig',
 
 

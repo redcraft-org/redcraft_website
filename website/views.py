@@ -50,9 +50,53 @@ class Home(BaseViewFrontEnd):
                 
                 'network_presentations': network_description_service.getAllActive(),
                 'servers_list': server_description_service.getAllActive(),
-                'staff_list': {
-
-                }
+                'staff_list': [
+                    {
+                        'name': 'lululomnard',
+                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/lululombard?size=300',
+                        'socials': {
+                            'twitter': '#',
+                            'reddit': '#',
+                            'steam': '#',
+                        }
+                    },
+                    {
+                        'name': 'Likyaz',
+                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Likyaz?size=300',
+                        'socials': {
+                            'twitter': '#',
+                            'reddit': '#',
+                            'steam': '#',
+                        }
+                    },
+                    {
+                        'name': 'Codelta',
+                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Codelta?size=300',
+                        'socials': {
+                            'twitter': '#',
+                            'reddit': '#',
+                            'steam': '#',
+                        }
+                    },
+                    {
+                        'name': 'Omeganx',
+                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Omeganx?size=300',
+                        'socials': {
+                            'twitter': '#',
+                            'reddit': '#',
+                            'steam': '#',
+                        }
+                    },
+                    {
+                        'name': 'Nano_',
+                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Nano_?size=300',
+                        'socials': {
+                            'twitter': '#',
+                            'reddit': '#',
+                            'steam': '#',
+                        }
+                    },
+                ]
             }
         }
 

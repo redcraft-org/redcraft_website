@@ -101,8 +101,19 @@
     </div>
 </section>
 <section id="staff">
+    <svg class="waves waves-top"viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M0.00,49.98 C170.14,-12.33 336.62,-12.33 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #B6B9BD;"></path>
+    </svg>
+    <div id="staff-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">Staff</h4>
+        <h4 class="section-titre">Administrateurs</h4>
+        <div class="d-flex justify-content-around flex-wrap">
+            {% for staff in staff_list %}
+                {% with name=staff.name img=staff.path_img socials=staff.socials %}
+                    {% include "website/components/staff-member.html" %}
+                {% endwith %}
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}

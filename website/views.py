@@ -43,7 +43,7 @@ class Home(BaseViewFrontEnd):
                     'count_players_online': discord_service.countPlayersOnline()
                 },
                 'minecraft_server': {
-                    'count_players_online': 69,
+                    'count_players_online': 69420,
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),
@@ -52,49 +52,69 @@ class Home(BaseViewFrontEnd):
                 'servers_list': server_description_service.getAllActive(),
                 'staff_list': [
                     {
-                        'name': 'lululomnard',
+                        'name': 'lululombard',
                         'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/lululombard?size=300',
-                        'socials': {
-                            'twitter': '#',
-                            'reddit': '#',
-                            'steam': '#',
-                        }
+                        'socials': [
+                            {
+                                'name': 'Twitter',
+                                'url' : 'https://twitter.com/lululombard',
+                                'logo_fa' : 'twitter'
+                            },
+                            {
+                                'name': 'YouTube',
+                                'url' : 'https://www.youtube.com/lululombard',
+                                'logo_fa' : 'youtube'
+                            },
+                            {
+                                'name': 'Reddit',
+                                'url' : 'https://www.reddit.com/user/lululombard/',
+                                'logo_fa' : 'reddit-alien'
+                            },
+                        ],
                     },
                     {
                         'name': 'Likyaz',
                         'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Likyaz?size=300',
-                        'socials': {
-                            'twitter': '#',
-                            'reddit': '#',
-                            'steam': '#',
-                        }
+                        'socials': [
+                            {
+                                'name': 'Twitter',
+                                'url' : 'https://twitter.com/LikyazRS',
+                                'logo_fa' : 'twitter'
+                            },
+                        ],
                     },
                     {
                         'name': 'Codelta',
                         'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Codelta?size=300',
-                        'socials': {
-                            'twitter': '#',
-                            'reddit': '#',
-                            'steam': '#',
-                        }
+                        'socials': [
+                            {
+                                'name': 'Twitter',
+                                'url' : 'https://twitter.com/_Codelta_',
+                                'logo_fa' : 'twitter'
+                            },
+                        ],
                     },
                     {
                         'name': 'Omeganx',
                         'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Omeganx?size=300',
-                        'socials': {
-                            'twitter': '#',
-                            'reddit': '#',
-                            'steam': '#',
-                        }
+                        'socials': [
+                            {
+                                'name': 'Twitter',
+                                'url' : 'https://twitter.com/Omeganx',
+                                'logo_fa' : 'twitter'
+                            },
+                        ],
                     },
                     {
                         'name': 'Nano_',
                         'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Nano_?size=300',
-                        'socials': {
-                            'twitter': '#',
-                            'reddit': '#',
-                            'steam': '#',
-                        }
+                        'socials': [
+                            {
+                                'name': 'Twitter',
+                                'url' : 'https://twitter.com/Nano1010010110',
+                                'logo_fa' : 'twitter'
+                            },
+                        ],
                     },
                 ]
             }

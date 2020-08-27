@@ -1,6 +1,10 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">RedCraft<span class="text-white-50">.org</span></a>
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'website/img/inline_org_color.png' %}" alt="Redcraft.org logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

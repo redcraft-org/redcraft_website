@@ -22,6 +22,21 @@ b {
     font-weight: 800;
 }
 
+.navbar {
+    height: 4.5rem;
+
+    .navbar-brand img {
+        height: 50px; 
+        image-rendering: pixelated; 
+        position: absolute;
+        top: 10px;
+    }
+}
+
+footer {
+    background-color: #2D2D2D;
+}
+
 .btn {
     border-radius: 7px;
     color: inherit;
@@ -43,6 +58,10 @@ b {
 
 a {
     color: $color-red;
+
+    &.no-hover:hover {
+        color: inherit!important;
+    }
 }
 
 a:hover {

@@ -5,17 +5,17 @@
 <section id="welcome-header">
     <div class="background position-absolute"></div>
     <div class="container d-flex flex-column">
-        <div class="welcome-presentation d-flex flex-row">
-            <div class="w-50 mr-4 d-flex justify-content-center align-items-center">
-                <img class="logo" src="{% static 'website/img/animation1_7.gif' %}" />
+        <div class="welcome-presentation row">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <img class="logo" src="{% static 'website/img/animation2_3.gif' %}" />
             </div>
-            <div class="w-50">
+            <div class="col-md-6">
                 <h1 class="mb-2 font-weight-bolder">Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !</h1>
                 <p class="text-description mt-4">Le retour de deux grandes communautés Minecraft, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
                 <b class="text-description">Versions 1.8 - 1.16.2</b>
             </div>
         </div>
-        <div class="server-links d-flex flex-row justify-content-center">
+        <div class="server-links row justify-content-center">
             <a class="link-discord btn mr-4" href="{{ links.discord }}" target="_blank">
                 <div class="lead">Serveur <b>Discord</b></div>
                 <div>{{ discord.count_players_online }} joueurs en ligne</div>
@@ -107,7 +107,7 @@
     <div id="staff-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Administrateurs</h4>
-        <div class="d-flex justify-content-around flex-wrap">
+        <div class="d-flex justify-content-center flex-wrap">
             {% for staff in staff_list %}
                 {% with name=staff.name img=staff.path_img socials=staff.socials %}
                     {% include "website/components/staff-member.html" %}

@@ -3,8 +3,8 @@ from api_v1_article.service import ArticleService
 from api_v1_article import models
 
 
-class ArticleServiceCreateTestCase(TestCase):
-    fixtures = ['category.json', 'language.json','article.json']
+class ArticleServiceTestCase(TestCase):
+    fixtures = ['category.json', 'language.json', 'article.json']
 
     def setUp(self):
         # Set article

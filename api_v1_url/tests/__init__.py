@@ -1,0 +1,1 @@
+from api_v1_url.tests.test_url_views import UrlViewsTestCase

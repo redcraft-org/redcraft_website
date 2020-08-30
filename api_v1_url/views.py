@@ -33,16 +33,16 @@ class SetUrl(View):
             token = models.Token.objects.get(token=json_body['token'])
             url = models.ReducedUrl.objects.get(url=json_body['url'])
         except models.Token.DoesNotExist:
-            return JsonResponse({'err': "token don't existe"})
+            return JsonResponse({'err': "token don't exist"})
         except models.ReducedUrl.DoesNotExist:
             url = None
         else:
             return JsonResponse({
-                'err': "url existe", 
+                'err': "url exist", 
                 'shortened': url.shortened
             })
 
-        shortened = json_body['shortened'] or ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        shortened = json_body['shortened'] if 'shortened' in json_body else ''.join(random.choices(string.ascii_letters + string.digits, k=10))
         url = models.ReducedUrl(token=token, url=json_body['url'], shortened=shortened)
         url.save()
-        return JsonResponse({'response': True})
+        return JsonResponse({'response': True, 'shortened': shortened})

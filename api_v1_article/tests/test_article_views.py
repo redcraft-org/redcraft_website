@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 
 from api_v1_article import models
 
-class ArticleviewsTestCase(TestCase):
+class ArticleViewsTestCase(TestCase):
     fixtures = ['category.json', 'language.json', 'article.json']
 
     def setUp(self):

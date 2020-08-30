@@ -29,6 +29,12 @@ class ArticleService:
         nb_article = len(self.articles)
         nb_page = ceil(nb_article / per_page)
 
+        if(current_page > nb_page or current_page < 1):
+            return {
+                'err': 'this page not existe',
+                'redirect': f"/api/v1/articles?page={nb_page if current_page > nb_page else 1}&per_page={per_page}"
+            }
+
         next_page = None if current_page >= nb_page else current_page + 1
         prev_page = None if current_page <= 1 else current_page - 1
 
@@ -46,8 +52,6 @@ class ArticleService:
                 } 
             ]
 
-        print(next_page)
-        print(prev_page)
         return {
             'nb_page': nb_page,
             'current_page': current_page,
@@ -57,10 +61,14 @@ class ArticleService:
             'list': list_article
         }
 
-    def getArticleData(self, id, language=None):
-        article = models.Article.objects.get(id=id)
+    def getArticleData(self, id, language):
         try:
-            language_object = language and models.Language.objects.get(short_name=language)
+            article = models.Article.objects.get(id=id)
+            language_object = models.Language.objects.get(short_name=language)
+        except models.Article.DoesNotExist:
+            return {
+                'err': f'{id} not existe'
+            }
         except models.Language.DoesNotExist:
             return {
                 'err': 'this language is not supported',
@@ -70,6 +78,8 @@ class ArticleService:
         article_data = article.articledata_set.get(language=language_object and self.favorit_language)
         return {
             'id': article_data.article.id,
+            'category': article.category.name,
+            'path_img': article.path_img,
             'title': article_data.title,
             'text': article_data.text,
             'overview': article_data.overview,
@@ -108,4 +118,4 @@ class ArticleService:
             )
             article_data_object.save()
 
-        return {'response': True}
+        return {'response': True, 'id': article_object.id}

@@ -9,6 +9,13 @@ class Language(models.Model):
         return f"{self.short_name} - {self.name}"
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=32)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
 class ArticleData(models.Model):
     title = models.CharField(max_length=42)
     text = models.CharField(max_length=280) # Limit by twitter
@@ -25,13 +32,6 @@ class ArticleData(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.overview}"
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=32)
-
-    def __str__(self):
-        return f"{self.name}"
 
 
 class Article(models.Model):

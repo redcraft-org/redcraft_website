@@ -1,0 +1,16 @@
+[
+    {
+        "model": "api_v1_article.Category",
+        "pk": 1,
+        "fields": {
+            "name": "redstone"
+        }
+    },
+    {
+        "model": "api_v1_article.Category",
+        "pk": 2,
+        "fields": {
+            "name": "build"
+        }
+    }
+]

@@ -17,12 +17,12 @@ class FrontviewsTestCase(TestCase):
             'instagram' : 'https://www.instagram.com/redcraftorg',
         })
 
-    def test_succes_home(self):
-        response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed('website/pages/home.html')
-        self.assertBaseContext(response)
-        self.assertEqual(response.context['page'], 'home')
+    # def test_succes_home(self):
+    #     response = self.client.get('/')
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed('website/pages/home.html')
+    #     self.assertBaseContext(response)
+    #     self.assertEqual(response.context['page'], 'home')
         
 
     def test_succes_vote(self):

@@ -1,0 +1,1 @@
+from website.tests.test_views import FrontviewsTestCase

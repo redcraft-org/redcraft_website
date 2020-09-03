@@ -41,14 +41,15 @@ class Coupon(models.Model):
 
     def toArray(self):
         return {
-            'name': coupon.name,
-            'is_public': coupon.is_public,
-            'start_date': coupon.start_date,
-            'stop_date': coupon.stop_date,
-            'min_amount': coupon.min_amount,
-            'max_amount': coupon.max_amount,
-            'modifier': coupon.modifier,
-            'source': coupon.source,
+            'id': self.id
+            'name': self.name,
+            'is_public': self.is_public,
+            'start_date': self.start_date,
+            'stop_date': self.stop_date,
+            'min_amount': self.min_amount,
+            'max_amount': self.max_amount,
+            'modifier': self.modifier,
+            'source': self.source,
         }
 
 class PlayerDonation(models.Model):

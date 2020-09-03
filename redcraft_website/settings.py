@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'api_v1_skin.apps.ApiV1SkinConfig',
     'api_v1_article.apps.ApiV1ArticleConfig',
     'network_data.apps.NetworkDataConfig',
+    'donations.apps.DonationsConfig',
     'user.apps.UserConfig',
 
     'website',

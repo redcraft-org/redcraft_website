@@ -30,15 +30,16 @@ section {
         padding: 15vh 0em;
 
         .background {
-            background-image: linear-gradient(transparent 0%, #262829a6 0%), url(../../img/home-background-2.png);
+            background-image: linear-gradient(transparent 0%, #292b2db8 0%), url(../../img/home-background.png);
             background-position: center;
             background-size: cover;
             width: 100%;
             height: 100%;
             z-index: -1;
-            filter: saturate(0.3);
             top: 0px;
-            transform: translateZ(-50px)scale(2);
+            transform: translate3D(-4px, -10px, -50px) scale(1.5);
+            // Increase each value by the same multiple
+            // --> translate3D(-2px, -5px, -25px) scale(1.25);
         }
         .welcome-presentation {
             margin-bottom: 6rem;

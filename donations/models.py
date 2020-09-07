@@ -14,18 +14,22 @@ class Donation(models.Model):
     player = models.ForeignKey(
         'PlayerDonation',
         on_delete=models.PROTECT,
+        null=True
     )
+
 
 
 class AccesCodeCoupon(models.Model):
-    acces_code = models.CharField(max_length=32)
+    access_code = models.CharField(max_length=32)
     coupon = models.ForeignKey(
         'Coupon',
         on_delete=models.PROTECT,
+        null=True
     )
     player = models.ForeignKey(
         'PlayerDonation',
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        null=True
     )
 
 
@@ -51,6 +55,7 @@ class Coupon(models.Model):
             'modifier': self.modifier,
             'source': self.source,
         }
+
 
 class PlayerDonation(models.Model):
     player_uuid = models.UUIDField(editable=False)

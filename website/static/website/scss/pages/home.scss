@@ -2,41 +2,12 @@
 @import "../components/article";
 
 section {
-    padding: 5rem 0 5rem 0;
-    position: relative;
-    overflow: hidden;
-
-    .section-titre {
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 5rem;
-    }
-
-    .waves {
-        position: absolute;
-        height: 9vw;
-        -webkit-filter: drop-shadow(0px 0px 5px #202020);
-        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
-        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
-        &.waves-top {
-            top: 0;
-        }
-        &.waves-bottom {
-            bottom: 0;
-        }
-    }
 
     &#welcome-header {
         padding: 15vh 0em;
 
-        .background {
+        .section-background {
             background-image: linear-gradient(transparent 0%, #26282942 0%), url(../../img/home-background.png);
-            background-position: center;
-            background-size: cover;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            top: 0px;
             transform: translateZ(-50px) scale(2);
         }
         .welcome-presentation {
@@ -158,12 +129,8 @@ section {
 
         #news-background {
             background-image: linear-gradient(transparent 0%, #943a3ab8 0%), url(../../img/gray_concrete_powder.png);
-            background-position: center;
             background-size: 200px;
-            width: 100%;
             height: 200%;
-            z-index: -1;
-            top: 0;
             transform: translate3d(0px, -25%, 20px)scale(0.8);
         }
     }
@@ -268,12 +235,7 @@ section {
         
         #staff-background {
             background-image: linear-gradient(transparent 0%, #5f636b94 0%), url(../../img/stone.png);
-            background-position: center;
             background-size: 200px;
-            width: 100%;
-            height: 200%;
-            z-index: -1;
-            top: 0;
             // transform: translate3d(0px, 0px, -100px)scale(2);
         }
 

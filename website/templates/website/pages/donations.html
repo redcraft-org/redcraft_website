@@ -2,8 +2,77 @@
 {% load static %}
 
 {% block content %}
-DONS SAMERE
-<p>test</p>
+<section id="header">
+    <div class="section-background"></div>
+    <div class="d-flex justify-content-center">
+        <h1 class="font-weight-bolder">Dons</h1>
+    </div>
+</section>
+<section id="donation-form">
+    <div class="container">
+        <form action="#">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="d-flex flex-column">
+                        <div class="donation-price">8€</div>
+                        <div class="donation-price">15€</div>
+                        <div class="donation-price">25€</div>
+                        <div class="donation-price">€</div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Pseudo">
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme">
+                                    <label class="custom-control-label" for="donation-is-anonyme">Anonyme</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="text-white-50">Si un don a déjà été fait avec ce pseudo, il sera soustrait au prix des grades</span>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-gift">
+                                    <label class="custom-control-label" for="donation-is-gift">Ce don est un cadeau</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Offert à">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Coupon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success">Faire un don</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<section id="donation-info">
+
+</section>
 {% endblock %}
 
 {% block extra_css %}

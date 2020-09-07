@@ -14,6 +14,7 @@
         <form action="#">
             <div class="row">
                 <div class="col-md-3">
+                    <h6 class="mb-4">Suggestions de montant</h6>
                     <div class="d-flex flex-column prices">
                         <input type="radio" id="donation-price-1" name="donation-price-radio" checked>
                         <label for="donation-price-1" class="price">
@@ -30,12 +31,13 @@
                             25€
                         </label>
                         <input type="radio" id="donation-price-4" name="donation-price-radio">
-                        <label for="donation-price-4" class="price">
+                        <label for="donation-price-4" class="price text-left">
+                            <input type="number" id="donation-custom-price" class="form-control w-50" placeholder="Autre" disabled>
                             €
                         </label>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 informations">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
@@ -66,7 +68,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Message"></textarea>
+                        <textarea class="form-control" placeholder="Message" rows="10" cols="10" ></textarea>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -97,6 +99,20 @@
 
 {% block extra_js %}
 <script type="text/javascript">
+
+document.querySelectorAll('input[name=donation-price-radio]').forEach(() => {
+    this.onchange = () => {
+        document.querySelector('#donation-custom-price').disabled = !document.querySelector('#donation-price-4').checked
+    }
+})
+
+document.querySelector('#donation-is-anonyme').onclick = () => {
+    document.querySelector('#donation-pseudo').value = ""
+}
+
+document.querySelector('#donation-is-gift').onclick = () => {
+    document.querySelector('#donation-gift-pseudo').value = ""
+}
 
 </script>
 {% endblock %}

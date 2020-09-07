@@ -10,25 +10,40 @@
 </section>
 <section id="donation-form">
     <div class="container">
+        <h4 class="section-titre">Faire un don</h4>
         <form action="#">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="d-flex flex-column">
-                        <div class="donation-price">8€</div>
-                        <div class="donation-price">15€</div>
-                        <div class="donation-price">25€</div>
-                        <div class="donation-price">€</div>
+                    <div class="d-flex flex-column prices">
+                        <input type="radio" id="donation-price-1" name="donation-price-radio" checked>
+                        <label for="donation-price-1" class="price">
+                            8€
+                            <span>(VIP)</span>
+                        </label>
+                        <input type="radio" id="donation-price-2" name="donation-price-radio">
+                        <label for="donation-price-2" class="price">
+                            15€
+                            <span>(VIP+)</span>
+                        </label>
+                        <input type="radio" id="donation-price-3" name="donation-price-radio">
+                        <label for="donation-price-3" class="price">
+                            25€
+                        </label>
+                        <input type="radio" id="donation-price-4" name="donation-price-radio">
+                        <label for="donation-price-4" class="price">
+                            €
+                        </label>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Pseudo">
+                                <input type="text" id="donation-pseudo" class="form-control" placeholder="Pseudo">
                             </div>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme">
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme" onchange="document.getElementById('donation-pseudo').disabled = this.checked;">
                                     <label class="custom-control-label" for="donation-is-anonyme">Anonyme</label>
                                 </div>
                             </div>
@@ -39,14 +54,14 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-flex align-items-center">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-gift">
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-gift" onchange="document.getElementById('donation-gift-pseudo').disabled = !this.checked;">
                                     <label class="custom-control-label" for="donation-is-gift">Ce don est un cadeau</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Offert à">
+                                <input type="text" id="donation-gift-pseudo" class="form-control" placeholder="Offert à" disabled>
                             </div>
                         </div>
                     </div>
@@ -71,6 +86,7 @@
     </div>
 </section>
 <section id="donation-info">
+    <h4 class="section-titre">Informations</h4>
 
 </section>
 {% endblock %}

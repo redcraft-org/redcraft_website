@@ -1,3 +1,5 @@
+@import "../colors";
+
 section#header {
 
     .section-background {
@@ -7,4 +9,31 @@ section#header {
 
 section#donation-form {
     background-color: #202020;
+
+    .prices {
+        height: 100%;
+
+        input[name=donation-price-radio] {
+            display: none;
+        }
+
+        .price {
+            cursor: pointer;
+            box-shadow: 0 0 0 1px $brand-light-2;
+            border-radius: 7px;
+            margin-bottom: 1rem;
+            font-weight: bolder;
+            text-align: center;
+            line-height: 60px;
+            font-size: 1.25rem;
+
+            span {
+                color: $brand-dark-1-dark;
+            }
+        }
+
+        input[name=donation-price-radio]:checked + .price {
+            box-shadow: 0 0 0 4px $brand-red-1;
+        }
+    }
 }

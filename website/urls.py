@@ -6,7 +6,7 @@ from website import views
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('vote.html', views.Vote.as_view(), name='vote'),
-    path('dons.html', views.Dons.as_view(), name='dons'),
+    path('donations.html', views.Donations.as_view(), name='donations'),
     path('stats.html', views.Stats.as_view(), name='stats'),
     path('rules.html', views.Rules.as_view(), name='rules'),
     path('contact.html', views.Contact.as_view(), name='contact'),

@@ -41,7 +41,7 @@ class Coupon(models.Model):
 
     def toArray(self):
         return {
-            'id': self.id
+            'id': self.id,
             'name': self.name,
             'is_public': self.is_public,
             'start_date': self.start_date,

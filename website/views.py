@@ -135,8 +135,8 @@ class Vote(BaseViewFrontEnd):
         }
 
 
-class Dons(BaseViewFrontEnd):
-    template_name = 'website/pages/dons.html'
+class Donations(BaseViewFrontEnd):
+    template_name = 'website/pages/donations.html'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
@@ -144,7 +144,7 @@ class Dons(BaseViewFrontEnd):
         return {
             **ctx,
             **{
-                'page': 'dons'
+                'page': 'donations'
             }
         }
 

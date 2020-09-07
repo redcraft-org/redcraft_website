@@ -3,12 +3,12 @@
 
 body {
     overflow: hidden;
-    background-color: $color-gray;
+    background-color: $brand-dark-2;
     font-family: Poppins;
-    color: $color-gray-light !important;
+    color: $brand-light-1 !important;
 
     .navbar {
-        background-color: $color-gray-mineshaft;
+        background-color: $brand-dark-2-dark;
     }
 }
 
@@ -78,10 +78,10 @@ footer {
     color: inherit;
 
     &.btn-red {
-        background-color: $color-red;
+        background-color: $brand-red-1;
         color: white;
         &:hover {
-            background-color: $color-red-dark;
+            background-color: $brand-red-1-dark;
             color: white!important;
         }
     }
@@ -92,12 +92,23 @@ footer {
 
 }
 
+input {
+
+}
+
 .form-control {
     background-color: #2D2D2D;
+    border: none;
+    border-radius: 7px;
+
+    &:focus {
+        background-color: initial!important;
+        box-shadow: 0 0 0 2px white;
+    }
 }
 
 a {
-    color: $color-red;
+    color: $brand-red-1;
 
     &.no-hover:hover {
         color: inherit!important;
@@ -105,5 +116,5 @@ a {
 }
 
 a:hover {
-    color: $color-red-dark;
+    color: $brand-red-1-dark;
 }

@@ -53,11 +53,11 @@ section {
                 }
                 
                 &.link-server {
-                    background-color: $color-red;
+                    background-color: $brand-red-1;
                     overflow: hidden;
 
                     &:hover {
-                        background-color: $color-red-dark;
+                        background-color: $brand-red-1-dark;
                     }
 
                     .link-server-animation {

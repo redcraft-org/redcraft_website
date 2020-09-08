@@ -4,6 +4,10 @@
 {% block content %}
 <section id="header">
     <div class="section-background"></div>
+    <svg class="waves waves-bottom" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;">
+        <path d="M-0.56,-2.06 C149.99,150.00 349.03,149.50 500.00,-1.80 L500.00,150.00 L0.00,150.00 Z"
+            style="stroke: none; fill: #202020;"></path>
+    </svg>
     <div class="d-flex justify-content-center">
         <h1 class="font-weight-bolder">Dons</h1>
     </div>
@@ -41,11 +45,11 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="donation-pseudo" class="form-control" placeholder="Pseudo">
+                                <input type="text" id="donation-pseudo" name="donation-pseudo"  class="form-control" placeholder="Pseudo">
                             </div>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme" onchange="document.getElementById('donation-pseudo').disabled = this.checked;">
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme" name="donation-is-anonyme">
                                     <label class="custom-control-label" for="donation-is-anonyme">Anonyme</label>
                                 </div>
                             </div>
@@ -58,7 +62,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-gift" onchange="document.getElementById('donation-gift-pseudo').disabled = !this.checked;">
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-gift">
                                     <label class="custom-control-label" for="donation-is-gift">Ce don est un cadeau</label>
                                 </div>
                             </div>
@@ -106,11 +110,8 @@ document.querySelectorAll('input[name=donation-price-radio]').forEach(() => {
     }
 })
 
-document.querySelector('#donation-is-anonyme').onclick = () => {
-    document.querySelector('#donation-pseudo').value = ""
-}
-
 document.querySelector('#donation-is-gift').onclick = () => {
+    document.querySelector('#donation-gift-pseudo').disabled = !document.querySelector('#donation-is-gift').checked
     document.querySelector('#donation-gift-pseudo').value = ""
 }
 

@@ -153,6 +153,12 @@ section {
             .presentation-img {
                 border-radius: 7px;
             }
+
+            &:nth-child(3) .presentation-img {
+                -webkit-filter: drop-shadow(6px 4px 5px #00000075);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=4, Color='#00000075')";
+                filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=4, Color='#00000075')";
+            }
         }
     }
 

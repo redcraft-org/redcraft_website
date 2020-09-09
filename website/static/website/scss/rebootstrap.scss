@@ -14,7 +14,9 @@
 
 .btn {
     border-radius: 7px;
+    border: 4px solid;
     color: inherit;
+    font-weight: bolder;
 
     &.btn-red {
         background-color: $brand-red-1;
@@ -27,6 +29,21 @@
 
     &:hover {
         color: inherit!important;
+    }
+
+    &.btn-primary {
+        background-color: $brand-red-1;
+        border-color: $brand-red-1-dark;
+
+        &:focus {
+            border-color: $brand-red-1-dark!important;
+            box-shadow: 0 0 0 3px $brand-light-1!important;
+        }
+
+        &:active {
+            background-color: $brand-red-1-dark!important;
+            border-color: $brand-red-1-dark!important;
+        }
     }
 
 }

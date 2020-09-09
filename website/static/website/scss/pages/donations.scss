@@ -106,4 +106,52 @@ section#donation-form {
 section#donation-info {
     background-color: $brand-light-2;
     color: $brand-dark-2-dark;
+
+    .contreparties {
+        .contrepartie {
+            border-radius: 7px;
+            color: #ffffff;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+
+            h3 {
+                font-weight: bolder;
+            }
+        }
+
+        .vip {
+            background-color: $brand-red-1;
+            border: 4px solid $brand-red-1-dark;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: linear-gradient(#ffffff 0%, rgba($brand-red-1, 0.87) 0%), url(../../img/home-background.png);
+                background-size: cover;
+                background-position: bottom;
+                z-index: 0;
+            }
+        }
+        .vip-plus {
+            background-color: $brand-red-2;
+            border: 4px solid $brand-red-2-dark;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: linear-gradient(#ffffff 0%, rgba($brand-red-2, 0.87) 0%), url(../../img/home-background.png);
+                background-size: cover;
+                background-position: bottom;
+            }
+        }
+    }
 }

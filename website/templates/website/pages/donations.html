@@ -23,12 +23,10 @@
                         <input type="radio" id="donation-price-1" name="donation-price-radio" checked>
                         <label for="donation-price-1" class="price">
                             8€
-                            <span>(VIP)</span>
                         </label>
                         <input type="radio" id="donation-price-2" name="donation-price-radio">
                         <label for="donation-price-2" class="price">
                             15€
-                            <span>(VIP+)</span>
                         </label>
                         <input type="radio" id="donation-price-3" name="donation-price-radio">
                         <label for="donation-price-3" class="price">
@@ -45,12 +43,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" id="donation-pseudo" name="donation-pseudo"  class="form-control" placeholder="Pseudo">
+                                <input type="text" id="donation-nickname" name="donation-nickname"  class="form-control" placeholder="Pseudo">
                             </div>
                             <div class="col-md-6 d-flex align-items-center">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme" name="donation-is-anonyme">
-                                    <label class="custom-control-label" for="donation-is-anonyme">Anonyme</label>
+                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonymous" name="donation-is-anonymous">
+                                    <label class="custom-control-label" for="donation-is-anonymous">Anonyme</label>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" id="donation-gift-pseudo" class="form-control" placeholder="Offert à" disabled>
+                                <input type="text" id="donation-gift-nickname" class="form-control" placeholder="Offert à" disabled>
                             </div>
                         </div>
                     </div>
@@ -131,9 +129,14 @@ document.querySelectorAll('input[name=donation-price-radio]').forEach(() => {
     }
 })
 
+document.querySelector('#donation-is-anonymous').onclick = () => {
+    document.querySelector('#donation-nickname').disabled = document.querySelector('#donation-is-anonymous').checked
+    document.querySelector('#donation-nickname').value = ""
+}
+
 document.querySelector('#donation-is-gift').onclick = () => {
-    document.querySelector('#donation-gift-pseudo').disabled = !document.querySelector('#donation-is-gift').checked
-    document.querySelector('#donation-gift-pseudo').value = ""
+    document.querySelector('#donation-gift-nickname').disabled = !document.querySelector('#donation-is-gift').checked
+    document.querySelector('#donation-gift-nickname').value = ""
 }
 
 </script>

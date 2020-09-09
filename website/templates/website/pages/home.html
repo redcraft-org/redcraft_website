@@ -46,7 +46,7 @@
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Présentation</h4>
         <div class="presentations d-flex flex-column">
-            <div class="presentation row justify-content-around">
+            <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
                     <h3 class="font-weight-bolder my-4">Un serveur international.</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget feugiat lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis leo a felis cursus pharetra id vitae felis.</p>
@@ -55,7 +55,7 @@
                     <img src="{% static 'website/img/'%}home-background.png" class="presentation-img w-100">
                 </div>
             </div>
-            <div class="presentation row justify-content-around">
+            <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
                     <h3 class="font-weight-bolder my-4">Open-source et moderne.</h3>
                     <p>RedCraft.org a été conçu et pensé depuis le départ pour la flexibilité et la robustesse. L'entièreté du projet est Open-Source, n'importe qui peut ainsi contribuer à développer le projet !</p>
@@ -64,7 +64,7 @@
                     <img src="{% static 'website/img/'%}home-background-2.png" class="presentation-img w-100">
                 </div>
             </div>
-            <div class="presentation row justify-content-around">
+            <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
                     <h3 class="font-weight-bolder my-4">Des années d'expérience.</h3>
                     <p>Né de la fusion entre <a href="http://topred.fr" target="_blank">TopRed.fr</a> et <a href="https://kingdomhills.fr" target="_blank">KingdomHills.fr</a>, RedCraft.org bénéficie de la qualité et du savoir-faire de 2 communautés et d'un staff actif depuis 2014.</p>
@@ -131,7 +131,7 @@
         <h4 class="section-titre">Administrateurs</h4>
         <div class="d-flex justify-content-center flex-wrap">
             {% for staff in staff_list %}
-                {% with name=staff.name img=staff.path_img socials=staff.socials %}
+                {% with name=staff.name img=staff.path_img socials=staff.socials index=forloop.counter %}
                     {% include "website/components/staff-member.html" %}
                 {% endwith %}
             {% endfor %}
@@ -141,10 +141,12 @@
 {% endblock %}
 
 {% block extra_css %}
-<link href="{% static 'website/css/pages/home.css' %}" rel="stylesheet">
+<link href="{% static 'website/css/pages/home.css' %}" rel="stylesheet">{# sal #}
+<link href="{% static 'website/libraries/sal/sal.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_js %}
+<script src="{% static 'website/libraries/sal/sal.js' %}" type="text/javascript"></script>
 <script type="text/javascript">
     let serverLinkAnimation = null
 
@@ -165,6 +167,10 @@
         }, 5000)
     }
 
+    // Call sal library
+    sal({
+            threshold: 0.5
+        })
 
 </script>
 {% endblock %}

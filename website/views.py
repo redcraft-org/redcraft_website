@@ -205,8 +205,8 @@ class Articles(BaseViewFrontEnd):
         }
 
 
-class Dynmap(BaseViewFrontEnd):
-    template_name = 'website/pages/dynmap.html'
+class Livemap(BaseViewFrontEnd):
+    template_name = 'website/pages/livemap.html'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
@@ -214,7 +214,7 @@ class Dynmap(BaseViewFrontEnd):
         return {
             **ctx,
             **{
-                'page': 'dynmap'
+                'page': 'livemap'
             }
         }
 

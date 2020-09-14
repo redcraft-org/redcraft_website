@@ -11,6 +11,6 @@ urlpatterns = [
     path('rules.html', views.Rules.as_view(), name='rules'),
     path('contact.html', views.Contact.as_view(), name='contact'),
     path('articles.html', views.Articles.as_view(), name='articles'),
-    path('dynmap.html', views.Dynmap.as_view(), name='dynmap'),
+    path('livemap.html', views.Livemap.as_view(), name='livemap'),
     path('r/<str:shortened>', views.UrlReducer.as_view(), name='url_reducer'),
 ]

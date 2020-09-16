@@ -22,38 +22,8 @@ b {
     font-weight: 800;
 }
 
-.navbar {
-    height: 4.5rem;
-
-    .navbar-brand img {
-        height: 50px; 
-        image-rendering: pixelated; 
-        position: absolute;
-        top: 10px;
-    }
-}
-
 footer {
     background-color: #2D2D2D;
-}
-
-.btn {
-    border-radius: 7px;
-    color: inherit;
-
-    &.btn-red {
-        background-color: $color-red;
-        color: white;
-        &:hover {
-            background-color: $color-red-dark;
-            color: white!important;
-        }
-    }
-
-    &:hover {
-        color: inherit!important;
-    }
-
 }
 
 a {

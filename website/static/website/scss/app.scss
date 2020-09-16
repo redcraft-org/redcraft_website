@@ -3,12 +3,12 @@
 
 body {
     overflow: hidden;
-    background-color: $color-gray;
+    background-color: $brand-dark-2;
     font-family: Poppins;
-    color: $color-gray-light !important;
+    color: $brand-light-1 !important;
 
     .navbar {
-        background-color: $color-gray-mineshaft;
+        background-color: $brand-dark-2-dark;
     }
 }
 
@@ -18,16 +18,49 @@ body {
     perspective: 100px;
 }
 
+section {
+    padding: 5rem 0 5rem 0;
+    position: relative;
+    overflow: hidden;
+
+    .section-background {
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 0px;
+    }
+
+    .section-titre {
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    .waves {
+        position: absolute;
+        height: 9vw;
+        // -webkit-filter: drop-shadow(0px 0px 5px $brand-dark-2-dark);
+        // -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
+        // filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
+        &.waves-top {
+            top: 0;
+        }
+        &.waves-bottom {
+            bottom: 0;
+        }
+    }
+}
+
+
 b {
     font-weight: 800;
 }
 
-footer {
-    background-color: #2D2D2D;
-}
-
 a {
-    color: $color-red;
+    color: $brand-red-1;
 
     &.no-hover:hover {
         color: inherit!important;
@@ -35,5 +68,5 @@ a {
 }
 
 a:hover {
-    color: $color-red-dark;
+    color: $brand-red-1-dark;
 }

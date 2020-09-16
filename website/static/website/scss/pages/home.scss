@@ -2,15 +2,6 @@
 @import "../components/article";
 
 section {
-    padding: 5rem 0 5rem 0;
-    position: relative;
-    overflow: hidden;
-
-    .section-titre {
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 5rem;
-    }
 
     .waves {
         position: absolute;
@@ -76,6 +67,7 @@ section {
 
                 &.link-discord {
                     background-color: $color-discord;
+                    border-color: transparent;
                     
 
                     &:hover {
@@ -84,11 +76,12 @@ section {
                 }
                 
                 &.link-server {
-                    background-color: $color-red;
+                    background-color: $brand-red-1;
+                    border-color: transparent;
                     overflow: hidden;
 
                     &:hover {
-                        background-color: $color-red-dark;
+                        background-color: $brand-red-1-dark;
                     }
 
                     .link-server-animation {

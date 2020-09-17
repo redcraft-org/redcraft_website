@@ -28,9 +28,7 @@ section {
             height: 100%;
             z-index: -1;
             top: 0px;
-            transform: translate3D(-4px, -10px, -50px) scale(1.5);
-            // Increase each value by the same multiple
-            // --> translate3D(-2px, -5px, -25px) scale(1.25);
+            transform: translate3D(-4px, -25%, -50px) scale(2);
         }
         .welcome-presentation {
             margin-bottom: 6rem;
@@ -184,7 +182,7 @@ section {
             height: 200%;
             z-index: -1;
             top: 0;
-            transform: translate3d(0px, -25%, 20px)scale(0.8);
+            transform: translate3d(0px, -25%, 20px)scale(1);
         }
     }
 

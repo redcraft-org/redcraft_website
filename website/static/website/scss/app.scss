@@ -23,6 +23,12 @@ section {
     position: relative;
     overflow: hidden;
 
+    &#header {
+        .section-background {
+            background-image: linear-gradient(transparent 0%, #2628298c 0%), url(../img/home-background.png);
+        }
+    }
+
     .section-background {
         background-position: center;
         background-size: cover;
@@ -52,6 +58,11 @@ section {
             bottom: 0;
         }
     }
+
+}
+
+b {
+    font-weight: 800;
 }
 
 

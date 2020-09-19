@@ -1,8 +1,23 @@
 {% extends 'website/base.html' %}
 {% load static %}
 
-{% block contant %}
-<div id="rules">
-    rules
-</div>
+{% block content %}
+{% with title="Règles" waveFill="#202020" %}
+    {% include "website/components/section-header.html" %}
+{% endwith %}
+<section id="conduct-code">
+    <div class="container">
+        <h3 class="section-titre">Code de conduite</h3>
+    </div>    
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'website/css/pages/rules.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
 {% endblock %}

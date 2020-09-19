@@ -18,6 +18,12 @@ body {
     perspective: 100px;
 }
 
+section#header {
+    .section-background {
+        background-image: linear-gradient(transparent 0%, #2628298c 0%), url(../img/home-background.png);
+    }
+}
+
 b {
     font-weight: 800;
 }

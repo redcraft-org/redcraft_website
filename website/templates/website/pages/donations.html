@@ -2,16 +2,9 @@
 {% load static %}
 
 {% block content %}
-<section id="header">
-    <div class="section-background"></div>
-    <svg class="waves waves-bottom" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;">
-        <path d="M-0.56,-2.06 C149.99,150.00 349.03,149.50 500.00,-1.80 L500.00,150.00 L0.00,150.00 Z"
-            style="stroke: none; fill: #202020;"></path>
-    </svg>
-    <div class="d-flex justify-content-center">
-        <h1 class="font-weight-bolder">Dons</h1>
-    </div>
-</section>
+{% with title="Dons" waveFill="#202020" %}
+    {% include "website/components/section-header.html" %}
+{% endwith %}
 <section id="donation-form">
     <div class="container">
         <h3 class="section-titre">Faire un don</h3>

@@ -53,10 +53,18 @@ section {
         // filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
         &.waves-top {
             top: 0;
+            transform: translateY(-1px);
         }
         &.waves-bottom {
             bottom: 0;
+            transform: translateY(1px);
         }
+    }
+}
+
+@media (max-width: 767.98px) {
+    section .waves {
+        height: 5vw!important;
     }
 }
 

@@ -107,7 +107,7 @@
         <h4 class="section-titre">Serveurs</h4>
         <form>
             <div class="row">
-                <div class="col-md-4 servers-listing">
+                <div class="col-md-4 servers-listing mb-4 mb-md-0">
                     <p class="text-black-50"><small>Cliquez sur un serveur pour en savoir plus</small></p>
                     {% for server in servers_list %}
                         {% with title=server.title overview=server.overview index=forloop.counter0 %}
@@ -173,8 +173,21 @@
 
     // Call sal library
     sal({
-            threshold: 0.5
-        })
+        threshold: 0.5
+    })
+
+    function resizeServerDetails() {
+            var arr = Array()
+            document.querySelectorAll(".server-active").forEach((e, i) => {
+                arr[i] = e.clientHeight
+            })
+            var max = arr.reduce(function (a, b) {
+                return Math.max(a, b)
+            })
+            document.querySelector(".server-active-container").style.height = max + "px"
+        }
+        resizeServerDetails()
+        window.addEventListener('resize', resizeServerDetails)
 
 </script>
 {% endblock %}

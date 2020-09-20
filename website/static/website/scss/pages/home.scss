@@ -215,9 +215,13 @@ section {
             }
         }
 
+        .server-active {
+            width: 100%;
+            padding: inherit;
+        }
+
         input:checked + .server-active{
             z-index: 3;
-            max-width: 100%;
 
             .server-active-animate {
                 opacity: 1;

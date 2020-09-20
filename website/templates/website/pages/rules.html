@@ -8,7 +8,47 @@
 <section id="conduct-code">
     <div class="container">
         <h3 class="section-titre">Code de conduite</h3>
+        <p class="text-center text-white-50"><small><i>Cliquez sur les icônes pour en savoir plus.</i></small></p>
+        <div class="row three-main mb-4">
+            <label class="col-md-4 text-center my-4" for="code-conduct-radio-1">
+                <i class="fas fa-hands-helping"></i>
+                <h4>Se respecter</h4>
+            </label>
+            <label class="col-md-4 text-center my-4" for="code-conduct-radio-2">
+                <i class="fas fa-people-carry"></i>
+                <h4>S'entraider</h4>
+            </label>
+            <label class="col-md-4 text-center my-4" for="code-conduct-radio-3">
+                <i class="fas fa-gamepad"></i>
+                <h4>S'amuser</h4>
+            </label>
+        </div>
+        <div class="details position-relative d-flex">
+            <div class="code-conduct">
+                <input type="radio" name="code-conduct-radio" id="code-conduct-radio-1" />
+                <div class="text lead">Le respect est la base pour avoir une atmosphère saine et constructive. N'oublions pas que tout le monde n'a pas le même niveau de connaissances, respectons ceux qui en ont moins que nous et encouragons leur curiosité.</div>
+            </div>
+            <div class="code-conduct">
+                <input type="radio" name="code-conduct-radio" id="code-conduct-radio-2" />
+                <div class="text lead">RedCraft.org a parmi ses objectifs la transmission de connaissances quelle qu'elle soient. Le partage est un pilier pour avoir une communauté soudée et active.</div>
+            </div>
+            <div class="code-conduct">
+                <input type="radio" name="code-conduct-radio" id="code-conduct-radio-3" />
+                <div class="text lead">Après-tout, nous sommes tous en train de jouer à un jeu vidéo ! Alors essayons de passer du bon temps ensemble pour avoir une expérience en ligne inoubliable ! 😉</div>
+            </div>
+        </div>
     </div>    
+</section>
+
+<!-- TODO : Fix conduct code icons when zoom out -->
+
+
+<section id="rules">
+    <svg class="waves waves-top" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M-0.27,95.22 C171.27,186.02 271.49,-49.98 500.84,32.06 L500.00,0.00 L0.00,0.00 Z"
+            style="stroke: none; fill: #202020;"></path>
+    </svg>
+    <h3 class="section-titre">Règles</h3>
 </section>
 {% endblock %}
 
@@ -18,6 +58,17 @@
 
 {% block extra_js %}
 <script type="text/javascript">
-
+function resizeCodeConductDetails() {
+    var arr = Array()
+    document.querySelectorAll(".code-conduct").forEach((e, i) => {
+        arr[i] = e.clientHeight
+    })
+    var max = arr.reduce(function (a, b) {
+        return Math.max(a, b)
+    })
+    document.querySelector("section#conduct-code .details").style.height = max + "px"
+}
+    resizeCodeConductDetails()
+    window.addEventListener('resize', resizeCodeConductDetails)
 </script>
 {% endblock %}

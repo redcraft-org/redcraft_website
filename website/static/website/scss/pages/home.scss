@@ -202,6 +202,12 @@ section {
             image-rendering: pixelated;
         }
 
+        @media (max-width: 767.98px) {
+            .container {
+                background-position: 100% 65%;
+            }
+        }
+
         .servers-listing {
             .server {
                 cursor: pointer;
@@ -212,6 +218,11 @@ section {
                     padding-right: 0rem;
                     padding-left: .25rem;
                 }
+            }
+
+            hr {
+                width: 50%;
+                transform: translateX(-50%);
             }
         }
 
@@ -267,7 +278,9 @@ section {
             }
 
             input[type=radio] {
-                display: none;
+                opacity: 0;
+                position: absolute;
+                top: 20vh;
             }
         }
 

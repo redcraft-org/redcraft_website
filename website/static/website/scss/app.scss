@@ -16,6 +16,7 @@ body {
     overflow-y: auto;
     height: 100vh;
     perspective: 100px;
+    scroll-behavior: smooth;
 }
 
 section {
@@ -60,11 +61,6 @@ section {
     }
 
 }
-
-b {
-    font-weight: 800;
-}
-
 
 b {
     font-weight: 800;

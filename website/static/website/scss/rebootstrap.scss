@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 @import "colors";
 
-.navbar {
-    height: 4.5rem;
-
-    .navbar-brand img {
-        height: 50px; 
-        image-rendering: pixelated; 
-        position: absolute;
-        top: 10px;
-    }
-}
-
 .btn {
     border-radius: 7px;
     border: 4px solid;

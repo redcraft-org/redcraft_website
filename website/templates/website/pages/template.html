@@ -1,0 +1,23 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+{% with title="Règles" waveFill="#202020" %}
+{% include "website/components/section-header.html" %}
+{% endwith %}
+<section id="top">
+    <div class="container">
+        <h3 class="section-titre">Template page</h3>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'website/css/pages/template.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}

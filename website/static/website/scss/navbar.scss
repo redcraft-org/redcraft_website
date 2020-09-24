@@ -57,7 +57,7 @@ $navbar-height: 4.5rem;
 
                 .icon {
                     width: $burger-size;
-                    height: $burger-size/25;
+                    height: $burger-size/12.5;
                     background-color: $brand-dark-1;
                     margin: 19px 0px;
                     position: relative;
@@ -68,7 +68,7 @@ $navbar-height: 4.5rem;
                     &::before, &::after {
                         content: '';
                         width: $burger-size;
-                        height: $burger-size/25;
+                        height: $burger-size/12.5;
                         background-color: $brand-dark-1;
                         position: absolute;
                         transform-origin: 0% 50%;

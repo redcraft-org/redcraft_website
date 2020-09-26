@@ -99,3 +99,12 @@
         }
     }
 }
+
+.card {
+    border-width: 3px;
+    border-radius: 7px;
+
+    &.border-primary {
+        border-color: $brand-red-1!important;
+    }
+}

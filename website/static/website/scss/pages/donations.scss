@@ -102,22 +102,16 @@ section#donation-info {
 
     .contreparties {
         .contrepartie {
-            border-radius: 7px;
             color: #ffffff;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-            padding: 1.5rem;
             height: 300px;
             overflow: hidden;
             margin-bottom: 1.5rem;
-
-            h3 {
-                font-weight: bolder;
-            }
         }
 
         .vip {
             background-color: $brand-red-1;
-            border: 4px solid $brand-red-1-dark;
+            border-color: $brand-red-1-dark;
             &::before {
                 content: '';
                 position: absolute;
@@ -131,9 +125,9 @@ section#donation-info {
                 z-index: 0;
             }
         }
-        .vip-plus {
+        .red-vip {
             background-color: $brand-red-2;
-            border: 4px solid $brand-red-2-dark;
+            border-color: $brand-red-2-dark;
             &::before {
                 content: '';
                 position: absolute;

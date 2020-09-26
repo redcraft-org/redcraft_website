@@ -1,0 +1,9 @@
+@import "../colors.scss"; 
+
+#contact {
+    background-color: $brand-dark-2-dark;
+
+    textarea {
+        min-height: 10rem;
+    }
+}

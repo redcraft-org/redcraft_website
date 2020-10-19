@@ -4,7 +4,7 @@ from api_v1_article import models
 
 
 class ArticleServiceTestCase(TestCase):
-    fixtures = ['category.json', 'language.json', 'article.json']
+    fixtures = ['category.json', 'language.json', 'articles.json']
 
     def setUp(self):
         # Set article

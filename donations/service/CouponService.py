@@ -32,8 +32,7 @@ class CouponService:
                 )
                 access_code.save()
 
-        return {'valide': 'ok'}
-
+        return {'response': True, 'id': coupon_object.id}
 
     def getCoupons(self):
         return  {coupon.id: coupon.toArray() for coupon in models.Coupon.objects.all()}

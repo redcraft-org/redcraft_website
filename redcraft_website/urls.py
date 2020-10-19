@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/v1/', include('api_v1_url.urls')),
     path('api/v1/', include('api_v1_skin.urls')),
     path('api/v1/articles/', include('api_v1_article.urls')),
+    path('api/v1/donations/', include('donations.urls')),
 ]

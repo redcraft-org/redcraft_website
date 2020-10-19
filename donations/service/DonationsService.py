@@ -2,11 +2,23 @@ from donations import models
 
 
 class DonationsService:
-    def __init__(self):
-        pass
+    def newDonation(self, amount, player_uuid, data={}):
+        try:
+            coupon = models.Coupon.objects.get(id=data['id_coupon'])
+        except KeyError as e:
+            return {'err': f'need {str(e)}'}
+        except models.coupon.DoesNotExist:
+            return {'err': 'coupon not exist'}
+        else:
+            if 'code_coupon' in data and coupon.needCode():
+                coupon.check
 
-    def newDonation(self, ):
-        pass
+        donations_object = models.Donations.object.create()
+        data = {
+            'amount': amount,
+        }
+
+        return {'response': True, 'id': donations_object.id}
 
     def getDonations(self):
         pass

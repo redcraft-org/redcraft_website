@@ -52,4 +52,3 @@ class sassHandler(FileSystemEventHandler):
             print(f"compile sass: {path_in} > {path_out}")
         except sass.CompileError as exc:
             print(str(exc)) 
-        

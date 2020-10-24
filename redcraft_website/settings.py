@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api_v1_article.apps.ApiV1ArticleConfig',
     'network_data.apps.NetworkDataConfig',
     'user.apps.UserConfig',
+    'command.apps.CommandConfig',
 
     'website',
 ]
@@ -141,6 +142,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+# For rundev cmd
+# Sass files (sass, scss)
+SASS_FILES = [
+    ('website/static/website/scss/','website/static/website/css/'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

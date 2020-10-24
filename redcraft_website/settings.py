@@ -145,7 +145,7 @@ USE_TZ = True
 # For rundev cmd
 # Sass files (sass, scss)
 SASS_FILES = [
-    ('website/static/website/scss/',' website/static/website/css/'),
+    ('website/static/website/scss/','website/static/website/css/'),
 ]
 
 # Static files (CSS, JavaScript, Images)

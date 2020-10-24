@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand, CommandError
 import sass
 from django_sass import compile_sass, find_static_paths, find_static_scss
 from django.conf import settings
-import  dukpy
 
 
 class Command(BaseCommand):

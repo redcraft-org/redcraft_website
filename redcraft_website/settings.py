@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_sass',
-    'pipeline',
 
     'api_v1_url.apps.ApiV1UrlConfig',
     'api_v1_skin.apps.ApiV1SkinConfig',

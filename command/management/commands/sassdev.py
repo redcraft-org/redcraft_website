@@ -40,8 +40,6 @@ class Command(BaseCommand):
                                 include_paths=dirs
                             )
                             self.stdout.write(f"compile sass: {path_in} > {path_out}")
-                        for path_in, path_out in settings.JS_FILES:
-                            dukpy.babel_compile()
                         self.stdout.write("Updated files at %s" % time.time())
                     except sass.CompileError as exc:
                         self.stdout.write(str(exc))

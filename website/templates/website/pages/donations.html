@@ -2,76 +2,141 @@
 {% load static %}
 
 {% block content %}
-<section id="header">
-    <div class="section-background"></div>
-    <div class="d-flex justify-content-center">
-        <h1 class="font-weight-bolder">Dons</h1>
-    </div>
-</section>
-<section id="donation-form">
+{% with title="Dons" waveFill="#202020" %}
+    {% include "website/components/section-header.html" %}
+{% endwith %}
+<section id="donation-input">
     <div class="container">
-        <form action="#">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="d-flex flex-column">
-                        <div class="donation-price">8€</div>
-                        <div class="donation-price">15€</div>
-                        <div class="donation-price">25€</div>
-                        <div class="donation-price">€</div>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Pseudo">
+        <h3 class="section-titre">Faire un don</h3>
+        <div class="d-flex transition-container">
+            <div class="donation-fill transition-element {% if status != 'success' and status != 'fail' %}active{% endif %}">
+                <form id="donation-form" method="POST" action="#">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="mb-4">Suggestions de montant</h6>
+                            <div class="d-flex flex-column px-4 px-md-0 prices">
+                                <input type="radio" id="donation-price-1" name="sum_radio" value="8" checked>
+                                <label for="donation-price-1" class="price">
+                                    8€
+                                </label>
+                                <input type="radio" id="donation-price-2" name="sum_radio" value="15">
+                                <label for="donation-price-2" class="price">
+                                    15€
+                                </label>
+                                <input type="radio" id="donation-price-3" name="sum_radio" value="25">
+                                <label for="donation-price-3" class="price">
+                                    25€
+                                </label>
+                                <input type="radio" id="donation-price-4" name="sum_radio" value="custom">
+                                <label for="donation-price-4" class="price text-left">
+                                    <input type="number" id="donation-custom-price" class="form-control w-50" placeholder="Autre" name="sum_custom" disabled>
+                                    €
+                                </label>
+                                <input type="number" id="donation-final-price" class="invisible position-absolute" name="sum">
                             </div>
-                            <div class="col-md-6 d-flex align-items-center">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-anonyme">
-                                    <label class="custom-control-label" for="donation-is-anonyme">Anonyme</label>
+                        </div>
+                        <div class="col-md-9 informations">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 mb-md-0">
+                                        <input type="text" id="donation-nickname" name="pseudo"  class="form-control" placeholder="Pseudo">
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="donation-is-anonymous" name="is_anonymous">
+                                            <label class="custom-control-label" for="donation-is-anonymous">Anonyme</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="text-white-50">Si un don a déjà été fait avec ce pseudo, il sera soustrait au prix des grades</span>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 mb-md-0 d-flex align-items-center">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="donation-is-gift" name="is_gift">
+                                            <label class="custom-control-label" for="donation-is-gift">Ce don est un cadeau</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" id="donation-gift-nickname" class="form-control" placeholder="Offert à" name="reciever" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Message" rows="10" cols="10" name="message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Coupon" name="bonus_code">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mr-3 donation-validation font-weight-bold"></span>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary btn-lg">Faire un don</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text-white-50">Si un don a déjà été fait avec ce pseudo, il sera soustrait au prix des grades</span>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="donation-is-gift">
-                                    <label class="custom-control-label" for="donation-is-gift">Ce don est un cadeau</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Offert à">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Coupon">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="float-right">
-                            <button type="submit" class="btn btn-success">Faire un don</button>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
-        </form>
+            <!-- MODAL FAILED -->
+            <div class="donation-failed donation-modal transition-element position-absolute {% if status == 'fail' %}active{% endif %}">
+                <h2>Erreur</h2>
+                <p>Votre don n'a pas pu être traité</p>
+                <!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
+                <svg class="checkmark my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-icon" fill="none" d="M 17 17 l 18 18"/>
+                    <path class="checkmark-icon" fill="none" d="M 35 17 l -18 18"/>
+                </svg>
+                <button class="btn btn-primary donation-terminated">Réessayer</button>
+            </div>
+            <!-- MODAL SUCCESS -->
+            <div class="donation-success donation-modal transition-element position-absolute {% if status == 'success' %}active{% endif %}">
+                <h2>MERCI</h2>
+                <p>Le don a été procédé, merci à vous pour votre soutien !</p>
+                <!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
+                <svg class="checkmark my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-icon" fill="none" d="M 14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <button class="btn btn-primary donation-terminated">Terminer</button>
+            </div>
+        </div>
     </div>
 </section>
 <section id="donation-info">
-
+    <svg class="waves waves-top" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;">
+        <path d="M-0.27,95.22 C171.27,186.02 271.49,-49.98 500.84,32.06 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #202020;"></path>
+    </svg>
+    <h3 class="section-titre">Informations</h3>
+    <div class="container d-flex flex-column text-center">
+        <div class="mb-4">
+            <p>RedCraft.org est un projet complètement <b>Open Source</b> et à but <b>non-lucratif</b>. Cependant, maintenir une infrastructure de jeu a un coût et les personnes travaillant sur le projet <b>payent ces frais de leur poche</b>.En faisant un don, <b>vous contribuez directement au financement du projet</b> et vous garantissez un avenir pour RedCraft.org !</p>
+            <p class="lead">Merci !</p>
+        </div>
+        <h4 class="mt-4 mb-4">Contreparties</h4>
+        <div class="contreparties row justify-content-around">
+            <div class="card contrepartie vip col-lg-4 col-md-5 col-sm-12 mx-3 mx-md-0">
+                <div class="card-body">
+                    <h3 class="card-title">VIP</h3>
+                </div>
+            </div>
+            <div class="card contrepartie red-vip col-lg-4 col-md-5 col-sm-12 mx-3 mx-md-0">
+                <div class="card-body">
+                    <h3 class="card-title">RedVIP</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
 
@@ -80,7 +145,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript" src="{% static 'website/js/pages/donations.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+@import "colors";
+
+.btn {
+    border-radius: 7px;
+    border: 4px solid;
+    color: inherit;
+    font-weight: bolder;
+
+    &.btn-red {
+        background-color: $brand-red-1;
+        color: white;
+        &:hover {
+            background-color: $brand-red-1-dark;
+            color: white!important;
+        }
+    }
+
+    &:hover {
+        color: inherit!important;
+    }
+
+    &.btn-primary {
+        background-color: $brand-red-1;
+        border-color: $brand-red-1-dark;
+
+        &:focus {
+            border-color: $brand-red-1-dark!important;
+            box-shadow: 0 0 0 3px $brand-light-1!important;
+        }
+
+        &:active {
+            background-color: $brand-red-1-dark!important;
+            border-color: $brand-red-1-dark!important;
+        }
+    }
+
+}
+
+.form-control {
+    background-color: $brand-dark-2;
+    border: none;
+    border-radius: 7px;
+    color: $brand-light-1;
+
+    &:focus {
+        background-color: $brand-dark-2!important;
+        box-shadow: 0 0 0 2px $brand-light-1;
+        color: $brand-light-1;
+    }
+
+    &:disabled {
+        background-color: $brand-dark-2-dark;
+        cursor: no-drop;
+        border: 2px solid $color-black;
+        opacity: 0.3;
+    }
+}
+
+
+
+.custom-control-label {
+    &::before {
+        background-color: transparent;
+        border-radius: 3px;
+        border: $brand-light-1 solid 2px;
+    }
+}
+
+
+
+.custom-checkbox {
+
+    .custom-control-input {
+        &:checked~.custom-control-label::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23202020' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
+        }
+    
+        ~ .custom-control-label::after {
+            transition-duration: .2s;
+        }
+    
+        &:checked ~ .custom-control-label::before {
+            background-color: $brand-light-1!important;
+            border-color: $brand-light-1!important;
+        }
+    
+        &:focus~.custom-control-label::before {
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+        }
+
+        &:focus:not(:checked)~.custom-control-label::before {
+            border-color: $brand-light-1;
+        }
+
+        &:not(:disabled):active~.custom-control-label::before {
+            background-color: $brand-light-1;
+            border-color: $brand-light-1;
+        }
+    }
+}
+
+.card {
+    border-radius: 7px;
+    border-width: 4px;
+    border-style: solid;
+
+    .card-body {
+        position: relative;
+
+        .card-title {
+            font-weight: bolder;
+        }
+    }
+
+}

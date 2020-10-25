@@ -3,12 +3,32 @@
 
 section {
 
+    .waves {
+        position: absolute;
+        height: 9vw;
+        -webkit-filter: drop-shadow(0px 0px 5px #202020);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
+        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#202020')";
+        &.waves-top {
+            top: 0;
+        }
+        &.waves-bottom {
+            bottom: 0;
+        }
+    }
+
     &#welcome-header {
         padding: 15vh 0em;
 
-        .section-background {
-            background-image: linear-gradient(transparent 0%, #26282942 0%), url(../../img/home-background.png);
-            transform: translateZ(-50px) scale(2);
+        .background {
+            background-image: linear-gradient(transparent 0%, #292b2db8 0%), url(../../img/home-background.png);
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0px;
+            transform: translate3D(-4px, -25%, -50px) scale(2);
         }
         .welcome-presentation {
             margin-bottom: 6rem;
@@ -45,6 +65,7 @@ section {
 
                 &.link-discord {
                     background-color: $color-discord;
+                    border-color: transparent;
                     
 
                     &:hover {
@@ -54,6 +75,7 @@ section {
                 
                 &.link-server {
                     background-color: $brand-red-1;
+                    border-color: transparent;
                     overflow: hidden;
 
                     &:hover {
@@ -101,6 +123,22 @@ section {
             background-position: 21% 15%;
             background-size: 200px;
             image-rendering: pixelated;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(../../img/chevron_1.png);
+                background-repeat: no-repeat;
+                background-position: 0% 20%;
+                background-size: 200px;
+                image-rendering: pixelated;
+                transform: scale(-1);
+            }
         }
 
         .presentation {
@@ -121,6 +159,15 @@ section {
 
             .presentation-img {
                 border-radius: 7px;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &:nth-child(3) .presentation-img {
+                -webkit-filter: drop-shadow(6px 4px 5px #00000075);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=4, Color='#00000075')";
+                filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=4, Color='#00000075')";
             }
         }
     }
@@ -131,7 +178,9 @@ section {
             background-image: linear-gradient(transparent 0%, #943a3ab8 0%), url(../../img/gray_concrete_powder.png);
             background-size: 200px;
             height: 200%;
-            transform: translate3d(0px, -25%, 20px)scale(0.8);
+            z-index: -1;
+            top: 0;
+            transform: translate3d(0px, -25%, 20px)scale(1);
         }
     }
 

@@ -1,38 +1,43 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'website/img/inline_org_color.png' %}" alt="Redcraft.org logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
-            <ul class="navbar-nav flex-row-reverse">
-                <li class="nav-item {% if page == 'home' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
-                </li>
-                <li class="nav-item {% if page == 'vote' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'vote' %}">Vote</a>
-                </li>
-                <li class="nav-item {% if page == 'donations' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'donations' %}">Dons</a>
-                </li>
-                <li class="nav-item {% if page == 'stats' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'stats' %}">Stats</a>
-                </li>
-                <li class="nav-item {% if page == 'rules' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'rules' %}">Règles</a>
-                </li>
-                <li class="nav-item {% if page == 'dynmap' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'dynmap' %}">Dynmap</a>
-                </li>
-                <li class="nav-item {% if page == 'contact' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                </li>
-            </ul>
+<nav class="navbar">
+    <div class="container flex-column flex-lg-row align-items-lg-center">
+        <input type="checkbox" id="navbar-toggler">
+        <div class="navbar-top">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img class="d-inline-block" src="{% static 'website/img/inline_org_color.png' %}" alt="Redcraft.org logo">
+            </a>
+            </button>
+            <label for="navbar-toggler" class="toggler-icon">
+                <div class="icon"></div>
+            </label>
+        </div>
+        <div class="navbar-collapse">
+            <div class="container justify-content-lg-end">
+                <ul class="navbar-nav flex-column flex-lg-row-reverse mt-4 mt-lg-0">
+                    <li class="nav-item {% if page == 'home' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                    </li>
+                    <li class="nav-item {% if page == 'vote' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'vote' %}">Vote</a>
+                    </li>
+                    <li class="nav-item {% if page == 'donations' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'donations' %}">Dons</a>
+                    </li>
+                    <li class="nav-item {% if page == 'stats' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'stats' %}">Stats</a>
+                    </li>
+                    <li class="nav-item {% if page == 'rules' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'rules' %}">Règles</a>
+                    </li>
+                    <li class="nav-item {% if page == 'dynmap' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'dynmap' %}">Dynmap</a>
+                    </li>
+                    <li class="nav-item {% if page == 'contact' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

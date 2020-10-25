@@ -140,11 +140,12 @@ class Donations(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
-                'page': 'donations'
+                'page': 'donations',
+                'status': 'success' # success OR fail
             }
         }
 

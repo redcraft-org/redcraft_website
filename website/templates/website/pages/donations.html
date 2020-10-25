@@ -5,31 +5,32 @@
 {% with title="Dons" waveFill="#202020" %}
     {% include "website/components/section-header.html" %}
 {% endwith %}
-<section id="donation-form">
+<section id="donation-input">
     <div class="container">
         <h3 class="section-titre">Faire un don</h3>
-        <form action="#" method="GET">
+        <form action="#" method="GET" id="donation-form">
             <div class="row">
                 <div class="col-md-3">
                     <h6 class="mb-4">Suggestions de montant</h6>
                     <div class="d-flex flex-column px-4 px-md-0 prices">
-                        <input type="radio" id="donation-price-1" name="sum-radio" value="8" checked>
+                        <input type="radio" id="donation-price-1" name="sum_radio" value="8" checked>
                         <label for="donation-price-1" class="price">
                             8€
                         </label>
-                        <input type="radio" id="donation-price-2" name="sum-radio" value="15">
+                        <input type="radio" id="donation-price-2" name="sum_radio" value="15">
                         <label for="donation-price-2" class="price">
                             15€
                         </label>
-                        <input type="radio" id="donation-price-3" name="sum-radio" value="25">
+                        <input type="radio" id="donation-price-3" name="sum_radio" value="25">
                         <label for="donation-price-3" class="price">
                             25€
                         </label>
-                        <input type="radio" id="donation-price-4" name="sum-radio" value="custom">
+                        <input type="radio" id="donation-price-4" name="sum_radio" value="custom">
                         <label for="donation-price-4" class="price text-left">
-                            <input type="number" id="donation-custom-price" class="form-control w-50" placeholder="Autre" name="sum-custom" disabled>
+                            <input type="number" id="donation-custom-price" class="form-control w-50" placeholder="Autre" name="sum_custom" disabled>
                             €
                         </label>
+                        <input type="number" id="donation-final-price" class="invisible position-absolute" name="sum">
                     </div>
                 </div>
                 <div class="col-md-9 informations">
@@ -116,7 +117,7 @@
 {% block extra_js %}
 <script type="text/javascript">
 
-document.querySelectorAll('input[name=sum-radio]').forEach(() => {
+document.querySelectorAll('input[name=sum_radio]').forEach(() => {
     this.onchange = () => {
         document.querySelector('#donation-custom-price').disabled = !document.querySelector('#donation-price-4').checked
     }
@@ -131,6 +132,52 @@ document.querySelector('#donation-is-gift').onclick = () => {
     document.querySelector('#donation-gift-nickname').disabled = !document.querySelector('#donation-is-gift').checked
     document.querySelector('#donation-gift-nickname').value = ""
 }
+
+// Set form inputs from localStorage
+if(localStorage.getItem("sum_radio")) {
+    document.querySelector("input[name=sum_radio][value=\"" + localStorage.getItem("sum_radio") + "\"]").checked = true
+}
+if(localStorage.getItem("sum_radio") == "custom") {
+    document.querySelector("input[name=sum_custom]").value = localStorage.getItem("sum_custom")
+}
+if(localStorage.getItem("is_anonymous") == "true") {
+    document.querySelector("input[name=is_anonymous]").checked = true
+    document.querySelector('input[name=pseudo]').disabled = true
+}else{
+    document.querySelector("input[name=pseudo]").value = localStorage.getItem("pseudo")
+}
+if(localStorage.getItem("is_gift") == "true") {
+    document.querySelector("input[name=is_gift]").checked = true
+    document.querySelector('input[name=reciever]').disabled = false
+    document.querySelector("input[name=reciever]").value = localStorage.getItem("reciever")
+}
+document.querySelector("textarea[name=message]").value = localStorage.getItem("message")
+document.querySelector("input[name=bonus_code]").value = localStorage.getItem("bonus_code")
+
+// Form submit
+document.querySelector("#donation-form").addEventListener("submit", (evt) => {
+    evt.preventDefault()
+
+    // Calculate final price
+    if(document.querySelector("input[name=sum_radio]:checked").value == "custom") {
+        document.querySelector("#donation-final-price").value = document.querySelector("input[name=sum_custom]").value
+    }else {
+        document.querySelector("#donation-final-price").value = document.querySelector("input[name=sum_radio]:checked").value
+    }
+    
+    // Set localStorage
+    localStorage.setItem("sum_radio", document.querySelector("input[name=sum_radio]:checked").value)
+    localStorage.setItem("sum_custom", document.querySelector("input[name=sum_custom]").value)
+    localStorage.setItem("is_anonymous", document.querySelector("input[name=is_anonymous]").checked)
+    localStorage.setItem("pseudo", document.querySelector("input[name=pseudo]").value)
+    localStorage.setItem("is_gift", document.querySelector("input[name=is_gift]").checked)
+    localStorage.setItem("reciever", document.querySelector("input[name=reciever]").value)
+    localStorage.setItem("message", document.querySelector("textarea[name=message]").value)
+    localStorage.setItem("bonus_code", document.querySelector("input[name=bonus_code]").value)
+
+    // Send form
+    document.querySelector("#donation-form").submit()
+})
 
 </script>
 {% endblock %}

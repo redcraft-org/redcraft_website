@@ -18,80 +18,180 @@ section#donation-input {
         transform: scaleX(-1);
     }
 
-    .prices {
-        height: 100%;
+    .transition-container {
+        position: relative;
 
-        input[name=sum_radio] {
+        .transition-element {
             opacity: 0;
-            position: absolute;
+            visibility: hidden;
+            transition-duration: .3s;
         }
-
-        input[name=sum_radio]:focus + .price {
-            background-color: $brand-dark-2;
+        .active {
+            opacity: 1;
+            visibility: visible;
         }
-
-        .price {
-            cursor: pointer;
-            box-shadow: 0 0 0 2px $brand-light-2;
-            border-radius: 7px;
-            margin-bottom: 1rem;
-            font-weight: bolder;
+        .donation-fill:not(.active) {
+            transform: translateY(2rem);
+        }
+        .donation-modal:not(.active) {
+            transform: translateY(-2rem);
+        }
+        .donation-modal {
+            width: 100%;
             text-align: center;
-            line-height: 60px;
-            font-size: 1.25rem;
 
-            span {
-                color: $brand-dark-1-dark;
+            // Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark
+            .checkmark-circle {
+                stroke-dasharray: 166;
+                stroke-dashoffset: 166;
+                stroke-width: 5;
+                stroke-miterlimit: 10;
+                stroke: $brand-red-1-dark;
+                fill: none;
+                animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
             }
 
-            input#donation-custom-price {
-                display: inline;
-                background-color: transparent;
-                pointer-events: none;
-                font-weight: bolder;
-                padding: 0;
-                font-size: 1.25rem;
-                width: 100px;
-                text-align: right;
+            .checkmark {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                display: block;
+                stroke-width: 3;
+                stroke: #fff;
+                stroke-miterlimit: 10;
+                margin: auto;
+                box-shadow: inset 0px 0px 0px $brand-red-1;
+                animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+            }
 
-                &:focus {
-                    background-color: transparent!important;
-                    box-shadow: none!important;
-                }
+            .checkmark-icon {
+                transform-origin: 50% 50%;
+                stroke-dasharray: 48;
+                stroke-dashoffset: 48;
+                animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+            }
+            
+            .checkmark-icon:nth-child(2) {
+                animation-delay: .9s;
+            }
 
-                &:disabled {
-                    border: none;
-                    color: $brand-light-1;
-                    opacity: 1;
-                }
-
-                /* Chrome, Safari, Edge, Opera */
-                &::-webkit-outer-spin-button,
-                &::-webkit-inner-spin-button {
-                    -webkit-appearance: none;
-                    margin: 0;
-                }
-
-                /* Firefox */
-                &[type=number] {
-                    -moz-appearance: textfield;
+            @keyframes stroke {
+                100% {
+                    stroke-dashoffset: 0;
                 }
             }
-        }
-
-        input[name=sum_radio]:checked + .price #donation-custom-price {
-            pointer-events: visible;
-        }
-
-        input[name=sum_radio]:checked + .price {
-            box-shadow: 0 0 0 4px $brand-red-1;
+            @keyframes scale {
+                0%, 100% {
+                    transform: none;
+                }
+                50% {
+                    transform: scale3d(1.1, 1.1, 1);
+                }
+            }
+            @keyframes fill {
+                100% {
+                    box-shadow: inset 0px 0px 0px 30px $brand-red-1;
+                }
+            }
         }
     }
 
-    .informations {
-        textarea {
-            height: 5.3em;
-            resize: none;
+    form#donation-form {
+        @keyframes inputFailed {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 3px initial;
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 3px $brand-red-1;
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 3px initial;
+            }
+        }
+
+        .input-failed {
+            animation: inputFailed 1s;
+            animation-fill-mode: forwards;
+        }
+    
+        .prices {
+            height: 100%;
+    
+            input[name=sum_radio] {
+                opacity: 0;
+                position: absolute;
+            }
+    
+            input[name=sum_radio]:focus + .price {
+                background-color: $brand-dark-2;
+            }
+    
+            .price {
+                cursor: pointer;
+                box-shadow: 0 0 0 2px $brand-light-2;
+                border-radius: 7px;
+                margin-bottom: 1rem;
+                font-weight: bolder;
+                text-align: center;
+                line-height: 60px;
+                font-size: 1.25rem;
+    
+                span {
+                    color: $brand-dark-1-dark;
+                }
+    
+                input#donation-custom-price {
+                    display: inline;
+                    background-color: transparent;
+                    pointer-events: none;
+                    font-weight: bolder;
+                    padding: 0;
+                    font-size: 1.25rem;
+                    width: 100px;
+                    text-align: right;
+    
+                    &:focus {
+                        background-color: transparent!important;
+                        box-shadow: none!important;
+                    }
+    
+                    &:disabled {
+                        border: none;
+                        color: $brand-light-1;
+                        opacity: 1;
+                    }
+    
+                    /* Chrome, Safari, Edge, Opera */
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+    
+                    /* Firefox */
+                    &[type=number] {
+                        -moz-appearance: textfield;
+                    }
+                }
+            }
+    
+            input[name=sum_radio]:checked + .price #donation-custom-price {
+                pointer-events: visible;
+            }
+    
+            input[name=sum_radio]:checked + .price {
+                box-shadow: 0 0 0 4px $brand-red-1;
+            }
+        }
+    
+        .informations {
+            textarea {
+                height: 5.3em;
+                resize: none;
+            }
         }
     }
 }

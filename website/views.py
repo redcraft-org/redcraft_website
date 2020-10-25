@@ -219,6 +219,20 @@ class Livemap(BaseViewFrontEnd):
         }
 
 
+class About(BaseViewFrontEnd):
+    template_name = 'website/pages/about.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'about'
+            }
+        }
+
+
 class UrlReducer(View):
     def get(self, request, shortened, *args, **kwargs):
         try:

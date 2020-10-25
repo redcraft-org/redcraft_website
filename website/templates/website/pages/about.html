@@ -5,9 +5,32 @@
 {% with title="À propos & FAQ" waveFill="#202020" %}
 {% include "website/components/section-header.html" %}
 {% endwith %}
-<section id="top">
+<section id="about">
     <div class="container">
-        <h3 class="section-titre">About</h3>
+        <h3 class="section-titre">À propos</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <img class="logo-top" src="{% static 'website/img/'%}compact_color_2_transparent.png" alt="">
+            </div>
+            <div class="col-md-8">
+                <p><b>RedCrarft.org est un serveur Minecraft à but non lucratif ouvert en 2020.</b></p>
+                <p class="my-4">Né de la fusion entre TopRed.fr et KingdomHills.fr, le projet RedCraft a pour but de rassembler les communautés de joueurs Minecraft peu importe leur provenance. Grâce à une infrastructure de traduction en temps réel, les barrières du language tombent et laissent place à une communauté soudée.</p>
+                <p class="my-4">L'entièreté du projet RedCraft.org est développé avec une vision flexible et moderne, permise grâce à l'open-source. Retrouvez toutes les sources sur notre <a href="{{ links.github }}" target="_blank">GitHub</a> !</p>
+                <p class="my-4"><b>Se respecter, s'amuser, s'entraider</b>. Voilà les 3 mots d'ordre de RedCraft.org qui garantissent un lieu d'apprentissage et de bon vivre.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="faq">
+    <svg class="waves waves-top" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M-0.27,95.22 C171.27,186.02 271.49,-49.98 500.84,32.06 L500.00,0.00 L0.00,0.00 Z"
+            style="stroke: none; fill: #202020;"></path>
+    </svg>
+    <div class="container">
+        <h3 class="section-titre">Foire Aux Questions</h3>
+        <div class="row">
+            <p>À venir...</p>
+        </div>
     </div>
 </section>
 {% endblock %}

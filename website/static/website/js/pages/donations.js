@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     
-    // Enable or disable inputs depending on checkboxes
+    /**
+     * Enables or disables inputs fields depending on checkboxes
+     */
     function listenFormInputs()  {
         document.querySelectorAll('input[name=sum_radio]').forEach(() => {
             this.onchange = () => {
@@ -19,8 +21,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
-
-    // Set form inputs from localStorage
+    /**
+     * Set form inputs with the values from the localStorage
+     */
     function getLocalStorage() {
         if(localStorage.getItem("sum_radio")) {
             document.querySelector("input[name=sum_radio][value=\"" + localStorage.getItem("sum_radio") + "\"]").checked = true
@@ -43,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("input[name=bonus_code]").value = localStorage.getItem("bonus_code")
     }
 
-    // Delete localStorage & reset form
+    /**
+     * Delete localStorage & reset form
+     */
     function clearLocalStorage() {
         if("{{ status }}" == "success") {
             localStorage.clear()
@@ -61,7 +66,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     /**
-     * test
+     * handler when the form is sent. Calls the validate function, set the final price in the "sum" element
+     * and submits the form
      */
     function listenSubmit() {
         document.querySelector("#donation-form").addEventListener("submit", (evt) => {
@@ -119,7 +125,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return false
     }
 
-    // Show error message if validation is false
+    /**
+     * Show error messages in span. Recieves the array from the validate function
+     */
     function updateErrorMessage(messages) {
         document.querySelector(".donation-validation").innerHTML = "<ul>"
         messages.forEach(message => {
@@ -128,7 +136,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector(".donation-validation").innerHTML += "</ul>"
     }
 
-    // Show error animation if validation is false
+    /**
+     * Shows error animation on input fields who are not valid
+     * Recieves the array from the validate function
+     */
     function updateErrorAnimation(messages) {
         messages.forEach(message => {
             document.querySelector(message[0]).classList.add("input-failed")
@@ -138,7 +149,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
     }
 
-    // Update error messages if input is changed
+    /**
+     * Update the error messages if the inputs are changed
+     */
     function listenUpdateErrorMessages() {
         document.querySelector("input[name=pseudo]").oninput = () => {
             validate(false)
@@ -157,7 +170,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
-    // Closing donation modal
+    /**
+     * Close the success / fail modal and shows the form
+     */
     function listenCloseModal() {
         document.querySelectorAll('.donation-terminated').forEach(button => {
             button.onclick = () => {

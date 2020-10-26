@@ -69,4 +69,10 @@ section#conduct-code {
 section#rules {
     background-color: $brand-light-2;
     color: $brand-dark-2;
+
+    .card-wall-of-shame {
+        background-color: $brand-light-2-dark;
+        border-color: $brand-dark-1!important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
 }

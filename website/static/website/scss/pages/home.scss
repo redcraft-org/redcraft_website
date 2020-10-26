@@ -321,6 +321,7 @@ section {
             -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
             filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
             border-radius: 7px;
+            image-rendering: pixelated;
         }
     }
 }

@@ -1,8 +1,60 @@
 {% extends 'website/base.html' %}
 {% load static %}
 
-{% block contant %}
-<div id="vote">
-    votes
-</div>
+{% block content %}
+{% with title="Règles" waveFill="#202020" %}
+{% include "website/components/section-header.html" %}
+{% endwith %}
+<section id="info">
+    <div class="container">
+        <h3 class="section-titre">Voter pour le serveur</h3>
+        <p>Pleins d'infos ouais ouais</p>
+    </div>
+</section>
+<section id="list">
+    <svg class="waves waves-top" viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M-0.27,95.22 C171.27,186.02 271.49,-49.98 500.84,32.06 L500.00,0.00 L0.00,0.00 Z"
+            style="stroke: none; fill: #202020;"></path>
+    </svg>
+    <div class="container">
+        <h3 class="section-titre">Liste des sites</h3>
+        <div class="row">
+            {% for website in websites_list %}
+            <div class="col-md-6">
+                <div class="card border-primary my-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3 class="font-weight-bold">{{ website.titre }}</h3>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex justify-content-end">
+                                        <img src="{% static 'website/img/pages/contact/' %}{{ website.path_img }}" class="mb-3 mw-100" alt="logo">
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ website.url }}" class="btn btn-primary btn-lg text-white"><i class="fas fa-arrow-right mr-2"></i>Voter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'website/css/pages/vote.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
 {% endblock %}

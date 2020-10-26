@@ -130,7 +130,33 @@ class Vote(BaseViewFrontEnd):
         return {
             **ctx,
             **{
-                'page': 'vote'
+                'page': 'vote',
+                'websites_list' : [
+                    {
+                        'titre': 'Serveurs-minecraft.org',
+                        'description': 'Liste de serveurs Minecraft JAVA Edition multijoueurs français',
+                        'url' : 'https://www.serveurs-minecraft.org/',
+                        'path_img' : 'serveurs-minecraft-org.png'
+                    },
+                    {
+                        'titre': 'top-serveurs.net',
+                        'description': 'Trouvez facilement un serveur Minecraft sur Top-Serveurs, parmi 2131 serveurs référencés.',
+                        'url' : 'https://top-serveurs.net/',
+                        'path_img' : 'top-serveurs.png'
+                    },
+                    {
+                        'titre': 'liste-serveur-minecraft.net',
+                        'description': 'Bienvenue sur notre liste de serveur minecraft ! Les meilleurs serveurs minecraft sont ici !',
+                        'url' : 'http://www.liste-serveur-minecraft.net/',
+                        'path_img' : 'liste-serveurs-minecraft.png'
+                    },
+                    {
+                        'titre': 'serveursminecraft.org',
+                        'description': 'ServeursMinecraft.org classe ses serveurs minecraft par type de jeu.',
+                        'url' : 'https://www.serveursminecraft.org/',
+                        'path_img' : 'serveursminecraft-org.png'
+                    },
+                ]
             }
         }
 

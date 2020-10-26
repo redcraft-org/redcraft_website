@@ -305,7 +305,6 @@ section {
     }
 
     &#staff {
-        // color: #202020;
         
         #staff-background {
             background-image: linear-gradient(transparent 0%, #5f636b94 0%), url(../../img/stone.png);
@@ -315,7 +314,6 @@ section {
             height: 200%;
             z-index: -1;
             top: 0;
-            // transform: translate3d(0px, 0px, -100px)scale(2);
         }
 
         .staff-img {

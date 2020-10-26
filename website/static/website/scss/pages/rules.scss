@@ -70,23 +70,3 @@ section#rules {
     background-color: $brand-light-2;
     color: $brand-dark-2;
 }
-
-section#sources {
-    a {
-        color: $brand-light-2;
-
-        &:hover {
-            color: $brand-light-2-dark;
-        }
-    }
-
-    #sources-background {
-        background-image: linear-gradient(transparent 0%, #943a3ab8 0%), url(../../img/gray_concrete_powder.png);
-        background-position: center;
-        background-size: 200px;
-        width: 100%;
-        height: 200%;
-        z-index: -1;
-        top: 0;
-    }
-}

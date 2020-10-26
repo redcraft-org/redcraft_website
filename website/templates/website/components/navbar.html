@@ -15,27 +15,11 @@
         <div class="navbar-collapse">
             <div class="container justify-content-lg-end">
                 <ul class="navbar-nav flex-column flex-lg-row-reverse mt-4 mt-lg-0">
-                    <li class="nav-item {% if page == 'home' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                    {% for page_list in pages %}
+                    <li class="nav-item {% if page == page_list.name %}active{% endif %}">
+                        <a class="nav-link" href="{% url page_list.name %}">{{ page_list.display }}</a>
                     </li>
-                    <li class="nav-item {% if page == 'vote' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'vote' %}">Vote</a>
-                    </li>
-                    <li class="nav-item {% if page == 'dons' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'dons' %}">Dons</a>
-                    </li>
-                    <li class="nav-item {% if page == 'stats' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'stats' %}">Stats</a>
-                    </li>
-                    <li class="nav-item {% if page == 'rules' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'rules' %}">Règles</a>
-                    </li>
-                    <li class="nav-item {% if page == 'livemap' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'livemap' %}">Livemap</a>
-                    </li>
-                    <li class="nav-item {% if page == 'contact' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

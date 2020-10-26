@@ -20,7 +20,37 @@ class BaseViewFrontEnd(TemplateView):
                 'youtube' : 'https://www.youtube.com/channel/UClo30bzHPYHz847o5WlfE6g',
                 'discord' : 'https://discord.gg/h9SfJmh',
                 'instagram' : 'https://www.instagram.com/redcraftorg',
-            }
+            },
+            'pages' : [
+                {
+                    'name' : 'home',
+                    'display' : 'Accueil'
+                },
+                {
+                    'name' : 'vote',
+                    'display' : 'Vote'
+                },
+                {
+                    'name' : 'dons',
+                    'display' : 'Dons'
+                },
+                {
+                    'name' : 'stats',
+                    'display' : 'Stats'
+                },
+                {
+                    'name' : 'rules',
+                    'display' : 'Règles'
+                 },
+                {
+                    'name' : 'livemap',
+                    'display' : 'Live map'
+                },
+                {
+                    'name' : 'contact',
+                    'display' : 'Contact'
+                }
+            ]
         }
 
 

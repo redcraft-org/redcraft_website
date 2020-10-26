@@ -1,22 +1,21 @@
 {% load static %}
-<footer class="py-4 bg-dark">
-    <div class="container">
+<footer class="py-4">
+    <div class="container py-4">
         <div class="row justify-content-center">
-            <div class="col-md-4 mr-4">
+            <div class="col-md-4 mr-md-4 mb-4 mb-md-0">
                 <h5>À propos</h5>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolores, veniam sit obcaecati aut odit in assumenda, deleniti, molestias ullam modi.</div>
+                <div class="text-white-50">RedCraft.org est un serveur Minecraft à but non lucratif ouvert en 2020. Retrouvez plus d'infos sur la page <a href="{% url 'about' %}">à propos & FAQ</a>.</div>
             </div>
             <div class="col-md-4">
                 <h5>Réseaux Sociaux</h5>
                 <div class="mb-3">
-                    <a target="_blank" href="{{ links.twitter }}" class="brand-logo mr-4"><i class="fab fa-twitter fa-2x"></i></a>
-                    <a target="_blank" href="{{ links.facebook }}" class="brand-logo mr-4"><i class="fab fa-facebook fa-2x"></i></a>
-                    <a target="_blank" href="{{ links.github }}" class="brand-logo mr-4"><i class="fab fa-github fa-2x"></i></a>
-                    <a target="_blank" href="{{ links.youtube }}" class="brand-logo mr-4"><i class="fab fa-youtube fa-2x"></i></a>
-                    <a target="_blank" href="{{ links.discord }}" class="brand-logo mr-4"><i class="fab fa-discord fa-2x"></i></a>
-                    <a target="_blank" href="{{ links.instagram }}" class="brand-logo mr-4"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a target="_blank" href="{{ links.twitter }}" class="brand-logo mr-4 mb-4"><i class="fab fa-twitter colored fa-2x"></i></a>
+                    <a target="_blank" href="{{ links.facebook }}" class="brand-logo mr-4 mb-4"><i class="fab fa-facebook colored fa-2x"></i></a>
+                    <a target="_blank" href="{{ links.github }}" class="brand-logo mr-4 mb-4"><i class="fab fa-github colored fa-2x"></i></a>
+                    <a target="_blank" href="{{ links.youtube }}" class="brand-logo mr-4 mb-4"><i class="fab fa-youtube colored fa-2x"></i></a>
+                    <a target="_blank" href="{{ links.discord }}" class="brand-logo mr-4 mb-4"><i class="fab fa-discord colored fa-2x"></i></a>
+                    <a target="_blank" href="{{ links.instagram }}" class="brand-logo mr-4 mb-4"><i class="fab fa-instagram colored fa-2x"></i></a>
                 </div>
-                <p>© 2020 Copyright : <a href="#">RedCraft.org</a></p>
             </div>
         </div>
     </div>

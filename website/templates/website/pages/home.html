@@ -5,36 +5,36 @@
 <section id="welcome-header">
     <div class="background position-absolute"></div>
     <div class="container d-flex flex-column">
-        <div class="welcome-presentation d-flex flex-row">
-            <div class="w-50 mr-4 d-flex justify-content-center align-items-center">
-                <img class="logo" src="{% static 'website/img/animation1_7.gif' %}" />
+        <div class="welcome-presentation row">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <img class="logo" src="{% static 'website/img/animation2_color.gif' %}" />
             </div>
-            <div class="w-50">
+            <div class="col-md-6">
                 <h1 class="mb-2 font-weight-bolder">Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !</h1>
                 <p class="text-description mt-4">Le retour de deux grandes communautés Minecraft, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
                 <b class="text-description">Versions 1.8 - 1.16.2</b>
             </div>
         </div>
-        <div class="server-links d-flex flex-row justify-content-center">
-            <a class="link-discord btn mr-4" href="{{ links.discord }}" target="_blank">
+        <div class="server-links d-flex flex-column flex-md-row justify-content-center">
+            <a class="link-discord btn mx-2 mb-3 mb-md-0 w-md-75" href="{{ links.discord }}" target="_blank">
                 <div class="lead">Serveur <b>Discord</b></div>
                 <div>{{ discord.count_players_online }} joueurs en ligne</div>
                 <small class="text-white-50">Cliquez pour rejoindre</small>
             </a>
-            <div class="link-server btn">
+            <div class="link-server btn mx-2">
                 <div class="link-server-animation">
                     <div class="before-click d-flex flex-column justify-content-center ">
                         <div class="lead">Serveur <b>Minecraft</b></div>
                         <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
                         <small class="text-white-50">Cliquez pour copier l'IP</small>
-                        
+
                     </div>
                     <div class="ip-copied d-flex flex-column justify-content-center">
                         <div class="lead text-break"><b>play.redcraft.org</b></div>
                         <div>Adresse IP copiée !</div>
                     </div>
                 </div>
-                <input type="text" value="{{ minecraft_server.ip_address }}" id="link-server-copy" style="position: absolute; z-index: -2">
+                <input type="text" value="{{ minecraft_server.ip_address }}" id="link-server-copy" style="position: absolute; z-index: -2; top: -100%; left: 0;">
             </div>
         </div>
     </div>
@@ -46,11 +46,37 @@
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Présentation</h4>
         <div class="presentations d-flex flex-column">
-            {% for presentation in network_presentations %}
-                {% with title=presentation.title content=presentation.text img=presentation.path_img overview=presentation.overview %}
-                    {% include "website/components/presentation.html" %}
-                {% endwith %}
-            {% endfor %}
+            <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
+                <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
+                    <h3 class="font-weight-bolder my-4">Un serveur international.</h3>
+                    <p>Oubliez les barrières de language. Grâce à un service de traduction instantané, le serveur entier communique dans la
+                        langue de votre choix. RedCraft.org rassemble des personnes de n'importe où dans le monde.</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{% static 'website/img/home-background.png'%}" class="presentation-img w-100">
+                </div>
+            </div>
+            <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
+                <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
+                    <h3 class="font-weight-bolder my-4">Open-source et moderne.</h3>
+                    <p>RedCraft.org a été conçu et pensé depuis le départ pour la flexibilité et la robustesse. L'entièreté du projet est
+                        Open-Source, n'importe qui peut ainsi contribuer à développer le projet !</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{% static 'website/img/home-background-2.png'%}" class="presentation-img w-100">
+                </div>
+            </div>
+            <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
+                <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
+                    <h3 class="font-weight-bolder my-4">Des années d'expérience.</h3>
+                    <p>Né de la fusion entre <a href="http://topred.fr" target="_blank">TopRed.fr</a> et <a href="https://kingdomhills.fr"
+                            target="_blank">KingdomHills.fr</a>, RedCraft.org bénéficie de la qualité et du savoir-faire de 2 communautés et
+                        d'un staff actif depuis 2014.</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{% static 'website/img/RedCraft_website_crew.png'%}" class="presentation-img w-100">
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -79,57 +105,51 @@
 <section id="serveurs">
     <div class="container d-flex flex-column">
         <h4 class="section-titre">Serveurs</h4>
-        <div class="row">
-            <div class="col-md-4 servers-listing">
-                {% for server in servers_list %}
-                    {% with title=server.title overview=server.overview description=server.text img=server.path_img %}
-                        {% include "website/components/server-list.html" %}
-                    {% endwith %}
-                {% endfor %}
+        <form>
+            <div class="row">
+                <div class="col-md-4 servers-listing mb-4 mb-md-0">
+                    <p class="text-black-50"><small>Cliquez sur un serveur pour en savoir plus</small></p>
+                    {% for server in servers_list %}
+                        {% with title=server.title overview=server.overview index=forloop.counter0 %}
+                            {% include "website/components/server-list.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+                <div class="server-active-container col-md-8">
+                    {% for server in servers_list %}
+                        {% with title=server.title text=server.text img=server.path_img livemap=server.livemap index=forloop.counter0 %}
+                            {% include "website/components/server-active.html" %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
             </div>
-            <div class="server-active col-md-8">
-                <h1 class="server-active-title font-weight-bold text-right">Survie</h1>
-                <p class="text-right">Praesent ac urna enim. Nunc sodales justo accumsan consectetur ornare. Ut laoreet in eros id ullamcorper. Integer sit amet diam vel lorem placerat ultricies sed sit amet odio. Donec nulla lectus, rutrum non dui eu, varius imperdiet mi.</p>
-                <img class="server-active-img" src="{% static 'website/img/dynmap.png' %}" alt="server-presentation">
-            </div>
-        </div>
+        </form>
     </div>
 </section>
 <section id="staff">
+    <svg class="waves waves-top"viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M0.00,49.98 C170.14,-12.33 336.62,-12.33 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #B6B9BD;"></path>
+    </svg>
+    <div id="staff-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">Staff</h4>
+        <h4 class="section-titre">Administrateurs</h4>
+        <div class="d-flex justify-content-center flex-wrap">
+            {% for staff in staff_list %}
+                {% with name=staff.name img=staff.path_img socials=staff.socials index=forloop.counter %}
+                    {% include "website/components/staff-member.html" %}
+                {% endwith %}
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}
 
 {% block extra_css %}
-<link href="{% static 'website/css/pages/home.css' %}" rel="stylesheet">
+<link href="{% static 'website/css/pages/home.css' %}" rel="stylesheet">{# sal #}
+<link href="{% static 'website/libraries/sal/sal.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_js %}
-<script type="text/javascript">
-    let serverLinkAnimation = null
-
-    document.querySelector('.link-server').onclick = () => {
-        clearTimeout(serverLinkAnimation)
-        var copyText = document.getElementById("link-server-copy")
-        copyText.select()
-        copyText.setSelectionRange(0, 99999)
-        document.execCommand("copy")
-        // Animate "ip copied"
-        document.querySelector('.before-click').classList.add("copied")
-        document.querySelector('.ip-copied').classList.add("copied")
-        
-        serverLinkAnimation = setTimeout(() => {
-            // Reset "ip copied"
-            document.querySelector('.before-click').classList.remove("copied")
-            document.querySelector('.ip-copied').classList.remove("copied")
-        }, 5000)
-    }
-
-
-</script>
+<script src="{% static 'website/libraries/sal/sal.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'website/js/pages/home.js' %}"></script>
 {% endblock %}
-
-// {% include "website/components/article.html" %}
-

@@ -1,0 +1,143 @@
+@import "./colors.scss";
+
+$navbar-height: 4.5rem;
+
+.navbar {
+    min-height: $navbar-height;
+    position: sticky;
+    color: $brand-light-1-dark;
+    padding: 0;
+    top: 0;
+    z-index: 1000;
+    
+    a {
+        color: inherit;
+    }
+
+    #navbar-toggler {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .navbar-top {
+        position: relative;
+
+        .navbar-brand {
+            image-rendering: pixelated;
+            top: 10px;
+        }
+    }
+
+    .navbar-collapse {
+        flex: auto;
+
+        .nav-item {
+            padding-left: 0.5rem;
+            padding-right: .5rem;
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        // Mobile menu
+        $burger-size: 2.5rem;
+        $animation-length: .2s;
+
+        .navbar-top {
+            width: 100%;
+
+            .toggler-icon {
+                width: $burger-size;
+                position: absolute;
+                height: 100%;
+                margin: 0;
+                display: inline-flex;
+                align-items: center;
+                right: 0;
+                z-index: 1;
+
+                .icon {
+                    width: $burger-size;
+                    height: $burger-size/12.5;
+                    background-color: $brand-dark-1;
+                    margin: 19px 0px;
+                    position: relative;
+                    transform: translateX(0);
+                    transition-duration: $animation-length;
+                    $lines-distance: $burger-size/3;
+
+                    &::before, &::after {
+                        content: '';
+                        width: $burger-size;
+                        height: $burger-size/12.5;
+                        background-color: $brand-dark-1;
+                        position: absolute;
+                        transform-origin: 0% 50%;
+                        transform: rotate(0deg);
+                        transition-duration: $animation-length;
+                    }
+
+                    &::before {
+                        top: -$lines-distance;
+                    }
+
+                    &::after {
+                        top: $lines-distance;
+                    }
+                }
+            }
+        }
+
+        .navbar-collapse {
+            position: absolute;
+            top: $navbar-height;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - #{$navbar-height});
+            opacity: 0;
+            overflow: auto;
+            pointer-events: none;
+            transition-duration: $animation-length;
+
+            .navbar-nav {
+                transition-duration: $animation-length;
+                transform: translateY(-2rem);
+
+                .nav-link {
+                    font-weight: bolder;
+                    font-size: 1.3rem;
+                }
+            }
+        }
+        
+        input#navbar-toggler:checked + .navbar-top .icon {
+            background-color: $brand-red-1;
+            transform: translateX($burger-size/2);
+            width: 0;
+
+            &::before, &::after {
+                background-color: $brand-red-1;
+                //Size for diagonal line to keep the same
+                //absolute height
+                width: $burger-size*0.942809;
+            }
+
+            &::before {
+                transform: translateX(-$burger-size/2)translateX($burger-size/6)rotate(45deg);
+            }
+
+            &::after {
+                transform: translateX(-$burger-size/2)translateX($burger-size/6)rotate(-45deg);
+            }
+        }
+
+        input#navbar-toggler:checked ~ .navbar-collapse {
+            pointer-events: all;
+            opacity: 1;
+            background-color: rgba($brand-dark-2, 0.9);
+            .navbar-nav {
+                transform: translateY(0rem);
+            }
+            
+        }
+    }
+}

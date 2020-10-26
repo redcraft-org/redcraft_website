@@ -3,12 +3,12 @@
 
 body {
     overflow: hidden;
-    background-color: $color-gray;
+    background-color: $brand-dark-2;
     font-family: Poppins;
-    color: $color-gray-light !important;
+    color: $brand-light-1 !important;
 
     .navbar {
-        background-color: $color-gray-mineshaft;
+        background-color: $brand-dark-2-dark;
     }
 }
 
@@ -16,25 +16,67 @@ body {
     overflow-y: auto;
     height: 100vh;
     perspective: 100px;
+    scroll-behavior: smooth;
 }
 
-b {
-    font-weight: 800;
+section {
+    padding: 5rem 0 5rem 0;
+    position: relative;
+    overflow: hidden;
+
+    &#header {
+        .section-background {
+            background-image: linear-gradient(transparent 0%, #2628298c 0%), url(../img/home-background.png);
+        }
+    }
+
+    .section-background {
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 0px;
+    }
+
+    .section-titre {
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    .waves {
+        position: absolute;
+        height: 9vw;
+        &.waves-top {
+            top: 0;
+        }
+        &.waves-bottom {
+            bottom: 0;
+        }
+    }
+
 }
 
-.btn {
-    border-radius: 7px;
-    color: inherit;
-
-    &:hover {
-        color: inherit!important;
+@media (max-width: 767.98px) {
+    section .waves {
+        height: 5vw!important;
     }
 }
 
 a {
-    color: $color-red;
+    color: $brand-red-1;
+
+    &.no-hover:hover {
+        color: inherit!important;
+    }
 }
 
 a:hover {
-    color: $color-red-dark;
+    color: $brand-red-1-dark;
+}
+
+footer {
+    background-color: $brand-dark-2;
 }

@@ -6,6 +6,9 @@
 {% include "website/components/section-header.html" %}
 {% endwith %}
 <section id="contact">
+    <svg class="waves waves-bottom"viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M-0.27,24.17 C218.68,235.36 304.46,11.34 500.84,117.92 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #B6B9BD;"></path>
+    </svg>
     <div class="container">
         <h3 class="section-titre">Contacter le staff</h3>
         <form action="#" id="contact-form">
@@ -26,13 +29,20 @@
             </div>
             <div class="form-group">
                 <div class="d-flex justify-content-between">
-                    <div class="contact-validation"></div>
+                    <div class="contact-validation font-weight-bold"></div>
                     <div>
                         <button type="submit" class="btn btn-primary btn-lg">Envoyer le message</button>
                     </div>
                 </div>
             </div>
         </form>
+    </div>
+</section>
+<section id="info">
+    <div class="container">
+        <h3 class="section-titre">Informations</h3>
+        <p>Ce formulaire vous permet d'envoyer un message directement au staff de RedCraft.org. Le message sera envoyé aux administrateurs via Discord, pensez-donc à indiquer votre pseudo Discord si nécessaire.</p>
+        <p>Vous pouvez utiliser ce formulaire pour les demande de unban, les plaintes, réclamations et demandes de partenariat.</p>
     </div>
 </section>
 {% endblock %}

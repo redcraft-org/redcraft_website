@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-
+    /**
+     * handler when the form is sent. Calls the validate function, set the final price in the "sum" element
+     * and submits the form
+     */
     function listenSubmit() {
         document.querySelector("#contact-form").addEventListener("submit", (evt) => {
             evt.preventDefault()
@@ -38,7 +41,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return false
     }
 
-    // Show error message if validation is false
+    /**
+     * Show error messages in span. Recieves the array from the validate function
+     */
     function updateErrorMessage(messages) {
         document.querySelector(".contact-validation").innerHTML = "<ul>"
         messages.forEach(message => {
@@ -47,7 +52,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector(".contact-validation").innerHTML += "</ul>"
     }
 
-    // Show error animation if validation is false
+    /**
+     * Shows error animation on input fields who are not valid
+     * Recieves the array from the validate function
+     */
     function updateErrorAnimation(messages) {
         messages.forEach(message => {
             document.querySelector(message[0]).classList.add("input-failed")
@@ -57,7 +65,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
     }
 
-    // Update error messages if input is changed
+    /**
+     * Update the error messages if the inputs are changed
+     */
     function listenUpdateErrorMessages() {
         document.querySelector("input[name=pseudo]").oninput = () => {
             validate(false)

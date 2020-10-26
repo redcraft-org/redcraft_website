@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
+from django.urls import reverse
 
 from api_v1_url import models as models_api_url_v1
 from .service.DiscordService import DiscordService
@@ -53,7 +54,7 @@ class Home(BaseViewFrontEnd):
                 'staff_list': [
                     {
                         'name': 'lululombard',
-                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/lululombard?size=300',
+                        'path_img' : reverse("get_skin_head", args=["lululombard"]),
                         'socials': [
                             {
                                 'name': 'Twitter',
@@ -74,7 +75,7 @@ class Home(BaseViewFrontEnd):
                     },
                     {
                         'name': 'Likyaz',
-                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Likyaz?size=300',
+                        'path_img' : reverse("get_skin_head", args=["Likyaz"]),
                         'socials': [
                             {
                                 'name': 'Twitter',
@@ -85,7 +86,7 @@ class Home(BaseViewFrontEnd):
                     },
                     {
                         'name': 'Codelta',
-                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Codelta?size=300',
+                        'path_img' : reverse("get_skin_head", args=["Codelta"]),
                         'socials': [
                             {
                                 'name': 'Twitter',
@@ -96,7 +97,7 @@ class Home(BaseViewFrontEnd):
                     },
                     {
                         'name': 'Omeganx',
-                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Omeganx?size=300',
+                        'path_img' : reverse("get_skin_head", args=["Omeganx"]),
                         'socials': [
                             {
                                 'name': 'Twitter',
@@ -107,7 +108,7 @@ class Home(BaseViewFrontEnd):
                     },
                     {
                         'name': 'Nano_',
-                        'path_img' : 'http://127.0.0.1:8000/api/v1/skin/head/Nano_?size=300',
+                        'path_img' : reverse("get_skin_head", args=["Nano_"]),
                         'socials': [
                             {
                                 'name': 'Twitter',

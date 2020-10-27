@@ -34,6 +34,10 @@ $navbar-height: 4.5rem;
         .nav-item {
             padding-left: 0.5rem;
             padding-right: .5rem;
+
+            &.active .nav-link {
+                box-shadow: 0px -2px $brand-dark-1-dark inset;
+            }
         }
     }
 
@@ -106,6 +110,10 @@ $navbar-height: 4.5rem;
                     font-weight: bolder;
                     font-size: 1.3rem;
                 }
+            }
+
+            .nav-item.active .nav-link {
+                box-shadow: 0px 0px $brand-dark-1-dark inset;
             }
         }
         

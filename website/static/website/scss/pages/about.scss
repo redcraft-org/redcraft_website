@@ -2,6 +2,7 @@
 
 section#about {
     background-color: $brand-dark-2-dark;
+    font-size: 1.2rem;
 
     img.logo-top {
         float: left;
@@ -11,10 +12,6 @@ section#about {
         image-rendering: pixelated;
         width: 100%;
         height: auto;
-    }
-
-    p {
-        font-size: 1.2rem;
     }
 }
 

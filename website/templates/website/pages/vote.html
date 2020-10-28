@@ -23,23 +23,11 @@
             <div class="col-md-6">
                 <div class="card border-primary my-4">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h3 class="font-weight-bold">{{ website.titre }}</h3>
-                                
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex justify-content-end">
-                                        <img src="{% static 'website/img/pages/contact/' %}{{ website.path_img }}" class="mb-3 mw-100" alt="logo">
-                                    </div>
-                                    <div class="d-flex justify-content-end">
-                                        <a href="{{ website.url }}" class="btn btn-primary btn-lg text-white"><i class="fas fa-arrow-right mr-2"></i>Voter</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div>
+                            <h3 class="font-weight-bold">{{ website.titre }}</h3>
                         </div>
-                        
+                        <img src="{% static 'website/img/pages/contact/' %}{{ website.path_img }}" class="mw-100" alt="logo">
+                        <a href="{{ website.url }}" target="_blank" class="btn btn-primary btn-lg text-white float-right"><i class="fas fa-arrow-right mr-2"></i>Voter</a>
                     </div>
                 </div>
             </div>

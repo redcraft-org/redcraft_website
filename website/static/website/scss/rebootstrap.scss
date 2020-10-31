@@ -107,3 +107,20 @@
         border-color: $brand-red-1!important;
     }
 }
+
+.alert {
+    border-radius: 7px;
+    border: 4px solid;
+
+    &.alert-primary {
+        background-color: $brand-red-1;
+        border-color: $brand-red-1-dark;
+        color: white;
+    }
+
+    &.alert-secondary {
+        background-color: $brand-light-2;
+        border-color: $brand-light-2-dark;
+        color: black;
+    }
+}

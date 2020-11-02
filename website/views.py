@@ -1,4 +1,3 @@
-from pprint import pprint
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 from django.views import View
@@ -20,7 +19,7 @@ class BaseViewFrontEnd(TemplateView):
         user_agent = parse_user_agents(self.request.META['HTTP_USER_AGENT'])
 
         return {
-            'is_brower_not_supported': 'IE' in str(user_agent),
+            'is_browser_not_supported': 'IE' in str(user_agent),
             'links' : {
                 'twitter' : 'https://twitter.com/RedCraftorg',
                 'facebook' : 'https://fb.me/RedCraftorg',

@@ -23,7 +23,8 @@
             {% block content %}{% endblock %}
 
             {% include "website/components/footer.html" %}
-            {% if is_brower_not_supported %}
+
+            {% if is_browser_not_supported %}
                 {% include "website/components/banner-browser-support.html" %}
             {% endif %}
            
@@ -44,7 +45,7 @@
         {# Browser not supported #}
         <!-- TODO : add support for 44 4f 45 53 49 54 57 4f 52 4b 57 49 54 48 49 45 3f -->
         
-        {% if is_brower_not_supported %}
+        {% if is_browser_not_supported %}
             <script src="{% static 'website/js/add-browser-support.js' %}" type="text/javascript"></script>
             <script src="{% static 'website/js/browser-not-supported.js' %}" type="text/javascript"></script>
         {% endif %}

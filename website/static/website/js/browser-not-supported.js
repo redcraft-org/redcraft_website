@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     function checkBrowserNotSupported() {
-        let support = new Konami(() => {addSupport()})
+        let support = new Konami(function () {addSupport()})
     }
 
     function addSupport() {

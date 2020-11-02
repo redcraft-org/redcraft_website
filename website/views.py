@@ -1,8 +1,11 @@
+from pprint import pprint
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
+
+from user_agents import parse as parse_user_agents
 
 from api_v1_url import models as models_api_url_v1
 from .service.DiscordService import DiscordService
@@ -13,7 +16,11 @@ from network_data.service.ServerDescriptionService import ServerDescriptionServi
 
 class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
+
+        user_agent = parse_user_agents(self.request.META['HTTP_USER_AGENT'])
+
         return {
+            'is_brower_not_supported': 'IE' in str(user_agent),
             'links' : {
                 'twitter' : 'https://twitter.com/RedCraftorg',
                 'facebook' : 'https://fb.me/RedCraftorg',

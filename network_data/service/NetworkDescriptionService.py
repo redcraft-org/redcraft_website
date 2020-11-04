@@ -23,3 +23,10 @@ class NetworkDescriptionService:
                 "1.15.1", "1.15.2", "1.16", "1.16.1", "1.16.2"
             ]
         }
+
+    def getMinecraftVersionsMinMax(self):
+        minecraft_versions = self.getMinecraftVersions()
+        return [
+            minecraft_versions["supportedVersions"][0],
+            minecraft_versions["supportedVersions"][-1],
+        ]

@@ -35,7 +35,7 @@
         <h4>Comment aider au projet ?</h4>
         <p>La façon la plus efficace de contribuer au projet est de venir nous en parler ! Vous êtes intéressé.e à écrire du code, aider à la construction du terrain ou participer à l'organisation ? Prenez contact avec nous, que ça soit via le <a href="{% url 'contact' %}">formulaire de contact</a>, via <a href="{{ links.discord }}" target="_blank">le Discord</a> ou directement en jeu.</p>
         <h4>Quelle version le serveur supporte-t-il ?</h4>
-        <p>Le serveur est joignable à partir de la version <strong>{{ minecraft_versions.supportedVersions | first }}</strong> jusqu'à la version <strong>{{ minecraft_versions.supportedVersions | last }}</strong>.</p>
+        <p>Le serveur est joignable à partir de la version <strong>{{ minecraft_versions_min_max | first }}</strong> jusqu'à la version <strong>{{ minecraft_versions_min_max | last }}</strong>.</p>
         <h4>Comment rejoindre le serveur sur Bedrock ?</h4>
         <p>Les joueurs sur version Bedrock ne sont pas lésinés ! Pour rejoindre RedCraft.org, vous avez besoin d'un compte Java. À la connexion au serveur, les identifiants de votre compte Java vous seront demandés. Remplissez le formulaire et vous êtes prêt à nous rejoindre en jeu.</p>
     </div>

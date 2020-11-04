@@ -13,6 +13,8 @@ from network_data.service.ServerDescriptionService import ServerDescriptionServi
 
 class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
+        minecraft_versions = NetworkDescriptionService().getMinecraftVersions()
+
         return {
             'links' : {
                 'twitter' : 'https://twitter.com/RedCraftorg',
@@ -51,7 +53,8 @@ class BaseViewFrontEnd(TemplateView):
                     'name' : 'contact',
                     'display' : 'Contact'
                 }
-            ]
+            ],
+            'minecraft_versions' : minecraft_versions
         }
 
 

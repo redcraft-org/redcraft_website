@@ -143,7 +143,11 @@ section {
         }
 
         .presentation {
-            margin-bottom: 5rem;
+            margin-bottom: 10rem;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
 
             &:nth-child(2n) {
                 flex-direction: row-reverse;

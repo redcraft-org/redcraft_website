@@ -13,6 +13,10 @@ from network_data.service.ServerDescriptionService import ServerDescriptionServi
 
 class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
+        self.network_description_service = NetworkDescriptionService()
+        minecraft_versions = self.network_description_service.getMinecraftVersions()
+        minecraft_versions_min_max = self.network_description_service.getMinecraftVersionsMinMax()
+
         return {
             'links' : {
                 'twitter' : 'https://twitter.com/RedCraftorg',
@@ -51,7 +55,9 @@ class BaseViewFrontEnd(TemplateView):
                     'name' : 'contact',
                     'display' : 'Contact'
                 }
-            ]
+            ],
+            'minecraft_versions' : minecraft_versions,
+            'minecraft_versions_min_max' : minecraft_versions_min_max
         }
 
 
@@ -63,7 +69,6 @@ class Home(BaseViewFrontEnd):
 
         discord_service = DiscordService()
         article_service = ArticleService()
-        network_description_service = NetworkDescriptionService()
         server_description_service = ServerDescriptionService()
 
         return {
@@ -79,7 +84,7 @@ class Home(BaseViewFrontEnd):
                 },
                 'articles': article_service.getLastArticle(3),
                 
-                'network_presentations': network_description_service.getAllActive(),
+                'network_presentations': self.network_description_service.getAllActive(),
                 'servers_list': server_description_service.getAllActive(),
                 'staff_list': [
                     {

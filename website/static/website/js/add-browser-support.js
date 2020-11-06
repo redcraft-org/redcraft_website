@@ -9,8 +9,10 @@
  * Tested in: Safari 4+, Google Chrome 4+, Firefox 3+, IE7+, Mobile Safari 2.2.1+ and Android
  */
 
-var Konami = function (callback) {
-    var konami = {
+// This code has been edited to remove the word "k o_n a'mi as much as possible"
+
+var Mooncake = function (callback) {
+    var mooncake = {
         addEvent: function (obj, type, fn, ref_obj) {
             if (obj.addEventListener)
                 obj.addEventListener(type, fn, false);
@@ -34,15 +36,15 @@ var Konami = function (callback) {
         pattern: "38384040373937396665",
         keydownHandler: function (e, ref_obj) {
             if (ref_obj) {
-                konami = ref_obj;
+                mooncake = ref_obj;
             } // IE
-            konami.input += e ? e.keyCode : event.keyCode;
-            if (konami.input.length > konami.pattern.length) {
-                konami.input = konami.input.substr((konami.input.length - konami.pattern.length));
+            mooncake.input += e ? e.keyCode : event.keyCode;
+            if (mooncake.input.length > mooncake.pattern.length) {
+                mooncake.input = mooncake.input.substr((mooncake.input.length - mooncake.pattern.length));
             }
-            if (konami.input === konami.pattern) {
-                konami.code(konami._currentLink);
-                konami.input = '';
+            if (mooncake.input === mooncake.pattern) {
+                mooncake.code(mooncake._currentLink);
+                mooncake.input = '';
                 e.preventDefault();
                 return false;
             }
@@ -70,51 +72,51 @@ var Konami = function (callback) {
             keys: ["UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "TAP", "TAP"],
             input: [],
             code: function (link) {
-                konami.code(link);
+                mooncake.code(link);
             },
             touchmoveHandler: function (e) {
-                if (e.touches.length === 1 && konami.iphone.capture === true) {
+                if (e.touches.length === 1 && mooncake.iphone.capture === true) {
                     var touch = e.touches[0];
-                    konami.iphone.stop_x = touch.pageX;
-                    konami.iphone.stop_y = touch.pageY;
-                    konami.iphone.tap = false;
-                    konami.iphone.capture = false;
-                    konami.iphone.check_direction();
+                    mooncake.iphone.stop_x = touch.pageX;
+                    mooncake.iphone.stop_y = touch.pageY;
+                    mooncake.iphone.tap = false;
+                    mooncake.iphone.capture = false;
+                    mooncake.iphone.check_direction();
                 }
             },
             touchendHandler: function () {
-                konami.iphone.input.push(konami.iphone.check_direction());
+                mooncake.iphone.input.push(mooncake.iphone.check_direction());
                 
-                if (konami.iphone.input.length > konami.iphone.keys.length) konami.iphone.input.shift();
+                if (mooncake.iphone.input.length > mooncake.iphone.keys.length) mooncake.iphone.input.shift();
                 
-                if (konami.iphone.input.length === konami.iphone.keys.length) {
+                if (mooncake.iphone.input.length === mooncake.iphone.keys.length) {
                     var match = true;
-                    for (var i = 0; i < konami.iphone.keys.length; i++) {
-                        if (konami.iphone.input[i] !== konami.iphone.keys[i]) {
+                    for (var i = 0; i < mooncake.iphone.keys.length; i++) {
+                        if (mooncake.iphone.input[i] !== mooncake.iphone.keys[i]) {
                             match = false;
                         }
                     }
                     if (match) {
-                        konami.iphone.code(konami._currentLink);
+                        mooncake.iphone.code(mooncake._currentLink);
                     }
                 }
             },
             touchstartHandler: function (e) {
-                konami.iphone.start_x = e.changedTouches[0].pageX;
-                konami.iphone.start_y = e.changedTouches[0].pageY;
-                konami.iphone.tap = true;
-                konami.iphone.capture = true;
+                mooncake.iphone.start_x = e.changedTouches[0].pageX;
+                mooncake.iphone.start_y = e.changedTouches[0].pageY;
+                mooncake.iphone.tap = true;
+                mooncake.iphone.capture = true;
             },
             load: function (link) {
                 this.orig_keys = this.keys;
-                konami.addEvent(document, "touchmove", this.touchmoveHandler);
-                konami.addEvent(document, "touchend", this.touchendHandler, false);
-                konami.addEvent(document, "touchstart", this.touchstartHandler);
+                mooncake.addEvent(document, "touchmove", this.touchmoveHandler);
+                mooncake.addEvent(document, "touchend", this.touchendHandler, false);
+                mooncake.addEvent(document, "touchstart", this.touchstartHandler);
             },
             unload: function () {
-                konami.removeEvent(document, 'touchmove', this.touchmoveHandler);
-                konami.removeEvent(document, 'touchend', this.touchendHandler);
-                konami.removeEvent(document, 'touchstart', this.touchstartHandler);
+                mooncake.removeEvent(document, 'touchmove', this.touchmoveHandler);
+                mooncake.removeEvent(document, 'touchend', this.touchendHandler);
+                mooncake.removeEvent(document, 'touchstart', this.touchstartHandler);
             },
             check_direction: function () {
                 x_magnitude = Math.abs(this.start_x - this.stop_x);
@@ -128,24 +130,24 @@ var Konami = function (callback) {
         }
     }
 
-    typeof callback === "string" && konami.load(callback);
+    typeof callback === "string" && mooncake.load(callback);
     if (typeof callback === "function") {
-        konami.code = callback;
-        konami.load();
+        mooncake.code = callback;
+        mooncake.load();
     }
 
-    return konami;
+    return mooncake;
 };
 
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports = Konami;
+    module.exports = Mooncake;
 } else {
     if (typeof define === 'function' && define.amd) {
         define([], function() {
-            return Konami;
+            return Mooncake;
         });
     } else {
-        window.Konami = Konami;
+        window.Mooncake = Mooncake;
     }
 }

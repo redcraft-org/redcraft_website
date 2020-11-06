@@ -1,0 +1,38 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+{% translate "Bientôt !" as title %}
+{% with title=title waveFill="#202020" %}
+{% include "website/components/section-header.html" %}
+{% endwith %}
+<section id="top">
+    <div class="container">
+        <h3 class="section-titre">Coming Soon™</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <p>{% translate "Cette page est en cours de dévelopement." %}</p>
+                <p>{% translate "Vous souhaitez peut-être retourner sur une de ces pages :" %}</p>
+                <ul>
+                    <li><a href="{% url 'home' %}">{% translate "Page d'accueil" %}</a></li>
+                    <li><a href="{% url 'contact' %}">{% translate "Page de contact" %}</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <img class="logo-top" src="{% static 'website/img/'%}page-not-found.png" alt="RedCraft logo question mark">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'website/css/pages/comingsoon.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}

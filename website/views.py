@@ -192,7 +192,8 @@ class Dons(BaseViewFrontEnd):
 
 
 class Stats(BaseViewFrontEnd):
-    template_name = 'website/pages/stats.html'
+    # template_name = 'website/pages/stats.html'
+    template_name = 'website/pages/comingsoon.html'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
@@ -248,7 +249,8 @@ class Articles(BaseViewFrontEnd):
 
 
 class Livemap(BaseViewFrontEnd):
-    template_name = 'website/pages/livemap.html'
+    # template_name = 'website/pages/livemap.html'
+    template_name = 'website/pages/comingsoon.html'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()

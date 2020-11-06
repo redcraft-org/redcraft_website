@@ -26,7 +26,7 @@
                         <div>
                             <h3 class="font-weight-bold">{{ website.titre }}</h3>
                         </div>
-                        <img src="{% static 'website/img/pages/contact/' %}{{ website.path_img }}" class="mw-100" alt="logo">
+                        <img src="{% static website.path_img %}" class="mw-100" alt="logo">
                         <a href="{{ website.url }}" target="_blank" class="btn btn-primary btn-lg text-white float-right"><i class="fas fa-arrow-right mr-2"></i>Voter</a>
                     </div>
                 </div>

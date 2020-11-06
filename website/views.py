@@ -4,6 +4,8 @@ from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 
+from user_agents import parse as parse_user_agents
+
 from api_v1_url import models as models_api_url_v1
 from .service.DiscordService import DiscordService
 from api_v1_article.service.ArticleService import ArticleService
@@ -13,11 +15,15 @@ from network_data.service.ServerDescriptionService import ServerDescriptionServi
 
 class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
+
+        user_agent = parse_user_agents(self.request.META['HTTP_USER_AGENT'])
+        
         self.network_description_service = NetworkDescriptionService()
         minecraft_versions = self.network_description_service.getMinecraftVersions()
         minecraft_versions_min_max = self.network_description_service.getMinecraftVersionsMinMax()
 
         return {
+            'is_browser_not_supported': 'IE' in str(user_agent),
             'links' : {
                 'twitter' : 'https://twitter.com/RedCraftorg',
                 'facebook' : 'https://fb.me/RedCraftorg',

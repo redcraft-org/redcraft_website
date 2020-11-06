@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     let serverLinkAnimation = null
 
-    document.querySelector('.link-server').onclick = () => {
+    document.querySelector('.link-server').onclick = function() {
         clearTimeout(serverLinkAnimation)
         var copyText = document.getElementById("link-server-copy")
         copyText.select()
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('.before-click').classList.add("copied")
         document.querySelector('.ip-copied').classList.add("copied")
 
-        serverLinkAnimation = setTimeout(() => {
+        serverLinkAnimation = setTimeout(function() {
             // Reset "ip copied"
             document.querySelector('.before-click').classList.remove("copied")
             document.querySelector('.ip-copied').classList.remove("copied")
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     function resizeServerDetails() {
         var arr = Array()
-        document.querySelectorAll(".server-active").forEach((e, i) => {
+        document.querySelectorAll(".server-active").forEach(function(e, i) {
             arr[i] = e.clientHeight
         })
         var max = arr.reduce(function (a, b) {

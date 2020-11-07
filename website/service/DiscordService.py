@@ -24,13 +24,18 @@ class DiscordService:
             username='Page contact du site'
         )
 
-        embed = DiscordEmbed(title='Message', description=message, color=242424)
+        if client_type == "player":
+            color = 10659500        # grey
+        elif client_type == "other":
+            color = 11290182        # red
 
-        # set author
-        embed.set_author(name=nickname)
-        # set timestamp (default is now)
+        # set ember parameters
+        embed = DiscordEmbed(title='Message :', description=message, color=color)
+        #  embed.set_author(name=nickname)
+        embed.add_embed_field(name='Auteur', value=nickname)
+        embed.add_embed_field(name='Type de client', value=client_type)
+        embed.add_embed_field(name='Adresse IP', value=ip)
         embed.set_timestamp()
-        # add embed object to webhook
         webhook.add_embed(embed)
 
         response = webhook.execute()

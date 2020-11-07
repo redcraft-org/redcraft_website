@@ -11,17 +11,22 @@
             opacity: 0;
             visibility: hidden;
             transition-duration: .3s;
-            &.contact-from:not(.active) {
+            &.contact-from:not(.active), &.contact-success:not(.active), &.contact-failed:not(.active) {
                 transform: translateY(-2rem);
             }
             &.contact-details:not(.active) {
                 transform: translateY(2rem);
             }
+            &.contact-failed, &.contact-success {
+                text-align: center;
+            }
         }
+
         .active {
             opacity: 1;
             visibility: visible;
         }
+
         .donation-modal {
             width: 100%;
             text-align: center;

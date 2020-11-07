@@ -1,5 +1,36 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+    /*********************************[ PAGE JS METHODS ]************************************/
+
+    /**
+     * Detect when the "next" or "previous" buttons are pressed on the form
+     * Updates the page page depending on the results from the select input
+     */
+    function listenCloseModal() {
+        document.querySelector("#form-next-page").onclick = function() {
+            document.querySelector(".transition-element.contact-from").classList.remove('active')
+            document.querySelector(".transition-element.contact-details").classList.add('active')
+            
+            if(document.getElementsByName("client_type")[0].value == "player") {
+                document.querySelector(".row.inputs-player").style.display = "flex"
+                document.querySelector(".row.inputs-other").style.display = "none"
+            }else if(document.getElementsByName("client_type")[0].value == "other") {
+                document.querySelector(".row.inputs-player").style.display = "none"
+                document.querySelector(".row.inputs-other").style.display = "flex"
+            }
+        }
+
+        document.querySelector("#form-previous-page").onclick = function() {
+            document.querySelector(".transition-element.contact-from").classList.add('active')
+            document.querySelector(".transition-element.contact-details").classList.remove('active')
+            document.querySelector(".contact-validation").innerHTML = ""
+        }
+    }
+
+    listenCloseModal()
+
+    /*********************************[ FORM VALIDATION ]************************************/
+
     /**
      * handler when the form is sent. Calls the validate function, set the final price in the "sum" element
      * and submits the form
@@ -12,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 return
             }
 
-            document.querySelector("#contact-form").submit()
+            sendRequest(evt.target)
+            // document.querySelector("#contact-form").submit()
         })
     }
 
@@ -82,33 +114,53 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
-    /**
-     * Detect when the "next" button is pressed on the form
-     * Updates the 2nd page depending on the results from the 1st page
-     */
-    function listenCloseModal() {
-        document.querySelector("#form-next-page").onclick = function() {
-            document.querySelector(".transition-element.contact-from").classList.remove('active')
-            document.querySelector(".transition-element.contact-details").classList.add('active')
-            
-            if(document.getElementsByName("client_type")[0].value == "player") {
-                document.querySelector(".row.inputs-player").style.display = "flex"
-                document.querySelector(".row.inputs-other").style.display = "none"
-            }else if(document.getElementsByName("client_type")[0].value == "other") {
-                document.querySelector(".row.inputs-player").style.display = "none"
-                document.querySelector(".row.inputs-other").style.display = "flex"
-            }
-        }
+    listenSubmit()
+    listenUpdateErrorMessages()
 
-        document.querySelector("#form-previous-page").onclick = function() {
-            document.querySelector(".transition-element.contact-from").classList.add('active')
-            document.querySelector(".transition-element.contact-details").classList.remove('active')
-            document.querySelector(".contact-validation").innerHTML = ""
+    /*********************************[ SENDING FORM ]************************************/
+    var httpRequest;
+
+    function sendRequest(form) {
+        httpRequest = new XMLHttpRequest();
+        if (!httpRequest)
+            return false
+
+        httpRequest.onreadystatechange = alertContents;
+        httpRequest.open("POST", form.action)
+        httpRequest.send(new FormData(form))
+    }
+
+    function alertContents() {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+                switch(JSON.parse(httpRequest.response).response) {
+                    case 0:
+                        requestSuccess()
+                        break
+                    default:
+                        requestError(JSON.parse(httpRequest.response).error)
+                }
+            } else {
+                requestError()
+            }
+            requestDone()
         }
     }
 
-    listenSubmit()
-    listenUpdateErrorMessages()
-    listenCloseModal()
+    /*********************************[ FORM RESPONSE ]************************************/
 
+    function requestDone() {
+        document.querySelector(".transition-element.active .checkmark").classList.add("checkmark-animation")
+    }
+
+    function requestSuccess(state) {
+        document.querySelector(".transition-element.contact-details").classList.remove("active")
+        document.querySelector(".transition-element.contact-success").classList.add("active")
+    }
+
+    function requestError(error) {
+        document.querySelector("#contact-failed-error").innerText = error
+        document.querySelector(".transition-element.contact-details").classList.remove("active")
+        document.querySelector(".transition-element.contact-failed").classList.add("active")
+    }
 })

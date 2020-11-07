@@ -5,3 +5,4 @@ mysqlclient
 requests
 pillow
 numpy
+discord-webhook

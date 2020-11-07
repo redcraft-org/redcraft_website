@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * and submits the form
      */
     function listenSubmit() {
-        document.querySelector("#contact-form").addEventListener("submit", (evt) => {
+        document.querySelector("#contact-form").addEventListener("submit", function(evt) {
             evt.preventDefault()
 
             if(!validate()) {
@@ -29,8 +29,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
      */
         function validate(showAnimation = true) {
         var returnValue = []
-        if(document.querySelector("input[name=pseudo]").value == "")
-            returnValue.push(["input[name=pseudo]", "Le pseudo est requis"])
+        if(document.getElementsByName("client_type")[0].value == "player") {
+            if(document.querySelector("input[name=pseudo]").value == "")
+                returnValue.push(["input[name=pseudo]", "Le pseudo est requis"])
+        }else if(document.getElementsByName("client_type")[0].value == "other") {
+            if(document.querySelector("input[name=email]").value == "")
+                returnValue.push(["input[name=email]", "L'email est requis"])
+        }
         
         if(document.querySelector("textarea[name=message]").value == "")
             returnValue.push(["textarea[name=message]", "Le message est requis"])
@@ -69,15 +74,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * Update the error messages if the inputs are changed
      */
     function listenUpdateErrorMessages() {
-        document.querySelector("input[name=pseudo]").oninput = () => {
+        document.querySelector("input[name=pseudo]").oninput = function() {
             validate(false)
         }
-        document.querySelector("textarea[name=message]").onchange = () => {
+        document.querySelector("textarea[name=message]").onchange = function() {
             validate(false)
         }
     }
 
-    listenSubmit();
-    listenUpdateErrorMessages();
+    /**
+     * Detect when the "next" button is pressed on the form
+     * Updates the 2nd page depending on the results from the 1st page
+     */
+    function listenCloseModal() {
+        document.querySelector("#form-next-page").onclick = function() {
+            document.querySelector(".transition-element.contact-from").classList.remove('active')
+            document.querySelector(".transition-element.contact-details").classList.add('active')
+            
+            if(document.getElementsByName("client_type")[0].value == "player") {
+                document.querySelector(".row.inputs-player").style.display = "flex"
+                document.querySelector(".row.inputs-other").style.display = "none"
+            }else if(document.getElementsByName("client_type")[0].value == "other") {
+                document.querySelector(".row.inputs-player").style.display = "none"
+                document.querySelector(".row.inputs-other").style.display = "flex"
+            }
+        }
+
+        document.querySelector("#form-previous-page").onclick = function() {
+            document.querySelector(".transition-element.contact-from").classList.add('active')
+            document.querySelector(".transition-element.contact-details").classList.remove('active')
+            document.querySelector(".contact-validation").innerHTML = ""
+        }
+    }
+
+    listenSubmit()
+    listenUpdateErrorMessages()
+    listenCloseModal()
 
 })

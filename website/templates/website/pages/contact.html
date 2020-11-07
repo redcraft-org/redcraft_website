@@ -1,5 +1,6 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 {% with title="Contact" waveFill="#202020" %}
@@ -11,30 +12,51 @@
     </svg>
     <div class="container">
         <h3 class="section-titre">Contacter le staff</h3>
-        <form action="#" id="contact-form">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <input type="text" name="pseudo" class="form-control"
-                            placeholder="Pseudo Minecraft">
+        <form action="#" id="contact-form" method="post">
+            <div class="d-flex transition-container">
+                <div class="transition-element contact-from position-absolute active">
+                    <p>{% translate "Vous nous contactez en tant que..." %}</p>
+                    <select name="client_type" class="custom-select form-control mb-3">
+                        <option value="player" selected>{% translate "Un joueur" %}</option>
+                        <option value="other">{% translate "Autre" %}</option>
+                    </select>
+
+                    <button type="button" class="btn btn-primary float-right" id="form-next-page">{% translate "Suivant" %}</button>
+                </div>
+                <div class="transition-element contact-details">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary mb-3" id="form-previous-page">{% translate "Retour" %}</button>
+                        <div class="row inputs-player">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <input type="text" name="pseudo" class="form-control"
+                                    placeholder="Pseudo Minecraft">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="discord_username" class="form-control"
+                                    placeholder="Identifiant Discord (Nom#0000)">
+                            </div>
+                        </div>
+                        <div class="row inputs-other">
+                            <div class="col mb-md-0">
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="Adresse email">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <input type="text" name="discord_username" class="form-control"
-                            placeholder="Identifiant Discord (Nom#0000)">
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Message" rows="10" cols="10" name="message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                            <div class="contact-validation font-weight-bold"></div>
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-lg">Envoyer le message</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <textarea class="form-control" placeholder="Message" rows="10" cols="10" name="message"></textarea>
-            </div>
-            <div class="form-group">
-                <div class="d-flex justify-content-between">
-                    <div class="contact-validation font-weight-bold"></div>
-                    <div>
-                        <button type="submit" class="btn btn-primary btn-lg">Envoyer le message</button>
-                    </div>
-                </div>
-            </div>
+            {% csrf_token %}
         </form>
     </div>
 </section>

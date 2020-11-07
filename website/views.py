@@ -3,6 +3,7 @@ from django.views.generic.base import TemplateView
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
+from django.http import JsonResponse
 
 from api_v1_url import models as models_api_url_v1
 from .service.DiscordService import DiscordService
@@ -190,6 +191,35 @@ class Contact(BaseViewFrontEnd):
                 'page': 'contact'
             }
         }
+
+    def post(self, *args, **kwargs):
+        post_data = args[0].POST
+
+        # print('------------------------')
+        # print(post_data)
+        
+        client_type = post_data['client_type']
+        pseudo = post_data['pseudo']
+        discord_username = post_data['discord_username']
+        email = post_data['email']
+        message = post_data['message']
+
+        nickname = {
+            'player': f'{pseudo} - {discord_username}',
+            'other': email
+        }[client_type]
+
+        # ip = self.request.headers["cf-connecting-ip"]
+        ip = "0.0.0.0"
+
+        discord_service = DiscordService()
+
+        send_error = discord_service.sendContactMessage(nickname, message, ip, client_type)
+
+        if send_error:
+            return JsonResponse({'response': 1, 'error': send_error})
+
+        return JsonResponse({'response': 0})
 
 
 class Articles(BaseViewFrontEnd):

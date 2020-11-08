@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    /*********************************[ PAGE JS METHODS ]************************************/
+    /*********************************[ PAGES NAVIGATION ]************************************/
 
     /**
      * Detect when the "next" or "previous" buttons are pressed on the form
@@ -27,6 +27,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
+    function listenRestartModal() {
+        document.querySelector("#form-restart").onclick = function() {
+            document.querySelector(".transition-element.contact-failed").classList.remove("active")
+            document.querySelector(".transition-element.contact-details").classList.add("active")
+            document.querySelector(".contact-validation").innerHTML = ""
+        }
+    }
+
+    listenRestartModal()
     listenCloseModal()
 
     /*********************************[ FORM VALIDATION ]************************************/
@@ -59,21 +68,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
      *   either an array if there are errors
      *   [["errorMessage","element"],["errorMessage","element"],...]
      */
-        function validate(showAnimation = true) {
+    function validate(showAnimation = true) {
         var returnValue = []
+
         if(document.getElementsByName("client_type")[0].value == "player") {
-            if(document.querySelector("input[name=pseudo]").value == "")
-                returnValue.push(["input[name=pseudo]", "Le pseudo est requis"])
+
+            // Nickname
+            const pseudo = document.querySelector("input[name=pseudo]").value
+            if(pseudo == "")
+                returnValue.push(["input[name=pseudo]", "Le pseudo Minecraft est requis"])
+            else if(pseudo.length < 4)
+                returnValue.push(["input[name=pseudo]", "Le pseudo Minecraft est trop court"])
+            else if(pseudo.match("^[a-zA-Z0-9_]*$") == null)
+                returnValue.push(["input[name=pseudo]", "Le pseudo Minecraft contient des charactères invalides"])
+
+            // Discord username
+            const discord_username = document.querySelector("input[name=discord_username]").value
+            if(!(discord_username === "") && discord_username.match("^.{3,32}#[0-9]{4}$") == null)
+                returnValue.push(["input[name=discord_username]", "Le pseudo Discord ne respecte pas le format abc#0000"])
+
         }else if(document.getElementsByName("client_type")[0].value == "other") {
+
+            // Email
             if(document.querySelector("input[name=email]").value == "")
                 returnValue.push(["input[name=email]", "L'email est requis"])
         }
-        
-        if(document.querySelector("textarea[name=message]").value == "")
+
+        // Message
+        const message = document.querySelector("textarea[name=message]").value
+        if(message == "")
             returnValue.push(["textarea[name=message]", "Le message est requis"])
+        else if(message.length < 30)
+        returnValue.push(["textarea[name=message]", "Le message est trop court"])
         
         updateErrorMessage(returnValue)
         if(showAnimation) updateErrorAnimation(returnValue)
+        
         if(returnValue.length == 0) return true
         return false
     }
@@ -109,7 +139,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("input[name=pseudo]").oninput = function() {
             validate(false)
         }
-        document.querySelector("textarea[name=message]").onchange = function() {
+        document.querySelector("input[name=discord_username]").oninput = function() {
+            validate(false)
+        }
+        document.querySelector("textarea[name=message]").oninput = function() {
             validate(false)
         }
     }
@@ -133,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function alertContents() {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status === 200) {
+                // A switch is used here if more options are added in the future
                 switch(JSON.parse(httpRequest.response).response) {
                     case 0:
                         requestSuccess()
@@ -143,14 +177,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
             } else {
                 requestError()
             }
-            requestDone()
+            restartIconAnimation()
         }
     }
 
     /*********************************[ FORM RESPONSE ]************************************/
 
-    function requestDone() {
-        document.querySelector(".transition-element.active .checkmark").classList.add("checkmark-animation")
+    function restartIconAnimation() {
+        document.querySelector(".transition-element.active .checkmark").classList.remove("checkmark-animation")
+        // setTimeout necessary in order to replay the css animation
+        setTimeout(function() {
+            document.querySelector(".transition-element.active .checkmark").classList.add("checkmark-animation")
+        }, 0)
     }
 
     function requestSuccess(state) {

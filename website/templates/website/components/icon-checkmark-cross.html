@@ -1,0 +1,15 @@
+{% load static %}
+
+<!-- parameters -->
+
+<!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
+<svg class="checkmark my-4{% if animation == 1 %} checkmark-animation{% endif %}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+    {% if icon == "success" %}
+        <path class="checkmark-icon" fill="none" d="M 14.1 27.2l7.1 7.2 16.7-16.8"/>
+    {% endif %}
+    {% if icon == "fail" %}
+        <path class="checkmark-icon" fill="none" d="M 17 17 l 18 18"/>
+        <path class="checkmark-icon" fill="none" d="M 35 17 l -18 18"/>
+    {% endif %}
+</svg>

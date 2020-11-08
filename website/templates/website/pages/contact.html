@@ -20,7 +20,6 @@
                         <option value="player" selected>{% translate "Un joueur" %}</option>
                         <option value="other">{% translate "Autre" %}</option>
                     </select>
-
                     <button type="button" class="btn btn-primary float-right" id="form-next-page">{% translate "Suivant" %}</button>
                 </div>
                 <div class="transition-element contact-details">
@@ -59,23 +58,20 @@
                 <div class="contact-failed transition-element position-absolute">
                     <h2>{% translate "Erreur" %}</h2>
                     <p>{% translate "Votre message n'a pas pu être traité" %}</p>
-                    <p id="contact-failed-error" class="text-white-50">{% translate "Erreur : pas de message d'erreur" %}</p>
-                    <!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
-                    <svg class="checkmark my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="checkmark-icon" fill="none" d="M 17 17 l 18 18"/>
-                        <path class="checkmark-icon" fill="none" d="M 35 17 l -18 18"/>
-                    </svg>
+                    <p id="contact-failed-error" class="text-white-50">{% translate "Pas de message d'erreur disponible" %}</p>
+                    {% with icon="fail" animation=0 %}
+                        {% include "website/components/icon-checkmark-cross.html" %}
+                    {% endwith %}
+                    <button type="button" class="btn btn-primary" id="form-restart">{% translate "Réessayer" %}</button>
+                    
                 </div>
                 <!-- MODAL SUCCESS -->
                 <div class="contact-success transition-element position-absolute">
                     <h2>{% translate "Terminé" %}</h2>
                     <p>{% translate "Le message a été envoyé." %}</p>
-                    <!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
-                    <svg class="checkmark my-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="checkmark-icon" fill="none" d="M 14.1 27.2l7.1 7.2 16.7-16.8"/>
-                    </svg>
+                    {% with icon="success" animation=0 %}
+                        {% include "website/components/icon-checkmark-cross.html" %}
+                    {% endwith %}
                 </div>
             </div>
             {% csrf_token %}

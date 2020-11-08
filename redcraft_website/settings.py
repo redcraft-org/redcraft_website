@@ -129,6 +129,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Proxy redcraft
+
+PROXY_REDCRAFT = {
+    'versions': f'{os.getenv("URL_PROXY_REDCRAFT")}/versions.json',
+    'players': f'{os.getenv("URL_PROXY_REDCRAFT")}/players.json'
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 

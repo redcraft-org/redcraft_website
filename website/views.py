@@ -85,7 +85,7 @@ class Home(BaseViewFrontEnd):
                     'count_players_online': discord_service.countPlayersOnline()
                 },
                 'minecraft_server': {
-                    'count_players_online': 69420,
+                    'count_players_online': self.network_description_service.countPlayers(),
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),

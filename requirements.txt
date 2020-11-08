@@ -6,4 +6,3 @@ mysqlclient
 requests
 pillow
 numpy
-python-dotenv

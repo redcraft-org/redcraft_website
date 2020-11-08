@@ -206,7 +206,7 @@ class Contact(BaseViewFrontEnd):
         
         nickname = {
             'player': f'`{minecraft_nickname}`{discord_username}',
-            'other': email
+            'other': f'`{email}`'
         }[client_type]
 
         # ip = self.request.headers["cf-connecting-ip"]

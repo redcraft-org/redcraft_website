@@ -15,12 +15,16 @@
         <form action="#" id="contact-form" method="post">
             <div class="d-flex transition-container">
                 <div class="transition-element contact-from position-absolute active">
-                    <p>{% translate "Vous nous contactez en tant que..." %}</p>
-                    <select name="client_type" class="custom-select form-control mb-3">
-                        <option value="player" selected>{% translate "Un joueur" %}</option>
-                        <option value="other">{% translate "Autre" %}</option>
-                    </select>
-                    <button type="button" class="btn btn-primary float-right" id="form-next-page">{% translate "Suivant" %}</button>
+                    <div class="h-100 d-flex align-items-center">
+                        <div class="w-100">
+                            <p>{% translate "Vous nous contactez en tant que..." %}</p>
+                            <select name="client_type" class="custom-select form-control mb-3">
+                                <option value="player" selected>{% translate "Un joueur" %}</option>
+                                <option value="other">{% translate "Autre" %}</option>
+                            </select>
+                            <button type="button" class="btn btn-primary float-right" id="form-next-page">{% translate "Suivant" %}</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="transition-element contact-details">
                     <div class="form-group">
@@ -57,22 +61,29 @@
                 </div>
                 <!-- MODAL FAILED -->
                 <div class="contact-failed transition-element position-absolute">
-                    <h2>{% translate "Erreur" %}</h2>
-                    <p>{% translate "Votre message n'a pas pu être traité" %}</p>
-                    <p id="contact-failed-error" class="text-white-50">{% translate "Pas de message d'erreur disponible" %}</p>
-                    {% with icon="fail" animation=0 %}
-                        {% include "website/components/icon-checkmark-cross.html" %}
-                    {% endwith %}
-                    <button type="button" class="btn btn-primary" id="form-restart">{% translate "Réessayer" %}</button>
-                    
+                    <div class="h-100 d-flex align-items-center">
+                        <div class="w-100">
+                            <h2>{% translate "Erreur" %}</h2>
+                            <p>{% translate "Votre message n'a pas pu être traité" %}</p>
+                            <p id="contact-failed-error" class="text-white-50">{% translate "Pas de message d'erreur disponible" %}</p>
+                            {% with icon="fail" animation=0 %}
+                                {% include "website/components/icon-checkmark-cross.html" %}
+                            {% endwith %}
+                            <button type="button" class="btn btn-primary" id="form-restart">{% translate "Réessayer" %}</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- MODAL SUCCESS -->
                 <div class="contact-success transition-element position-absolute">
-                    <h2>{% translate "Terminé" %}</h2>
-                    <p>{% translate "Le message a été envoyé." %}</p>
-                    {% with icon="success" animation=0 %}
-                        {% include "website/components/icon-checkmark-cross.html" %}
-                    {% endwith %}
+                    <div class="h-100 d-flex align-items-center">
+                        <div class="w-100">
+                            <h2>{% translate "Terminé" %}</h2>
+                            <p>{% translate "Le message a été envoyé." %}</p>
+                            {% with icon="success" animation=0 %}
+                                {% include "website/components/icon-checkmark-cross.html" %}
+                            {% endwith %}
+                        </div>
+                    </div>
                 </div>
             </div>
             {% csrf_token %}

@@ -176,25 +176,25 @@ class Vote(BaseViewFrontEnd):
                 'websites_list' : [
                     {
                         'titre': 'Serveurs-minecraft.org',
-                        'explainations': 'Sur la page, scrollez jusqu\'au bouton vert "Voter pour RedCraft". Cliquez simplement dessus.',
+                        'explainations': 'Sur la page, descendez jusqu\'au bouton vert "Voter pour RedCraft". Cliquez simplement dessus.',
                         'url' : 'https://www.serveurs-minecraft.org/',
                         'path_img' : 'website/img/pages/vote/serveurs-minecraft-org.png'
                     },
                     {
                         'titre': 'top-serveurs.net',
-                        'explainations': 'Entrez ici une description de comment voter sur le site',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
                         'url' : 'https://top-serveurs.net/',
                         'path_img' : 'website/img/pages/vote/top-serveurs.png'
                     },
                     {
                         'titre': 'liste-serveur-minecraft.net',
-                        'explainations': 'Entrez ici une description de comment voter sur le site',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
                         'url' : 'http://www.liste-serveur-minecraft.net/',
                         'path_img' : 'website/img/pages/vote/liste-serveurs-minecraft.png'
                     },
                     {
                         'titre': 'serveursminecraft.org',
-                        'explainations': 'Entrez ici une description de comment voter sur le site',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
                         'url' : 'https://www.serveursminecraft.org/',
                         'path_img' : 'website/img/pages/vote/serveursminecraft-org.png'
                     },

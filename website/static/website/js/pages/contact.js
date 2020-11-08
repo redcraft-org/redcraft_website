@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("#contact-form").addEventListener("submit", function(evt) {
             evt.preventDefault()
 
+            trim()
+
             if(!validate()) {
                 return
             }
@@ -55,6 +57,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
             sendRequest(evt.target)
             // document.querySelector("#contact-form").submit()
         })
+    }
+
+    /*
+     * Clean form
+     */
+    function strip() {
+        const html_nickname = document.querySelector("input[name=nickname]")
+        html_nickname.value = html_nickname.value.trim()
+        
+        const discord_username = document.querySelector("input[name=discord_username]")
+        discord_username.value = discord_username.value.trim()
+        
+        const email = document.querySelector("input[name=email]")
+        email.value = email.value.trim()
+        
+        const message = document.querySelector("textarea[name=message]")
+        message.value = message.value.trim()
     }
 
     /**
@@ -79,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 returnValue.push(["input[name=nickname]", "Le pseudo Minecraft est requis"])
             else if(nickname.length < 4)
                 returnValue.push(["input[name=nickname]", "Le pseudo Minecraft est trop court"])
-            else if(nickname.match("^[a-zA-Z0-9_]*$") == null)
+            else if(nickname.match("^[a-zA-Z0-9_]{4,16}$") == null)
                 returnValue.push(["input[name=nickname]", "Le pseudo Minecraft contient des charactères invalides"])
 
             // Discord username

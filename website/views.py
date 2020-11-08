@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 from django.views import View
@@ -195,38 +197,76 @@ class Contact(BaseViewFrontEnd):
     def post(self, *args, **kwargs):
         post_data = args[0].POST
         
+        # get data
         client_type = post_data['client_type']
         minecraft_nickname = post_data['nickname']
         discord_username = post_data['discord_username']
         email = post_data['email']
         message = post_data['message']
 
-        if discord_username != '':
-            discord_username = f' - `{discord_username}`'
-        
-        nickname = {
-            'player': f'`{minecraft_nickname}`{discord_username}',
-            'other': f'`{email}`'
-        }[client_type]
+        # Clean and valide data
+        email, discord_username, message, minecraft_nickname =  self.cleanFormData(email, discord_username, message, minecraft_nickname)
+        error_form_data =  self.validateFormData(client_type, email, discord_username, message, minecraft_nickname)
 
+        if error_form_data:
+            return JsonResponse({
+                'response': 2,
+                'error': '\n'.join([err for err in error_form_data])
+            })
+        
+        # compose nickname
+        nickname = {
+            'player': lambda : ' - '.join([n for n in [minecraft_nickname, discord_username] if n is not '']),
+            'other': lambda : f'`{email}`'
+        }[client_type]()
+
+        # get ip
         # ip = self.request.headers["cf-connecting-ip"]
         ip = "0.0.0.0"
 
+        # Send message
         discord_service = DiscordService()
-
         send_error = discord_service.sendContactMessage(nickname, message, ip, client_type)
 
         if send_error:
             return JsonResponse({'response': 1, 'error': send_error})
-
         return JsonResponse({'response': 0})
+    
+    def cleanFormData(self, email, discord_username, message, minecraft_nickname):
+        email = email.strip()
+        discord_username = discord_username.strip()
+        message = message.strip()
+        minecraft_nickname = minecraft_nickname.strip()
 
-    def validateFormData(self, email, discord_username, message, minecraft_nickname):
-        # ^.{3,32}#[0-9]{4}$ --> discord_username
-        # ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$ --> email
-        # ^[a-zA-Z0-9_]*$ --> minecraft_nickname
-        pass
-        
+        return email, discord_username, message, minecraft_nickname
+
+    def validateFormData(self, client_type, email, discord_username, message, minecraft_nickname):
+        list_err = []
+
+        client_type_valide = ['player', 'other']
+        if not client_type in client_type_valide:
+            list_err += ['client_type is not valide']
+
+        min_max_message = (30, 1500)
+        if len(message) < min_max_message[0] or len(message) > min_max_message[1]:
+            list_err += ['length message is not valide']
+
+        if discord_username:
+            valide_discord_username = re.match(r'^.{3,32}#[0-9]{4}$', discord_username)
+            if valide_discord_username == None:
+                list_err += ['discord username is not valide']
+
+        if email:
+            valide_email = re.match(r'^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$', email)
+            if valide_email == None:
+                list_err += ['email is not valide']
+
+        if minecraft_nickname:
+            valide_minecraft_nickname = re.match(r'^[a-zA-Z0-9_]{4,16}$', minecraft_nickname)
+            if valide_minecraft_nickname == None:
+                list_err += ['minecraft nickname is not valide']
+
+        return list_err
 
 
 class Articles(BaseViewFrontEnd):

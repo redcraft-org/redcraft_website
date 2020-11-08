@@ -1,0 +1,10 @@
+@import "../colors";
+
+section#info {
+    background-color: $brand-dark-2-dark;
+}
+
+section#list {
+    background-color: $brand-light-2;
+    color: $brand-dark-2;
+}

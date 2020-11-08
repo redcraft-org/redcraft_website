@@ -6,6 +6,7 @@ from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.http import JsonResponse
+from user_agents import parse as parse_user_agents
 
 from api_v1_url import models as models_api_url_v1
 from .service.DiscordService import DiscordService
@@ -16,7 +17,15 @@ from network_data.service.ServerDescriptionService import ServerDescriptionServi
 
 class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
+
+        user_agent = parse_user_agents(self.request.META['HTTP_USER_AGENT'])
+        
+        self.network_description_service = NetworkDescriptionService()
+        minecraft_versions = self.network_description_service.getMinecraftVersions()
+        minecraft_versions_min_max = self.network_description_service.getMinecraftVersionsMinMax()
+
         return {
+            'is_browser_not_supported': 'IE' in str(user_agent),
             'links' : {
                 'twitter' : 'https://twitter.com/RedCraftorg',
                 'facebook' : 'https://fb.me/RedCraftorg',
@@ -24,7 +33,39 @@ class BaseViewFrontEnd(TemplateView):
                 'youtube' : 'https://www.youtube.com/channel/UClo30bzHPYHz847o5WlfE6g',
                 'discord' : 'https://discord.gg/h9SfJmh',
                 'instagram' : 'https://www.instagram.com/redcraftorg',
-            }
+            },
+            'pages' : [
+                {
+                    'name' : 'home',
+                    'display' : 'Accueil'
+                },
+                {
+                    'name' : 'vote',
+                    'display' : 'Vote'
+                },
+                {
+                    'name' : 'dons',
+                    'display' : 'Dons'
+                },
+                {
+                    'name' : 'stats',
+                    'display' : 'Stats'
+                },
+                {
+                    'name' : 'rules',
+                    'display' : 'Règles'
+                 },
+                {
+                    'name' : 'livemap',
+                    'display' : 'Live map'
+                },
+                {
+                    'name' : 'contact',
+                    'display' : 'Contact'
+                }
+            ],
+            'minecraft_versions' : minecraft_versions,
+            'minecraft_versions_min_max' : minecraft_versions_min_max
         }
 
 
@@ -36,7 +77,6 @@ class Home(BaseViewFrontEnd):
 
         discord_service = DiscordService()
         article_service = ArticleService()
-        network_description_service = NetworkDescriptionService()
         server_description_service = ServerDescriptionService()
 
         return {
@@ -47,12 +87,12 @@ class Home(BaseViewFrontEnd):
                     'count_players_online': discord_service.countPlayersOnline()
                 },
                 'minecraft_server': {
-                    'count_players_online': 69420,
+                    'count_players_online': self.network_description_service.countPlayers(),
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),
                 
-                'network_presentations': network_description_service.getAllActive(),
+                'network_presentations': self.network_description_service.getAllActive(),
                 'servers_list': server_description_service.getAllActive(),
                 'staff_list': [
                     {
@@ -134,7 +174,33 @@ class Vote(BaseViewFrontEnd):
         return {
             **ctx,
             **{
-                'page': 'vote'
+                'page': 'vote',
+                'websites_list' : [
+                    {
+                        'titre': 'Serveurs-minecraft.org',
+                        'explainations': 'Sur la page, descendez jusqu\'au bouton vert "Voter pour RedCraft". Cliquez simplement dessus.',
+                        'url' : 'https://www.serveurs-minecraft.org/',
+                        'path_img' : 'website/img/pages/vote/serveurs-minecraft-org.png'
+                    },
+                    {
+                        'titre': 'top-serveurs.net',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
+                        'url' : 'https://top-serveurs.net/',
+                        'path_img' : 'website/img/pages/vote/top-serveurs.png'
+                    },
+                    {
+                        'titre': 'liste-serveur-minecraft.net',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
+                        'url' : 'http://www.liste-serveur-minecraft.net/',
+                        'path_img' : 'website/img/pages/vote/liste-serveurs-minecraft.png'
+                    },
+                    {
+                        'titre': 'serveursminecraft.org',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
+                        'url' : 'https://www.serveursminecraft.org/',
+                        'path_img' : 'website/img/pages/vote/serveursminecraft-org.png'
+                    },
+                ]
             }
         }
 
@@ -154,7 +220,8 @@ class Dons(BaseViewFrontEnd):
 
 
 class Stats(BaseViewFrontEnd):
-    template_name = 'website/pages/stats.html'
+    # template_name = 'website/pages/stats.html'
+    template_name = 'website/pages/comingsoon.html'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
@@ -284,7 +351,8 @@ class Articles(BaseViewFrontEnd):
 
 
 class Livemap(BaseViewFrontEnd):
-    template_name = 'website/pages/livemap.html'
+    # template_name = 'website/pages/livemap.html'
+    template_name = 'website/pages/comingsoon.html'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
@@ -293,6 +361,20 @@ class Livemap(BaseViewFrontEnd):
             **ctx,
             **{
                 'page': 'livemap'
+            }
+        }
+
+
+class About(BaseViewFrontEnd):
+    template_name = 'website/pages/about.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data()
+        
+        return {
+            **ctx,
+            **{
+                'page': 'about'
             }
         }
 

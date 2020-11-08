@@ -1,0 +1,12 @@
+@import "../colors";
+
+section#top {
+    background-color: $brand-dark-2-dark;
+
+    .logo-top {
+        -webkit-filter: drop-shadow(0px 12px 12px #00000091);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
+        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
+        image-rendering: pixelated;
+    }
+}

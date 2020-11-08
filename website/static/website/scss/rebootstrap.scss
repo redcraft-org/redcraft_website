@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 @import "colors";
 
 .btn {
@@ -7,15 +6,6 @@
     color: inherit;
     font-weight: bolder;
 
-    &.btn-red {
-        background-color: $brand-red-1;
-        color: white;
-        &:hover {
-            background-color: $brand-red-1-dark;
-            color: white!important;
-        }
-    }
-
     &:hover {
         color: inherit!important;
     }
@@ -23,6 +13,12 @@
     &.btn-primary {
         background-color: $brand-red-1;
         border-color: $brand-red-1-dark;
+        color: white;
+
+        &:hover {
+            background-color: $brand-red-1-dark;
+            color: white!important;
+        }
 
         &:focus {
             border-color: $brand-red-1-dark!important;
@@ -32,6 +28,12 @@
         &:active {
             background-color: $brand-red-1-dark!important;
             border-color: $brand-red-1-dark!important;
+        }
+    }
+
+    &.btn-over-white {
+        &:active, &:focus {
+            box-shadow: 0 0 0 3px $brand-dark-2!important;
         }
     }
 
@@ -97,5 +99,43 @@
             background-color: $brand-light-1;
             border-color: $brand-light-1;
         }
+    }
+}
+
+.card {
+    border-width: 3px;
+    border-radius: 7px;
+    border-color: $brand-dark-1!important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+    &.border-primary {
+        border-color: $brand-red-1!important;
+    }
+
+    .card-body {
+        padding-bottom: 0px;
+    }
+
+    .card-footer {
+        border-top-width: 0px;
+        background-color: inherit;
+        padding-top: 0px;
+    }
+}
+
+.alert {
+    border-radius: 7px;
+    border: 4px solid;
+
+    &.alert-primary {
+        background-color: $brand-red-1;
+        border-color: $brand-red-1-dark;
+        color: white;
+    }
+
+    &.alert-secondary {
+        background-color: $brand-light-2;
+        border-color: $brand-light-2-dark;
+        color: black;
     }
 }

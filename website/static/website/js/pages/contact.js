@@ -74,13 +74,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if(document.getElementsByName("client_type")[0].value == "player") {
 
             // Nickname
-            const pseudo = document.querySelector("input[name=pseudo]").value
-            if(pseudo == "")
-                returnValue.push(["input[name=pseudo]", "Le pseudo Minecraft est requis"])
-            else if(pseudo.length < 4)
-                returnValue.push(["input[name=pseudo]", "Le pseudo Minecraft est trop court"])
-            else if(pseudo.match("^[a-zA-Z0-9_]*$") == null)
-                returnValue.push(["input[name=pseudo]", "Le pseudo Minecraft contient des charactères invalides"])
+            const nickname = document.querySelector("input[name=nickname]").value
+            if(nickname == "")
+                returnValue.push(["input[name=nickname]", "Le pseudo Minecraft est requis"])
+            else if(nickname.length < 4)
+                returnValue.push(["input[name=nickname]", "Le pseudo Minecraft est trop court"])
+            else if(nickname.match("^[a-zA-Z0-9_]*$") == null)
+                returnValue.push(["input[name=nickname]", "Le pseudo Minecraft contient des charactères invalides"])
 
             // Discord username
             const discord_username = document.querySelector("input[name=discord_username]").value
@@ -90,16 +90,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }else if(document.getElementsByName("client_type")[0].value == "other") {
 
             // Email
-            if(document.querySelector("input[name=email]").value == "")
+            const email = document.querySelector("input[name=email]").value
+            if(email == "")
                 returnValue.push(["input[name=email]", "L'email est requis"])
+            else if(email.match("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$") == null)
+            returnValue.push(["input[name=email]", "L'email ne respect pas le format d'une adresse mail"])
         }
 
         // Message
         const message = document.querySelector("textarea[name=message]").value
         if(message == "")
             returnValue.push(["textarea[name=message]", "Le message est requis"])
-        else if(message.length < 30)
-        returnValue.push(["textarea[name=message]", "Le message est trop court"])
+            else if(message.length < 30)
+            returnValue.push(["textarea[name=message]", "Le message est trop court"])
+            else if(message.length > 1500)
+            returnValue.push(["textarea[name=message]", "Le message est trop long"])
         
         updateErrorMessage(returnValue)
         if(showAnimation) updateErrorAnimation(returnValue)
@@ -136,10 +141,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * Update the error messages if the inputs are changed
      */
     function listenUpdateErrorMessages() {
-        document.querySelector("input[name=pseudo]").oninput = function() {
+        document.querySelector("input[name=nickname]").oninput = function() {
             validate(false)
         }
         document.querySelector("input[name=discord_username]").oninput = function() {
+            validate(false)
+        }
+        document.querySelector("input[name=email]").oninput = function() {
             validate(false)
         }
         document.querySelector("textarea[name=message]").oninput = function() {
@@ -153,8 +161,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /*********************************[ SENDING FORM ]************************************/
     var httpRequest;
 
+    /**
+     * Create a XMLHttpRequest object & send the form with the POST method
+     */
     function sendRequest(form) {
-        httpRequest = new XMLHttpRequest();
+        disableInputs()
+        httpRequest = new XMLHttpRequest()
         if (!httpRequest)
             return false
 
@@ -163,6 +175,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         httpRequest.send(new FormData(form))
     }
 
+    /**
+     * Handles the answer from the XMLHttpRequest
+     */
     function alertContents() {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status === 200) {
@@ -178,24 +193,62 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 requestError()
             }
             restartIconAnimation()
+            enableInputs()
         }
+    }
+
+    /**
+     * Disables the submit button, the "previous" button and add a spinning cog in the submit button
+     */
+    function disableInputs() {
+        const buttonSubmit = document.querySelector("#contact-form-submit")
+        const buttonPrevious = document.querySelector("#form-previous-page")
+        buttonSubmit.disabled = true
+        buttonPrevious.disabled = true
+        let cogParent = document.createElement("span")
+        let cog = document.createElement("i")
+        cogParent.classList.add("cog-animate-parent")
+        cog.classList.add("fas", "fa-cog", "cog-animate")
+        cogParent.appendChild(cog)
+        buttonSubmit.prepend(cogParent)
+
+    }
+
+    /**
+     * Undo the disableInputs() function
+     */
+    function enableInputs() {
+        const buttonSubmit = document.querySelector("#contact-form-submit")
+        const buttonPrevious = document.querySelector("#form-previous-page")
+        buttonSubmit.disabled = false
+        buttonPrevious.disabled = false
+        buttonSubmit.removeChild(buttonSubmit.childNodes[0])
     }
 
     /*********************************[ FORM RESPONSE ]************************************/
 
+    /**
+     * Restart the animation of the icons in the active modal (checkmark or cross)
+     */
     function restartIconAnimation() {
         document.querySelector(".transition-element.active .checkmark").classList.remove("checkmark-animation")
         // setTimeout necessary in order to replay the css animation
         setTimeout(function() {
             document.querySelector(".transition-element.active .checkmark").classList.add("checkmark-animation")
-        }, 0)
+        }, 10)
     }
 
+    /**
+     * Closes the details form and shows the "success" message
+     */
     function requestSuccess(state) {
         document.querySelector(".transition-element.contact-details").classList.remove("active")
         document.querySelector(".transition-element.contact-success").classList.add("active")
     }
 
+    /**
+     * Closes the details form, shows the "success" message and set the error message
+     */
     function requestError(error) {
         document.querySelector("#contact-failed-error").innerText = error
         document.querySelector(".transition-element.contact-details").classList.remove("active")

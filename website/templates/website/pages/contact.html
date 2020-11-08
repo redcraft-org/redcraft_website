@@ -27,7 +27,7 @@
                         <button type="button" class="btn btn-primary mb-3" id="form-previous-page">{% translate "Retour" %}</button>
                         <div class="row inputs-player">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <input type="text" name="pseudo" class="form-control"
+                                <input type="text" name="nickname" class="form-control"
                                     placeholder="Pseudo Minecraft">
                             </div>
                             <div class="col-md-6">
@@ -37,19 +37,20 @@
                         </div>
                         <div class="row inputs-other">
                             <div class="col mb-md-0">
-                                <input type="email" name="email" class="form-control"
+                                <input type="text" name="email" class="form-control"
                                     placeholder="Adresse email">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Message" rows="10" cols="10" name="message"></textarea>
+                        <textarea class="form-control mb-3" placeholder="Message" rows="10" cols="10" name="message"></textarea>
+                        <em class="text-white-50">{% translate "Maximum 1500 charactères" %}</em>
                     </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between">
                             <div class="contact-validation font-weight-bold"></div>
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg">Envoyer le message</button>
+                                <button type="submit" id="contact-form-submit" class="btn btn-primary btn-lg">Envoyer le message</button>
                             </div>
                         </div>
                     </div>

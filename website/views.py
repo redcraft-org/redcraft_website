@@ -196,7 +196,7 @@ class Contact(BaseViewFrontEnd):
         post_data = args[0].POST
         
         client_type = post_data['client_type']
-        pseudo = post_data['pseudo']
+        minecraft_nickname = post_data['nickname']
         discord_username = post_data['discord_username']
         email = post_data['email']
         message = post_data['message']
@@ -205,7 +205,7 @@ class Contact(BaseViewFrontEnd):
             discord_username = f' - `{discord_username}`'
         
         nickname = {
-            'player': f'`{pseudo}`{discord_username}',
+            'player': f'`{minecraft_nickname}`{discord_username}',
             'other': email
         }[client_type]
 

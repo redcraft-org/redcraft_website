@@ -1,4 +1,5 @@
 import requests
+import time
 from django.conf import settings
 from django.core.cache import cache
 from discord_webhook import DiscordWebhook, DiscordEmbed
@@ -37,6 +38,10 @@ class DiscordService:
         embed.add_embed_field(name='Adresse IP', value=ip)
         embed.set_timestamp()
         webhook.add_embed(embed)
+
+        # Necessary in order to have a good feedback in the front end
+        # (a well-visible spinning cog animation)
+        time.sleep(0.3)
 
         response = webhook.execute()
 

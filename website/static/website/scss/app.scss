@@ -83,3 +83,16 @@ a:hover {
 footer {
     background-color: $brand-dark-2;
 }
+
+.cog-animate-parent {
+    margin-right: 1rem;
+
+    .cog-animate {
+        animation: spinner 1s infinite linear;
+    }
+}
+
+@keyframes spinner {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

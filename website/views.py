@@ -221,6 +221,12 @@ class Contact(BaseViewFrontEnd):
 
         return JsonResponse({'response': 0})
 
+    def validateFormData(self, email, discord_username, message, minecraft_nickname):
+        # ^.{3,32}#[0-9]{4}$ --> discord_username
+        # ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$ --> email
+        # ^[a-zA-Z0-9_]*$ --> minecraft_nickname
+        
+
 
 class Articles(BaseViewFrontEnd):
     template_name = 'website/pages/articles.html'

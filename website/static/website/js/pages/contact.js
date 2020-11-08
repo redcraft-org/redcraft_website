@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("#contact-form").addEventListener("submit", function(evt) {
             evt.preventDefault()
 
-            trim()
+            strip()
 
             if(!validate()) {
                 return

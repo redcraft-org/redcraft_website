@@ -134,25 +134,25 @@ class Vote(BaseViewFrontEnd):
                 'websites_list' : [
                     {
                         'titre': 'Serveurs-minecraft.org',
-                        'description': 'Liste de serveurs Minecraft JAVA Edition multijoueurs français',
+                        'explainations': 'Sur la page, scrollez jusqu\'au bouton vert "Voter pour RedCraft". Cliquez simplement dessus.',
                         'url' : 'https://www.serveurs-minecraft.org/',
                         'path_img' : 'website/img/pages/vote/serveurs-minecraft-org.png'
                     },
                     {
                         'titre': 'top-serveurs.net',
-                        'description': 'Trouvez facilement un serveur Minecraft sur Top-Serveurs, parmi 2131 serveurs référencés.',
+                        'explainations': 'Entrez ici une description de comment voter sur le site',
                         'url' : 'https://top-serveurs.net/',
                         'path_img' : 'website/img/pages/vote/top-serveurs.png'
                     },
                     {
                         'titre': 'liste-serveur-minecraft.net',
-                        'description': 'Bienvenue sur notre liste de serveur minecraft ! Les meilleurs serveurs minecraft sont ici !',
+                        'explainations': 'Entrez ici une description de comment voter sur le site',
                         'url' : 'http://www.liste-serveur-minecraft.net/',
                         'path_img' : 'website/img/pages/vote/liste-serveurs-minecraft.png'
                     },
                     {
                         'titre': 'serveursminecraft.org',
-                        'description': 'ServeursMinecraft.org classe ses serveurs minecraft par type de jeu.',
+                        'explainations': 'Entrez ici une description de comment voter sur le site',
                         'url' : 'https://www.serveursminecraft.org/',
                         'path_img' : 'website/img/pages/vote/serveursminecraft-org.png'
                     },

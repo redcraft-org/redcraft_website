@@ -1,14 +1,18 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
-{% with title="Règles" waveFill="#202020" %}
+{% with title="Vote" waveFill="#202020" %}
 {% include "website/components/section-header.html" %}
 {% endwith %}
 <section id="info">
     <div class="container">
         <h3 class="section-titre">Voter pour le serveur</h3>
-        <p>Pleins d'infos ouais ouais</p>
+        {% blocktranslate trimmed %}
+        <p>Sur cette page, vous trouvez plusieurs liens vous menant vers des sites vous permettant de vôter pour RedCraft. Ainsi, vous aidez le serveur à gagner en popularité ! Merci !</p>
+        <p>Pour l'instant, les vôtes que vous effectués depuis cette page ne seront pas comptabilisés sur votre compte RedCraft.org. Si vous souhaitez que votre vôte soit comptabilisé, utilisez la commande <strong>/vote</strong> en jeu.</p>
+        {% endblocktranslate %}
     </div>
 </section>
 <section id="list">
@@ -18,16 +22,17 @@
     </svg>
     <div class="container">
         <h3 class="section-titre">Liste des sites</h3>
-        <div class="row">
+        <div class="card-deck">
             {% for website in websites_list %}
-            <div class="col-md-6">
-                <div class="card border-primary my-4">
+            <div class="col-md-6 py-4">
+                <div class="card h-100">
                     <div class="card-body">
-                        <div>
-                            <h3 class="font-weight-bold">{{ website.titre }}</h3>
-                        </div>
-                        <img src="{% static website.path_img %}" class="mw-100" alt="logo">
-                        <a href="{{ website.url }}" target="_blank" class="btn btn-primary btn-lg text-white float-right"><i class="fas fa-arrow-right mr-2"></i>Voter</a>
+                        <h3 class="font-weight-bold">{{ website.titre }}</h3>
+                        <img src="{% static website.path_img %}" class="mw-100 mb-3" alt="logo">
+                        <p>{{ website.explainations }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ website.url }}" target="_blank" class="btn btn-primary btn-lg float-right btn-over-white"><i class="fas fa-arrow-right mr-2"></i>Voter</a>
                     </div>
                 </div>
             </div>

@@ -143,7 +143,11 @@ section {
         }
 
         .presentation {
-            margin-bottom: 5rem;
+            margin-bottom: 10rem;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
 
             &:nth-child(2n) {
                 flex-direction: row-reverse;
@@ -161,8 +165,6 @@ section {
             .presentation-img {
                 border-radius: 7px;
                 position: relative;
-                top: 50%;
-                transform: translateY(-50%);
             }
 
             &:nth-child(3) .presentation-img {
@@ -171,6 +173,19 @@ section {
                 filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=6, OffY=4, Color='#00000075')";
             }
         }
+
+        // IE support
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            .presentation {
+                 height: 16rem;
+            }
+         }
+
+         @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (max-width: 767.98px) {
+            .presentation {
+                height: 25rem;
+           }
+         }
     }
 
     &#news {
@@ -321,6 +336,7 @@ section {
             -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
             filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
             border-radius: 7px;
+            image-rendering: pixelated;
         }
     }
 }

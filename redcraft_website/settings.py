@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api_v1_article.apps.ApiV1ArticleConfig',
     'network_data.apps.NetworkDataConfig',
     'user.apps.UserConfig',
+    'command.apps.CommandConfig',
 
     'website',
 ]
@@ -128,6 +129,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Proxy redcraft
+
+PROXY_REDCRAFT = {
+    'versions': f'{os.getenv("URL_PROXY_REDCRAFT")}/versions.json',
+    'players': f'{os.getenv("URL_PROXY_REDCRAFT")}/players.json'
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -141,6 +150,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+# For rundev cmd
+# Sass files (sass, scss)
+SASS_FILES = [
+    ('website/static/website/scss/','website/static/website/css/'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

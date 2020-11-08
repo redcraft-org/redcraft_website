@@ -225,6 +225,7 @@ class Contact(BaseViewFrontEnd):
         # ^.{3,32}#[0-9]{4}$ --> discord_username
         # ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$ --> email
         # ^[a-zA-Z0-9_]*$ --> minecraft_nickname
+        pass
         
 
 

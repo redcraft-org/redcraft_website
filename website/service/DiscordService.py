@@ -18,10 +18,9 @@ class DiscordService:
     def countPlayersOnline(self):
         return len(self.server_data['members'])
 
-    def sendContactMessage(self, nickname, message, ip, client_type):
+    def sendContactMessage(self, username, message, ip, client_type):
         webhook = DiscordWebhook(
             url = settings.URL_WEBHOOK_CONTACT_DISCORD, 
-            # url='https://discord.com/api/webhooks/thisIsAFakeWebhook', 
             username='Page contact du site'
         )
 
@@ -32,8 +31,8 @@ class DiscordService:
 
         # set ember parameters
         embed = DiscordEmbed(title='Message :', description=message, color=color)
-        #  embed.set_author(name=nickname)
-        embed.add_embed_field(name='Auteur', value=nickname)
+        #  embed.set_author(name=username)
+        embed.add_embed_field(name='Auteur', value=username)
         embed.add_embed_field(name='Type de client', value=client_type)
         embed.add_embed_field(name='Adresse IP', value=ip)
         embed.set_timestamp()

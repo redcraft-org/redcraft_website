@@ -1,6 +1,14 @@
 {% load static %}
 
-<!-- parameters -->
+{# Parameters : #}
+{# icon #}
+    {# "success", draws a checkmark #}
+    {# "fail", draws a cross #}
+{# animation #}
+    {# 0, don't animate, the icon won't appear. #}
+        {# In order to show it, a JS function must add the "checkmark-animation" class #}
+        {# to the ".checkmark" element #}
+    {# 1, show the icon with an animation at page load #}
 
 <!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
 <svg class="checkmark my-4{% if animation == 1 %} checkmark-animation{% endif %}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">

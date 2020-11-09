@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
 
             sendRequest(evt.target)
-            // document.querySelector("#contact-form").submit()
         })
     }
 
@@ -63,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * Clean form
      */
     function strip() {
-        const html_nickname = document.querySelector("input[name=nickname]")
-        html_nickname.value = html_nickname.value.trim()
+        const html_username = document.querySelector("input[name=username]")
+        html_username.value = html_username.value.trim()
         
         const discord_username = document.querySelector("input[name=discord_username]")
         discord_username.value = discord_username.value.trim()
@@ -93,13 +92,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if(document.getElementsByName("client_type")[0].value == "player") {
 
             // Nickname
-            const nickname = document.querySelector("input[name=nickname]").value
-            if(nickname == "")
-                returnValue.push(["input[name=nickname]", "Le pseudo Minecraft est requis"])
-            else if(nickname.length < 4)
-                returnValue.push(["input[name=nickname]", "Le pseudo Minecraft est trop court"])
-            else if(nickname.match("^[a-zA-Z0-9_]{4,16}$") == null)
-                returnValue.push(["input[name=nickname]", "Le pseudo Minecraft contient des charactères invalides"])
+            const username = document.querySelector("input[name=username]").value
+            if(username == "")
+                returnValue.push(["input[name=username]", "Le pseudo Minecraft est requis"])
+            else if(username.length < 4)
+                returnValue.push(["input[name=username]", "Le pseudo Minecraft est trop court"])
+            else if(username.match("^[a-zA-Z0-9_]{4,16}$") == null)
+                returnValue.push(["input[name=username]", "Le pseudo Minecraft contient des charactères invalides"])
 
             // Discord username
             const discord_username = document.querySelector("input[name=discord_username]").value
@@ -162,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * Update the error messages if the inputs are changed
      */
     function listenUpdateErrorMessages() {
-        document.querySelector("input[name=nickname]").oninput = function() {
+        document.querySelector("input[name=username]").oninput = function() {
             validate(false)
         }
         document.querySelector("input[name=discord_username]").oninput = function() {

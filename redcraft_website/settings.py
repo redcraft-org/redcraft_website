@@ -160,3 +160,7 @@ SASS_FILES = [
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# URL for the webhook Discord
+URL_WEBHOOK_CONTACT_DISCORD = os.getenv("URL_WEBHOOK_CONTACT_DISCORD")

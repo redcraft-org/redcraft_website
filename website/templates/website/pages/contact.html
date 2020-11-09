@@ -1,8 +1,109 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block contant %}
-<div id="contact">
-    contact
-</div>
+{% block content %}
+{% with title="Contact" waveFill="#202020" %}
+{% include "website/components/section-header.html" %}
+{% endwith %}
+<section id="contact">
+    <svg class="waves waves-bottom"viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+        <path d="M-0.27,24.17 C218.68,235.36 304.46,11.34 500.84,117.92 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #B6B9BD;"></path>
+    </svg>
+    <div class="container position-relative">
+        <h3 class="section-titre">Contacter le staff</h3>
+        <form action="#" id="contact-form" method="post">
+            <div class="d-flex transition-container">
+                <div class="transition-element contact-from position-absolute active">
+                    <div class="h-100 d-flex align-items-center">
+                        <div class="w-100">
+                            <p>{% translate "Vous nous contactez en tant que..." %}</p>
+                            <select name="client_type" class="custom-select form-control mb-3">
+                                <option value="player" selected>{% translate "Un joueur" %}</option>
+                                <option value="other">{% translate "Autre" %}</option>
+                            </select>
+                            <button type="button" class="btn btn-primary float-right" id="form-next-page">{% translate "Suivant" %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="transition-element contact-details">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary mb-3" id="form-previous-page">{% translate "Retour" %}</button>
+                        <div class="row inputs-player">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <input type="text" name="username" class="form-control"
+                                    placeholder="Pseudo Minecraft">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="discord_username" class="form-control"
+                                    placeholder="Identifiant Discord (Nom#0000)">
+                            </div>
+                        </div>
+                        <div class="row inputs-other">
+                            <div class="col mb-md-0">
+                                <input type="text" name="email" class="form-control"
+                                    placeholder="Adresse email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control mb-3" placeholder="Message" rows="10" cols="10" name="message"></textarea>
+                        <em class="text-white-50">{% translate "Maximum 1500 charactères" %}</em>
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                            <div class="contact-validation font-weight-bold"></div>
+                            <div>
+                                <button type="submit" id="contact-form-submit" class="btn btn-primary btn-lg">Envoyer le message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL FAILED -->
+                <div class="contact-failed transition-element position-absolute">
+                    <div class="h-100 d-flex align-items-center">
+                        <div class="w-100">
+                            <h2>{% translate "Erreur" %}</h2>
+                            <p>{% translate "Votre message n'a pas pu être traité" %}</p>
+                            <p id="contact-failed-error" class="text-white-50">{% translate "Pas de message d'erreur disponible" %}</p>
+                            {% with icon="fail" animation=0 %}
+                                {% include "website/components/icon-checkmark-cross.html" %}
+                            {% endwith %}
+                            <button type="button" class="btn btn-primary" id="form-restart">{% translate "Réessayer" %}</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL SUCCESS -->
+                <div class="contact-success transition-element position-absolute">
+                    <div class="h-100 d-flex align-items-center">
+                        <div class="w-100">
+                            <h2>{% translate "Terminé" %}</h2>
+                            <p>{% translate "Le message a été envoyé." %}</p>
+                            {% with icon="success" animation=0 %}
+                                {% include "website/components/icon-checkmark-cross.html" %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+</section>
+<section id="info">
+    <div class="container">
+        <h3 class="section-titre">Informations</h3>
+        <p>Ce formulaire vous permet d'envoyer un message directement au staff de RedCraft.org. Le message sera envoyé aux administrateurs via Discord, pensez-donc à indiquer votre pseudo Discord si nécessaire.</p>
+        <p>Vous pouvez utiliser ce formulaire pour les demande de unban, les plaintes, réclamations et demandes de partenariat.</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'website/css/pages/contact.css' %}" rel="stylesheet">
+<link href="{% static 'website/css/checkmark-cross.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'website/js/pages/contact.js' %}"></script>
 {% endblock %}

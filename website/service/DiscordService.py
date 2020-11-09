@@ -21,7 +21,6 @@ class DiscordService:
     def sendContactMessage(self, nickname, message, ip, client_type):
         webhook = DiscordWebhook(
             url = settings.URL_WEBHOOK_CONTACT_DISCORD, 
-            # url='https://discord.com/api/webhooks/thisIsAFakeWebhook', 
             username='Page contact du site'
         )
 

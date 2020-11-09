@@ -266,7 +266,7 @@ class Contact(BaseViewFrontEnd):
         
         # get data
         client_type = post_data['client_type']
-        minecraft_username = post_data['nickname']
+        minecraft_username = post_data['username']
         discord_username = post_data['discord_username']
         email = post_data['email']
         message = post_data['message']
@@ -281,8 +281,8 @@ class Contact(BaseViewFrontEnd):
                 'error': '\n'.join([err for err in error_form_data])
             })
         
-        # compose nickname
-        nickname = {
+        # compose username
+        username = {
             'player': lambda : ' - '.join([n for n in [minecraft_username, discord_username] if n is not '']),
             'other': lambda : f'`{email}`'
         }[client_type]()
@@ -293,7 +293,7 @@ class Contact(BaseViewFrontEnd):
 
         # Send message
         discord_service = DiscordService()
-        send_error = discord_service.sendContactMessage(nickname, message, ip, client_type)
+        send_error = discord_service.sendContactMessage(username, message, ip, client_type)
 
         if send_error:
             return JsonResponse({'response': 1, 'error': send_error})

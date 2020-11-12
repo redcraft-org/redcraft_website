@@ -25,4 +25,5 @@ jobs:
 
       - name: Run test suite
         run: |
-          SECRET_KEY='unittest' python manage.py test
+        cp .env.example .env
+        python manage.py test

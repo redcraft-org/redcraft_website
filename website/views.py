@@ -1,9 +1,11 @@
+import re
+
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
-
+from django.http import JsonResponse
 from user_agents import parse as parse_user_agents
 
 from api_v1_url import models as models_api_url_v1
@@ -85,7 +87,7 @@ class Home(BaseViewFrontEnd):
                     'count_players_online': discord_service.countPlayersOnline()
                 },
                 'minecraft_server': {
-                    'count_players_online': 69420,
+                    'count_players_online': self.network_description_service.countPlayers(),
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),
@@ -172,7 +174,33 @@ class Vote(BaseViewFrontEnd):
         return {
             **ctx,
             **{
-                'page': 'vote'
+                'page': 'vote',
+                'websites_list' : [
+                    {
+                        'titre': 'Serveurs-minecraft.org',
+                        'explainations': 'Sur la page, descendez jusqu\'au bouton vert "Voter pour RedCraft". Cliquez simplement dessus.',
+                        'url' : 'https://www.serveurs-minecraft.org/',
+                        'path_img' : 'website/img/pages/vote/serveurs-minecraft-org.png'
+                    },
+                    {
+                        'titre': 'top-serveurs.net',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
+                        'url' : 'https://top-serveurs.net/',
+                        'path_img' : 'website/img/pages/vote/top-serveurs.png'
+                    },
+                    {
+                        'titre': 'liste-serveur-minecraft.net',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
+                        'url' : 'http://www.liste-serveur-minecraft.net/',
+                        'path_img' : 'website/img/pages/vote/liste-serveurs-minecraft.png'
+                    },
+                    {
+                        'titre': 'serveursminecraft.org',
+                        'explainations': 'TODO Entrez ici une description de comment voter sur le site',
+                        'url' : 'https://www.serveursminecraft.org/',
+                        'path_img' : 'website/img/pages/vote/serveursminecraft-org.png'
+                    },
+                ]
             }
         }
 
@@ -232,6 +260,81 @@ class Contact(BaseViewFrontEnd):
                 'page': 'contact'
             }
         }
+
+    def post(self, *args, **kwargs):
+        post_data = args[0].POST
+        
+        # get data
+        client_type = post_data['client_type']
+        minecraft_username = post_data['username']
+        discord_username = post_data['discord_username']
+        email = post_data['email']
+        message = post_data['message']
+
+        # Clean and valide data
+        email, discord_username, message, minecraft_username =  self.cleanFormData(email, discord_username, message, minecraft_username)
+        error_form_data =  self.validateFormData(client_type, email, discord_username, message, minecraft_username)
+
+        if error_form_data:
+            return JsonResponse({
+                'response': 2,
+                'error': '\n'.join([err for err in error_form_data])
+            })
+        
+        # compose username
+        username = {
+            'player': lambda : ' - '.join([n for n in [minecraft_username, discord_username] if n is not '']),
+            'other': lambda : f'`{email}`'
+        }[client_type]()
+
+        # get ip
+        ip = self.request.headers.get('CF-Connecting-IP', self.request.META.get('REMOTE_ADDR'))
+
+        # Send message
+        discord_service = DiscordService()
+        send_error = discord_service.sendContactMessage(username, message, ip, client_type)
+
+        if send_error:
+            return JsonResponse({'response': 1, 'error': send_error})
+        return JsonResponse({'response': 0})
+    
+    def cleanFormData(self, email, discord_username, message, minecraft_username):
+        email = email.strip()
+        discord_username = discord_username.strip()
+        message = message.strip()
+        minecraft_username = minecraft_username.strip()
+
+        return email, discord_username, message, minecraft_username
+
+    def validateFormData(self, client_type, email, discord_username, message, minecraft_username):
+        list_err = []
+
+        client_type_valide = ['player', 'other']
+        if not client_type in client_type_valide:
+            list_err += ['client_type is not valid']
+
+        min_max_message = (30, 1500)
+        if len(message) < min_max_message[0] or len(message) > min_max_message[1]:
+            list_err += ['length message is not valid']
+
+        if discord_username:
+            valide_discord_username = re.match(r'^.{3,32}#[0-9]{4}$', discord_username)
+            if valide_discord_username == None:
+                list_err += ['discord username is not valid']
+
+        if email:
+            # General Email Regex (RFC 5322 Official Standard)
+            regex = r'(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])'
+            valide_email = re.match(regex, email)
+            if valide_email == None:
+                list_err += ['email is not valid']
+
+        if minecraft_username:
+            valide_minecraft_username = re.match(r'^[a-zA-Z0-9_]{4,16}$', minecraft_username)
+            if valide_minecraft_username == None:
+                list_err += ['Minecraft username is not valid']
+
+        return list_err
 
 
 class Articles(BaseViewFrontEnd):

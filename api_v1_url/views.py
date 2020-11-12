@@ -14,7 +14,7 @@ class GetUrlList(View):
         return JsonResponse(
             {
                 e.shortened: {
-                    'token': e.token.acces_name,
+                    'token': e.token.access_name,
                     'url': e.url,
                 } for e in models.ReducedUrl.objects.all()
             }
@@ -29,16 +29,18 @@ class SetUrl(View):
     def post(self, request, *args, **kwargs):
         json_body = json.loads(request.body)
 
+        token = None
+
         try:
             token = models.Token.objects.get(token=json_body['token'])
             url = models.ReducedUrl.objects.get(url=json_body['url'])
         except models.Token.DoesNotExist:
-            return JsonResponse({'err': "token don't existe"})
+            return JsonResponse({'err': "The token does not exist"})
         except models.ReducedUrl.DoesNotExist:
             url = None
         else:
             return JsonResponse({
-                'err': "url existe", 
+                'err': "URL already exists",
                 'shortened': url.shortened
             })
 

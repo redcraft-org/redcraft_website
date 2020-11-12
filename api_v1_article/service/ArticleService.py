@@ -6,21 +6,21 @@ from api_v1_article import models
 
 class ArticleService:
 
-    def __init__(self, favorit_language=None):
+    def __init__(self, favorite_language=None):
         self.articles = models.Article.objects.all()
-        self.favorit_language = favorit_language if favorit_language else models.Language.objects.get(short_name='fr')
+        self.favorite_language = favorite_language if favorite_language else models.Language.objects.get(short_name='fr')
 
     def getLastArticle(self, nb):
         list_article = []
         for article in list(self.articles)[-nb:]:
-            article_data = article.articledata_set.get(language=self.favorit_language)
+            article_data = article.articledata_set.get(language=self.favorite_language)
             list_article += [
                 {
                     'id': article.id,
                     'title': article_data.title,
                     'overview': article_data.overview,
                     'url': f"/api/v1/articles/{article.id}-{article_data.language.short_name}-{article_data.slug}"
-                } 
+                }
             ]
 
         return list_article
@@ -36,14 +36,14 @@ class ArticleService:
         start_article = (current_page - 1) * per_page
         end_article = start_article + per_page
         for article in self.articles[start_article:end_article]:
-            article_data = article.articledata_set.get(language=self.favorit_language)
+            article_data = article.articledata_set.get(language=self.favorite_language)
             list_article += [
                 {
                     'id': article.id,
                     'title': article_data.title,
                     'overview': article_data.overview,
                     'url': f"/api/v1/articles/{article.id}-{article_data.language.short_name}-{article_data.slug}"
-                } 
+                }
             ]
 
         print(next_page)
@@ -67,7 +67,7 @@ class ArticleService:
                 'list_language': [article_data.language.short_name for article_data in article.articledata_set.all()]
             }
 
-        article_data = article.articledata_set.get(language=language_object and self.favorit_language)
+        article_data = article.articledata_set.get(language=language_object and self.favorite_language)
         return {
             'id': article_data.article.id,
             'title': article_data.title,

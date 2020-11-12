@@ -19,7 +19,7 @@ class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):
 
         user_agent = parse_user_agents(self.request.META['HTTP_USER_AGENT'])
-        
+
         self.network_description_service = NetworkDescriptionService()
         minecraft_versions = self.network_description_service.getMinecraftVersions()
         minecraft_versions_min_max = self.network_description_service.getMinecraftVersionsMinMax()
@@ -91,7 +91,7 @@ class Home(BaseViewFrontEnd):
                     'ip_address': 'play.redcraft.org',
                 },
                 'articles': article_service.getLastArticle(3),
-                
+
                 'network_presentations': self.network_description_service.getAllActive(),
                 'servers_list': server_description_service.getAllActive(),
                 'staff_list': [
@@ -170,7 +170,7 @@ class Vote(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -210,7 +210,7 @@ class Dons(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -225,7 +225,7 @@ class Stats(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -239,7 +239,7 @@ class Rules(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -253,7 +253,7 @@ class Contact(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -263,9 +263,9 @@ class Contact(BaseViewFrontEnd):
 
     def post(self, *args, **kwargs):
         post_data = args[0].POST
-        
+
         # get data
-        client_type = post_data['client_type']
+        request_type = post_data['request_type']
         minecraft_username = post_data['username']
         discord_username = post_data['discord_username']
         email = post_data['email']
@@ -273,31 +273,31 @@ class Contact(BaseViewFrontEnd):
 
         # Clean and valide data
         email, discord_username, message, minecraft_username =  self.cleanFormData(email, discord_username, message, minecraft_username)
-        error_form_data =  self.validateFormData(client_type, email, discord_username, message, minecraft_username)
+        error_form_data =  self.validateFormData(request_type, email, discord_username, message, minecraft_username)
 
         if error_form_data:
             return JsonResponse({
                 'response': 2,
                 'error': '\n'.join([err for err in error_form_data])
             })
-        
+
         # compose username
         username = {
             'player': lambda : ' - '.join([n for n in [minecraft_username, discord_username] if n is not '']),
             'other': lambda : f'`{email}`'
-        }[client_type]()
+        }[request_type]()
 
         # get ip
         ip = self.request.headers.get('CF-Connecting-IP', self.request.META.get('REMOTE_ADDR'))
 
         # Send message
         discord_service = DiscordService()
-        send_error = discord_service.sendContactMessage(username, message, ip, client_type)
+        send_error = discord_service.sendContactMessage(username, message, ip, request_type)
 
         if send_error:
             return JsonResponse({'response': 1, 'error': send_error})
         return JsonResponse({'response': 0})
-    
+
     def cleanFormData(self, email, discord_username, message, minecraft_username):
         email = email.strip()
         discord_username = discord_username.strip()
@@ -306,12 +306,12 @@ class Contact(BaseViewFrontEnd):
 
         return email, discord_username, message, minecraft_username
 
-    def validateFormData(self, client_type, email, discord_username, message, minecraft_username):
+    def validateFormData(self, request_type, email, discord_username, message, minecraft_username):
         list_err = []
 
-        client_type_valide = ['player', 'other']
-        if not client_type in client_type_valide:
-            list_err += ['client_type is not valid']
+        request_type_valide = ['player', 'other']
+        if not request_type in request_type_valide:
+            list_err += ['request_type is not valid']
 
         min_max_message = (30, 1500)
         if len(message) < min_max_message[0] or len(message) > min_max_message[1]:
@@ -342,7 +342,7 @@ class Articles(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -357,7 +357,7 @@ class Livemap(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{
@@ -371,7 +371,7 @@ class About(BaseViewFrontEnd):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
-        
+
         return {
             **ctx,
             **{

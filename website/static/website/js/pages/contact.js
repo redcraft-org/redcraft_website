@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("#form-next-page").onclick = function() {
             document.querySelector(".transition-element.contact-from").classList.remove('active')
             document.querySelector(".transition-element.contact-details").classList.add('active')
-            
-            if(document.getElementsByName("client_type")[0].value == "player") {
+
+            if(document.getElementsByName("request_type")[0].value == "player") {
                 document.querySelector(".row.inputs-player").style.display = "flex"
                 document.querySelector(".row.inputs-other").style.display = "none"
-            }else if(document.getElementsByName("client_type")[0].value == "other") {
+            }else if(document.getElementsByName("request_type")[0].value == "other") {
                 document.querySelector(".row.inputs-player").style.display = "none"
                 document.querySelector(".row.inputs-other").style.display = "flex"
             }
@@ -64,13 +64,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function strip() {
         const html_username = document.querySelector("input[name=username]")
         html_username.value = html_username.value.trim()
-        
+
         const discord_username = document.querySelector("input[name=discord_username]")
         discord_username.value = discord_username.value.trim()
-        
+
         const email = document.querySelector("input[name=email]")
         email.value = email.value.trim()
-        
+
         const message = document.querySelector("textarea[name=message]")
         message.value = message.value.trim()
     }
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function validate(showAnimation = true) {
         var returnValue = []
 
-        if(document.getElementsByName("client_type")[0].value == "player") {
+        if(document.getElementsByName("request_type")[0].value == "player") {
 
             // Nickname
             const username = document.querySelector("input[name=username]").value
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if(!(discord_username === "") && discord_username.match("^.{3,32}#[0-9]{4}$") == null)
                 returnValue.push(["input[name=discord_username]", "Le pseudo Discord ne respecte pas le format abc#0000"])
 
-        }else if(document.getElementsByName("client_type")[0].value == "other") {
+        }else if(document.getElementsByName("request_type")[0].value == "other") {
 
             // Email
             const email = document.querySelector("input[name=email]").value
@@ -125,10 +125,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             returnValue.push(["textarea[name=message]", "Le message est trop court"])
             else if(message.length > 1500)
             returnValue.push(["textarea[name=message]", "Le message est trop long"])
-        
+
         updateErrorMessage(returnValue)
         if(showAnimation) updateErrorAnimation(returnValue)
-        
+
         if(returnValue.length == 0) return true
         return false
     }

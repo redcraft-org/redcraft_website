@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('token', models.CharField(max_length=32)),
-                ('acces_name', models.CharField(max_length=32)),
+                ('access_name', models.CharField(max_length=32)),
             ],
         ),
         migrations.CreateModel(

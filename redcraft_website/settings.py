@@ -100,12 +100,12 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.getenv('PATH_FILE_CACHE'),
+        'LOCATION': os.getenv('FILE_CACHE_PATH'),
     }
 }
 
 
-# User 
+# User
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -132,8 +132,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Proxy redcraft
 
 PROXY_REDCRAFT = {
-    'versions': f'{os.getenv("URL_PROXY_REDCRAFT")}/versions.json',
-    'players': f'{os.getenv("URL_PROXY_REDCRAFT")}/players.json'
+    'versions': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/versions.json',
+    'players': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/players.json'
 }
 
 
@@ -163,4 +163,4 @@ STATIC_URL = '/static/'
 
 
 # URL for the webhook Discord
-URL_WEBHOOK_CONTACT_DISCORD = os.getenv("URL_WEBHOOK_CONTACT_DISCORD")
+DISCORD_CONTACT_WEBHOOK_URL = os.getenv("DISCORD_CONTACT_WEBHOOK_URL")

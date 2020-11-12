@@ -6,7 +6,7 @@ Django (Python) website for RedCraft
 
 First, copy `.env.example` to `.env` and change the configuration as necessary in `.env`
 
-Make sure the directory specified in `PATH_FILE_CACHE` exists
+Make sure the directory specified in `FILE_CACHE_PATH` exists
 
 Create a DB named `redcraft` on your MySQL server.
 

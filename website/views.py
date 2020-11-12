@@ -283,7 +283,7 @@ class Contact(BaseViewFrontEnd):
 
         # compose username
         username = {
-            'player': lambda : ' - '.join([n for n in [minecraft_username, discord_username] if n is not '']),
+            'player': lambda : ' - '.join([n for n in [minecraft_username, discord_username] if not n]),
             'other': lambda : f'`{email}`'
         }[request_type]()
 

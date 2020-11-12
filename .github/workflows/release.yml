@@ -1,0 +1,27 @@
+name: Update to remote server
+
+on:
+  push:
+    branches:
+      - master
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Generate .env
+        run: |
+          echo TODO .env
+
+      - name: Copy files to remote
+        run: |
+          rsync . $SSH_USER@$SSH_HOST:/opt/redcraft_website
+          echo TODO CHOWN

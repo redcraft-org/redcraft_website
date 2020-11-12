@@ -25,5 +25,5 @@ jobs:
 
       - name: Run test suite
         run: |
-        cp .env.example .env
-        python manage.py test
+          cp .env.example .env
+          python manage.py test

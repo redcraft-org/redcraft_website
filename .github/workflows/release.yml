@@ -24,21 +24,17 @@ jobs:
         run: |
           echo TODO .env
 
-      - name: Install Open VPN
+      - name: Install Dependencies
         run: sudo apt-get install -y openvpn rsync
 
       - name: Copy files to remote
+        id: vpn_connect
         run: |
           echo "$OPENVPN_CERTIFICATE" > ~/redcraft.ovpn
+          sudo openvpn --config ~/redcraft.ovpn --daemon
 
-      - name: Connect VPN
-        uses: golfzaptw/action-connect-ovpn@master
-        id: connect_vpn
-        with:
-          FILE_OVPN: ~/redcraft.ovpn
-
-      - name: Check Connect VPN
-        run: echo ${{ steps.connect_vpn.outputs.STATUS }}
+      - name: Check VPN connection
+        run: echo ${{ steps.vpn_connect.outputs.STATUS }}
 
       - name: Testing settings
         if: github.ref == 'refs/heads/testing'

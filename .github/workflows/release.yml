@@ -30,7 +30,7 @@ jobs:
       - name: Copy files to remote
         id: vpn_connect
         run: |
-          echo "$OPENVPN_CERTIFICATE" > ~/redcraft.ovpn
+          echo "${{ secrets.OPENVPN_CERTIFICATE }}" > ~/redcraft.ovpn
           sudo openvpn --config ~/redcraft.ovpn --daemon
 
       - name: Check VPN connection

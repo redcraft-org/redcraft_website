@@ -36,29 +36,26 @@ jobs:
       - name: Check VPN connection
         run: echo ${{ steps.vpn_connect.outputs.STATUS }}
 
-      - name: Get ref
-        run: echo ${{ github.ref }}
-
       - name: Testing settings
         if: github.ref == 'refs/heads/testing'
         run: |
-          echo "SSH_HOST=\"${{ secrets.SSH_HOST_TESTING }}\"" >> $GITHUB_ENV
-          echo "SSH_USER=\"${{ secrets.SSH_USER_TESTING }}\"" >> $GITHUB_ENV
-          echo "SSH_PRIVATE_KEY=\"${{ secrets.SSH_PRIVATE_KEY_TESTING }}\"" >> $GITHUB_ENV
+          echo "SSH_HOST=testing.internal.redcraft.org" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.SSH_USER_TESTING }}" >> $GITHUB_ENV
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}" >> $GITHUB_ENV
 
       - name: Staging settings
         if: github.ref == 'refs/heads/development'
         run: |
-          echo "SSH_HOST=\"${{ secrets.SSH_HOST_STAGING }}\"" >> $GITHUB_ENV
-          echo "SSH_USER=\"${{ secrets.SSH_USER_STAGING }}\"" >> $GITHUB_ENV
-          echo "SSH_PRIVATE_KEY=\"${{ secrets.SSH_PRIVATE_KEY_STAGING }}\"" >> $GITHUB_ENV
+          echo "SSH_HOST=${{ secrets.SSH_HOST_STAGING }}" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.SSH_USER_STAGING }}" >> $GITHUB_ENV
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}" >> $GITHUB_ENV
 
       - name: Production settings
         if: github.ref == 'refs/heads/master'
         run: |
-          echo "SSH_HOST=\"${{ secrets.SSH_HOST_PRODUCTION }}\"" >> $GITHUB_ENV
-          echo "SSH_USER=\"${{ secrets.SSH_USER_PRODUCTION }}\"" >> $GITHUB_ENV
-          echo "SSH_PRIVATE_KEY=\"${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}\"" >> $GITHUB_ENV
+          echo "SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}" >> $GITHUB_ENV
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}" >> $GITHUB_ENV
 
       - name: Copy files to remote
         run: |

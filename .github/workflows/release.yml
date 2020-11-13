@@ -5,23 +5,69 @@ on:
     branches:
       - master
       - development
+      - testing
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@master
 
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
       - name: Generate .env
         run: |
           echo TODO .env
 
+      - name: Install Open VPN
+        run: apt-get install -y openvpn rsync
+
       - name: Copy files to remote
         run: |
-          rsync . $SSH_USER@$SSH_HOST:/opt/redcraft_website
-          echo TODO CHOWN
+          echo "$OPENVPN_CERTIFICATE" > /root/redcraft.ovpn
+
+      - name: Connect VPN
+        uses: golfzaptw/action-connect-ovpn@master
+        id: connect_vpn
+        with:
+          FILE_OVPN: /root/redcraft.ovpn
+
+      - name: Check Connect VPN
+        run: echo ${{ steps.connect_vpn.outputs.STATUS }}
+
+      - name: Testing settings
+        if: github.ref == 'refs/heads/testing'
+        run: |
+          echo'::set-env SSH_HOST=${{ secrets.SSH_HOST_TESTING }}'
+          echo'::set-env SSH_USER=${{ secrets.SSH_USER_TESTING }}'
+          echo'::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}'
+
+      - name: Staging settings
+        if: github.ref == 'refs/heads/development'
+        run: |
+          echo'::set-env SSH_HOST=${{ secrets.SSH_HOST_STAGING }}'
+          echo'::set-env SSH_USER=${{ secrets.SSH_USER_STAGING }}'
+          echo'::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}'
+
+      - name: Production settings
+        if: github.ref == 'refs/heads/master'
+        run: |
+          echo'::set-env SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}'
+          echo'::set-env SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}'
+          echo'::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}'
+
+      - name: Copy files to remote
+        run: |
+          echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+          chmod 600 /root/.ssh/id_rsa
+          ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST whoami
+          rsync -a --delete . $SSH_USER@$SSH_HOST:/opt/redcraft_website
+          ssh $SSH_USER@$SSH_HOST chown -R gunicorn:gunicorn /opt/redcraft_website
+
+      - name: Disconnect VPN
+        run: killall openvpn

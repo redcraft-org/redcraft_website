@@ -1,5 +1,6 @@
 django===3.1
 gunicorn==20.0.4
+sentry-sdk==0.19.3
 python-dotenv===0.14.0
 django-sass===1.0.0
 user-agents==2.2.0

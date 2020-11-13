@@ -4,7 +4,7 @@ set -e
 
 cd "${0%/*}"
 
-rm -f env
+rm -rf env
 
 python3 -m venv env
 

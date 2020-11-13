@@ -41,7 +41,6 @@ jobs:
 
       - name: Testing settings
         if: github.ref == 'refs/heads/testing'
-        id: settings
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_TESTING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_TESTING }}" >> $GITHUB_ENV
@@ -49,7 +48,6 @@ jobs:
 
       - name: Staging settings
         if: github.ref == 'refs/heads/development'
-        id: settings
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_STAGING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_STAGING }}" >> $GITHUB_ENV
@@ -57,7 +55,6 @@ jobs:
 
       - name: Production settings
         if: github.ref == 'refs/heads/master'
-        id: settings
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}" >> $GITHUB_ENV

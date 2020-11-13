@@ -63,6 +63,7 @@ jobs:
       - name: Copy files to remote
         run: |
           echo "Target server: $SSH_USER@$SSH_HOST"
+          sudo route add $SSH_HOST dev tun0
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST whoami
           rsync -a --delete . $SSH_USER@$SSH_HOST:/opt/redcraft_website

@@ -25,6 +25,6 @@ Compile sass: `python manage.py sass website/static/website/scss/ website/static
 
 ## Start development
 
-Start the process to automatically compile: `python manage.py staticdev`
+Start the process to automatically compile assets: `python manage.py staticdev`
 
 Start server: `python manage.py runserver`

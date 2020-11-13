@@ -41,7 +41,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'testing.redcraft.org', 'staging.redcraft.org', 'redcraft.org']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testing.redcraft.org', 'staging.redcraft.org', 'redcraft.org']
 
 
 # Application definition
@@ -149,7 +149,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 PROXY_REDCRAFT = {
     'versions': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/versions.json',
-    'players': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/players.json'
+    'players': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/players.json',
+    'timeout_seconds': 5
 }
 
 

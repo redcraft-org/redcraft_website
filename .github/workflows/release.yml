@@ -36,29 +36,34 @@ jobs:
       - name: Check VPN connection
         run: echo ${{ steps.vpn_connect.outputs.STATUS }}
 
+      -name: Get ref
+        run: |
+          echo "Ref: ${{ github.ref }}"
+
       - name: Testing settings
         if: github.ref == 'refs/heads/testing'
         run: |
-          echo '::set-env SSH_HOST=${{ secrets.SSH_HOST_TESTING }}'
-          echo '::set-env SSH_USER=${{ secrets.SSH_USER_TESTING }}'
-          echo '::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}'
+          echo "::set-env SSH_HOST=${{ secrets.SSH_HOST_TESTING }}"
+          echo "::set-env SSH_USER=${{ secrets.SSH_USER_TESTING }}"
+          echo "::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}"
 
       - name: Staging settings
         if: github.ref == 'refs/heads/development'
         run: |
-          echo '::set-env SSH_HOST=${{ secrets.SSH_HOST_STAGING }}'
-          echo '::set-env SSH_USER=${{ secrets.SSH_USER_STAGING }}'
-          echo '::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}'
+          echo "::set-env SSH_HOST=${{ secrets.SSH_HOST_STAGING }}"
+          echo "::set-env SSH_USER=${{ secrets.SSH_USER_STAGING }}"
+          echo "::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}"
 
       - name: Production settings
         if: github.ref == 'refs/heads/master'
         run: |
-          echo '::set-env SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}'
-          echo '::set-env SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}'
-          echo '::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}'
+          echo "::set-env SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}"
+          echo "::set-env SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}"
+          echo "::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}"
 
       - name: Copy files to remote
         run: |
+          echo "Target server: $SSH_USER@$SSH_HOST"
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa

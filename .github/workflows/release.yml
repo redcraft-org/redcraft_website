@@ -73,8 +73,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST whoami
           rsync -a --delete . $SSH_USER@$SSH_HOST:/opt/redcraft_website
           ssh $SSH_USER@$SSH_HOST chown -R gunicorn:gunicorn /opt/redcraft_website
+          ssh $SSH_USER@$SSH_HOST /opt/redcraft_website/setup.sh
           ssh $SSH_USER@$SSH_HOST service gunicorn restart
-          ssh $SSH_USER@$SSH_HOST cd /opt/redcraft_website && env/bin/pip install -r requirements.txt
 
       - name: Disconnect VPN
         run: sudo killall openvpn

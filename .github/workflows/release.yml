@@ -36,7 +36,7 @@ jobs:
       - name: Check VPN connection
         run: echo ${{ steps.vpn_connect.outputs.STATUS }}
 
-      -name: Get ref
+      - name: Get ref
         run: echo ${{ github.ref }}
 
       - name: Testing settings

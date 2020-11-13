@@ -5,18 +5,15 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@master
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.8'
 
       - name: Install dependencies
         run: |

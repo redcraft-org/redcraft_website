@@ -37,8 +37,7 @@ jobs:
         run: echo ${{ steps.vpn_connect.outputs.STATUS }}
 
       -name: Get ref
-        run: |
-          echo "Ref: ${{ github.ref }}"
+        run: echo ${{ github.ref }}
 
       - name: Testing settings
         if: github.ref == 'refs/heads/testing'

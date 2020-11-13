@@ -309,8 +309,8 @@ class Contact(BaseViewFrontEnd):
     def validateFormData(self, request_type, email, discord_username, message, minecraft_username):
         list_err = []
 
-        request_type_valide = ['player', 'other']
-        if not request_type in request_type_valide:
+        valid_request_types = ['player', 'other']
+        if not request_type in valid_request_types:
             list_err += ['request_type is not valid']
 
         min_max_message = (30, 1500)

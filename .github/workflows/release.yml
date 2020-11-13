@@ -47,6 +47,7 @@ jobs:
           echo "SSH_HOST=${{ secrets.SSH_HOST_TESTING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_TESTING }}" >> $GITHUB_ENV
           echo "${{ secrets.SSH_PRIVATE_KEY_TESTING }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.ENV_FILE_TESTING }}" > .env
 
       - name: Staging settings
         if: github.ref == 'refs/heads/development'
@@ -54,6 +55,7 @@ jobs:
           echo "SSH_HOST=${{ secrets.SSH_HOST_STAGING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_STAGING }}" >> $GITHUB_ENV
           echo "${{ secrets.SSH_PRIVATE_KEY_STAGING }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.ENV_FILE_STAGING }}" > .env
 
       - name: Production settings
         if: github.ref == 'refs/heads/master'
@@ -61,6 +63,7 @@ jobs:
           echo "SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}" >> $GITHUB_ENV
           echo "${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.ENV_FILE_PRODUCTION }}" > .env
 
       - name: Copy files to remote
         run: |
@@ -70,6 +73,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST whoami
           rsync -a --delete . $SSH_USER@$SSH_HOST:/opt/redcraft_website
           ssh $SSH_USER@$SSH_HOST chown -R gunicorn:gunicorn /opt/redcraft_website
+          ssh $SSH_USER@$SSH_HOST service gunicorn restart
+          ssh $SSH_USER@$SSH_HOST cd /opt/redcraft_website && env/bin/pip install -r requirements.txt
 
       - name: Disconnect VPN
         run: sudo killall openvpn

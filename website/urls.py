@@ -15,5 +15,6 @@ urlpatterns = [
     path('livemap.html', views.Livemap.as_view(), name='livemap'),
     path('about.html', views.About.as_view(), name='about'),
     path('r/<str:shortened>', views.UrlReducer.as_view(), name='url_reducer'),
-    staticfiles_urlpatterns()
 ]
+
+urlpatterns += staticfiles_urlpatterns()

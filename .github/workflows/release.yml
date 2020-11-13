@@ -41,24 +41,27 @@ jobs:
 
       - name: Testing settings
         if: github.ref == 'refs/heads/testing'
+        id: settings
         run: |
-          echo "::set-env SSH_HOST=${{ secrets.SSH_HOST_TESTING }}"
-          echo "::set-env SSH_USER=${{ secrets.SSH_USER_TESTING }}"
-          echo "::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}"
+          echo "SSH_HOST=${{ secrets.SSH_HOST_TESTING }}" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.SSH_USER_TESTING }}" >> $GITHUB_ENV
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}" >> $GITHUB_ENV
 
       - name: Staging settings
         if: github.ref == 'refs/heads/development'
+        id: settings
         run: |
-          echo "::set-env SSH_HOST=${{ secrets.SSH_HOST_STAGING }}"
-          echo "::set-env SSH_USER=${{ secrets.SSH_USER_STAGING }}"
-          echo "::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}"
+          echo "SSH_HOST=${{ secrets.SSH_HOST_STAGING }}" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.SSH_USER_STAGING }}" >> $GITHUB_ENV
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}" >> $GITHUB_ENV
 
       - name: Production settings
         if: github.ref == 'refs/heads/master'
+        id: settings
         run: |
-          echo "::set-env SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}"
-          echo "::set-env SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}"
-          echo "::set-env SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}"
+          echo "SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}" >> $GITHUB_ENV
+          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}" >> $GITHUB_ENV
 
       - name: Copy files to remote
         run: |

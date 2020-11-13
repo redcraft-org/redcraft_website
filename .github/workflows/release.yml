@@ -25,17 +25,17 @@ jobs:
           echo TODO .env
 
       - name: Install Open VPN
-        run: apt-get install -y openvpn rsync
+        run: sudo apt-get install -y openvpn rsync
 
       - name: Copy files to remote
         run: |
-          echo "$OPENVPN_CERTIFICATE" > /root/redcraft.ovpn
+          echo "$OPENVPN_CERTIFICATE" > ~/redcraft.ovpn
 
       - name: Connect VPN
         uses: golfzaptw/action-connect-ovpn@master
         id: connect_vpn
         with:
-          FILE_OVPN: /root/redcraft.ovpn
+          FILE_OVPN: ~/redcraft.ovpn
 
       - name: Check Connect VPN
         run: echo ${{ steps.connect_vpn.outputs.STATUS }}
@@ -63,11 +63,11 @@ jobs:
 
       - name: Copy files to remote
         run: |
-          echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
-          chmod 600 /root/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST whoami
           rsync -a --delete . $SSH_USER@$SSH_HOST:/opt/redcraft_website
           ssh $SSH_USER@$SSH_HOST chown -R gunicorn:gunicorn /opt/redcraft_website
 
       - name: Disconnect VPN
-        run: killall openvpn
+        run: sudo killall openvpn

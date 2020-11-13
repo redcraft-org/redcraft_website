@@ -30,11 +30,15 @@ jobs:
       - name: Connect to VPN
         id: vpn_connect
         run: |
+          ifconfig -a
           echo "${{ secrets.OPENVPN_CERTIFICATE }}" > ~/redcraft.ovpn
           sudo openvpn --config ~/redcraft.ovpn --daemon
 
       - name: Check VPN connection
-        run: echo ${{ steps.vpn_connect.outputs.STATUS }}
+        run: |
+          sleep 10 # Wait a few seconds before we check the status
+          ifconfig -a
+          echo ${{ steps.vpn_connect.outputs.STATUS }}
 
       - name: Prepare SSH folder
         run: mkdir -p ~/.ssh
@@ -63,7 +67,6 @@ jobs:
       - name: Copy files to remote
         run: |
           echo "Target server: $SSH_USER@$SSH_HOST"
-          ifconfig -a
           sudo route add $SSH_HOST dev tun0
           chmod 600 ~/.ssh/id_rsa
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST whoami

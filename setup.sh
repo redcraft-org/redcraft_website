@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd "${0%/*}"
 
 rm -f env

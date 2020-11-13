@@ -30,14 +30,12 @@ jobs:
       - name: Connect to VPN
         id: vpn_connect
         run: |
-          ifconfig -a
           echo "${{ secrets.OPENVPN_CERTIFICATE }}" > ~/redcraft.ovpn
           sudo openvpn --config ~/redcraft.ovpn --daemon
 
       - name: Check VPN connection
         run: |
           sleep 10 # Wait a few seconds before we check the status
-          ifconfig -a
           echo ${{ steps.vpn_connect.outputs.STATUS }}
 
       - name: Prepare SSH folder
@@ -48,21 +46,21 @@ jobs:
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_TESTING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_TESTING }}" >> $GITHUB_ENV
-          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_TESTING }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY_TESTING }}" > ~/.ssh/id_rsa
 
       - name: Staging settings
         if: github.ref == 'refs/heads/development'
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_STAGING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_STAGING }}" >> $GITHUB_ENV
-          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_STAGING }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY_STAGING }}" > ~/.ssh/id_rsa
 
       - name: Production settings
         if: github.ref == 'refs/heads/master'
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_PRODUCTION }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_PRODUCTION }}" >> $GITHUB_ENV
-          echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}" > ~/.ssh/id_rsa
 
       - name: Copy files to remote
         run: |

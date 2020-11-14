@@ -5,8 +5,10 @@ from django.views.generic.base import TemplateView
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from user_agents import parse as parse_user_agents
+
+from django.conf import settings
 
 from api_v1_url import models as models_api_url_v1
 from .service.DiscordService import DiscordService
@@ -14,6 +16,18 @@ from api_v1_article.service.ArticleService import ArticleService
 from network_data.service.NetworkDescriptionService import NetworkDescriptionService
 from network_data.service.ServerDescriptionService import ServerDescriptionService
 
+
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: *",
+    ]
+    if settings.ENVIRONMENT == 'production':
+        lines = [
+            "User-Agent: *",
+            "Disallow: ",
+        ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 class BaseViewFrontEnd(TemplateView):
     def get_context_data(self, **kwargs):

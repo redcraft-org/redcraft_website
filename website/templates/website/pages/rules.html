@@ -1,5 +1,6 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 {% with title="Règles" waveFill="#202020" %}
@@ -12,29 +13,47 @@
         <div class="row three-main mb-4">
             <label class="col-md-4 text-center my-4" for="code-conduct-radio-1">
                 <i class="fas fa-hands-helping"></i>
-                <h4>Se respecter</h4>
+                <h4>{% translate "Se respecter" %}</h4>
             </label>
             <label class="col-md-4 text-center my-4" for="code-conduct-radio-2">
                 <i class="fas fa-people-carry"></i>
-                <h4>S'entraider</h4>
+                <h4>{% translate "S'entraider" %}</h4>
             </label>
             <label class="col-md-4 text-center my-4" for="code-conduct-radio-3">
                 <i class="fas fa-gamepad"></i>
-                <h4>S'amuser</h4>
+                <h4>{% translate "S'amuser" %}</h4>
             </label>
         </div>
         <div class="details position-relative d-flex">
             <div class="code-conduct">
                 <input type="radio" name="code-conduct-radio" id="code-conduct-radio-1" />
-                <div class="text lead">Le respect est la base pour avoir une atmosphère saine et constructive. N'oublions pas que tout le monde n'a pas le même niveau de connaissances, respectons ceux qui en ont moins que nous et encouragons leur curiosité.</div>
+                <div class="text lead">
+                    {% blocktranslate trimmed %}
+                    Le respect est la base pour avoir une atmosphère saine et constructive. 
+                    N'oublions pas que tout le monde n'a pas le même niveau de connaissances, 
+                    respectons ceux qui en ont moins que nous et encouragons leur curiosité.
+                    {% endblocktranslate %}
+                </div>
             </div>
             <div class="code-conduct">
                 <input type="radio" name="code-conduct-radio" id="code-conduct-radio-2" />
-                <div class="text lead">RedCraft.org a parmi ses objectifs la transmission de connaissances quelle qu'elles soient. Le partage est un pilier pour avoir une communauté soudée et active.</div>
+                <div class="text lead">
+                    {% blocktranslate trimmed %}
+                    RedCraft.org a parmi ses objectifs la transmission de connaissances 
+                    quelle qu'elles soient. Le partage est un pilier pour avoir 
+                    une communauté soudée et active.
+                    {% endblocktranslate %}
+                </div>
             </div>
             <div class="code-conduct">
                 <input type="radio" name="code-conduct-radio" id="code-conduct-radio-3" />
-                <div class="text lead">Après-tout, nous sommes tous en train de jouer à un jeu vidéo ! Alors essayons de passer du bon temps ensemble pour avoir une expérience en ligne inoubliable ! 😉</div>
+                <div class="text lead">
+                    {% blocktranslate trimmed %}
+                    Après-tout, nous sommes tous en train de jouer à un jeu vidéo ! Alors 
+                    essayons de passer du bon temps ensemble pour avoir une 
+                    expérience en ligne inoubliable ! 😉
+                    {% endblocktranslate %}
+                </div>
             </div>
         </div>
     </div>    

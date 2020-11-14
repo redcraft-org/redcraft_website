@@ -1,14 +1,19 @@
 {% load static %}
+{% load i18n %}
+{% translate "Live map" as livemap_text %}
+
 <input type="radio" id="server-radio-{{ index }}" name="server-active-radio" {% if index == 0 %} checked {% endif %}>
 <div class="server-active">
     <div class="server-active-animate text">
         <h1 class="server-active-title font-weight-bold text-right">{{ title }}</h1>
         <div class="text-right">
             <p>{{ text }}</p>
-            {% if livemap %}<div class="btn btn-red">Live map</div>{% endif %}
+            {% if livemap %}
+            <div class="btn btn-primary">{{ livemap_text }}</div>
+            {% endif %}
         </div>
     </div>
     <div class="server-active-animate image d-flex justify-content-center">
-        <img class="server-active-img" src="{% static 'website/img/' %}{{ img }}" alt="server presentation image">
+        <img class="server-active-img" src="{% static 'website/img/' %}{{ img }}">
     </div>
 </div>

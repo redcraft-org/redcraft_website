@@ -12,6 +12,22 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+SENTRY_DSN = os.getenv("SENTRY_DSN")
+
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +39,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
-ALLOWED_HOSTS = []
+DEBUG = os.getenv("DEBUG", True)
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testing.redcraft.org', 'staging.redcraft.org', 'redcraft.org']
 
 
 # Application definition
@@ -100,12 +118,12 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.getenv('PATH_FILE_CACHE'),
+        'LOCATION': os.getenv('FILE_CACHE_PATH'),
     }
 }
 
 
-# User 
+# User
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -132,8 +150,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Proxy redcraft
 
 PROXY_REDCRAFT = {
-    'versions': f'{os.getenv("URL_PROXY_REDCRAFT")}/versions.json',
-    'players': f'{os.getenv("URL_PROXY_REDCRAFT")}/players.json'
+    'versions': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/versions.json',
+    'players': f'{os.getenv("MINECRAFT_PROXY_API_URL")}/players.json',
+    'timeout_seconds': 5
 }
 
 
@@ -163,4 +182,4 @@ STATIC_URL = '/static/'
 
 
 # URL for the webhook Discord
-URL_WEBHOOK_CONTACT_DISCORD = os.getenv("URL_WEBHOOK_CONTACT_DISCORD")
+DISCORD_CONTACT_WEBHOOK_URL = os.getenv("DISCORD_CONTACT_WEBHOOK_URL")

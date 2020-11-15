@@ -14,12 +14,12 @@ class NetworkDescriptionService:
 
     def getMinecraftVersions(self):
         url_proxy = settings.PROXY_REDCRAFT['versions']
-        response = requests.get(url_proxy)
+        response = requests.get(url_proxy, timeout=settings.PROXY_REDCRAFT['timeout_seconds'])
         return response.json()
 
     def getMinecraftPlayers(self):
         url_proxy = settings.PROXY_REDCRAFT['players']
-        response = requests.get(url_proxy)
+        response = requests.get(url_proxy, timeout=settings.PROXY_REDCRAFT['timeout_seconds'])
         return response.json()
 
     def getMinecraftVersionsMinMax(self):

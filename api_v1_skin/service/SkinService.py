@@ -8,7 +8,7 @@ from PIL import Image
 
 class SkinService:
 
-    OUTER_CHOISE = {
+    OUTER_CHOICE = {
         'true': True,
         'false': False,
     }
@@ -20,7 +20,7 @@ class SkinService:
             url = 'https://api.mojang.com/users/profiles/minecraft/' + ref
             response = requests.get(url)
             ref = response.json()['id']
-        
+
         # Get player profile
         url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + ref
         response = requests.get(url)
@@ -54,7 +54,7 @@ class SkinService:
         img = img_head
         if self.size > 8: img = img.resize((self.size, self.size), Image.NEAREST)
         return self.__toPng(img)
-        
+
     def renderBody(self):
         img_skin = self.__getBody()
 
@@ -73,8 +73,8 @@ class SkinService:
             return 'size must be int'
 
         self.outer = request.GET.get('outer', 'true')
-        if self.outer in self.OUTER_CHOISE: 
-            self.outer = self.OUTER_CHOISE[self.outer]
+        if self.outer in self.OUTER_CHOICE:
+            self.outer = self.OUTER_CHOICE[self.outer]
         else:
             return 'outer must be bool'
         return False
@@ -101,7 +101,7 @@ class SkinService:
         img_outer_head = self.image.crop((40, 8, 48, 16))
         img_outer_body = self.image.crop((20, 36, 28, 48))
         img_outer_arm_left = self.image.crop((44, 36, 48 - int(self.slim), 48))
-        img_outer_arm_right =self.image.crop((52, 52, 56 - int(self.slim), 64)) 
+        img_outer_arm_right =self.image.crop((52, 52, 56 - int(self.slim), 64))
         img_outer_leg_left = self.image.crop((4, 36, 8, 48))
         img_outer_leg_right = self.image.crop((4, 52, 8, 64))
 

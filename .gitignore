@@ -107,5 +107,8 @@ media/
 *.db
 *.pid
 
+# cache
+cache
+
 # static css
 **/css/**

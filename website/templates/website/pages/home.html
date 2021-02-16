@@ -141,13 +141,16 @@
     </svg>
     <div id="staff-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">{% translate "Administrateurs" %}</h4>
+        <h4 class="section-titre">{% translate "Staff" %}</h4>
         <div class="d-flex justify-content-center flex-wrap">
             {% for staff in staff_list %}
                 {% with name=staff.name img=staff.path_img socials=staff.socials index=forloop.counter %}
                     {% include "website/components/staff-member.html" %}
                 {% endwith %}
             {% endfor %}
+        </div>
+        <div class="article-more text-right">
+            <p><a href="stats.html" class="text-white-50">Voir plus sur les membres du staff</a></p> <!-- changer redirection de stats.html vers comingsoon.html -->
         </div>
     </div>
 </section>

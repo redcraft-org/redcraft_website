@@ -10,6 +10,7 @@ section#about {
         -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
         filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
         image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
         width: 100%;
         height: auto;
     }

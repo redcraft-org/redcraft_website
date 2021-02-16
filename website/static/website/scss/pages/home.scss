@@ -39,6 +39,7 @@ section {
                 -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
                 filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=12, Color='#00000091')";
                 image-rendering: pixelated;
+                image-rendering: -moz-crisp-edges;
 
             }
 
@@ -124,6 +125,7 @@ section {
             background-position: 21% 15%;
             background-size: 200px;
             image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
             position: relative;
 
             &::before {
@@ -138,6 +140,7 @@ section {
                 background-position: 0% 20%;
                 background-size: 200px;
                 image-rendering: pixelated;
+                image-rendering: -moz-crisp-edges;
                 transform: scale(-1);
             }
         }
@@ -215,6 +218,7 @@ section {
             background-position: 100% 0%;
             background-size: 200px;
             image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
         }
 
         @media (max-width: 767.98px) {
@@ -337,6 +341,7 @@ section {
             filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
             border-radius: 7px;
             image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
         }
     }
 }

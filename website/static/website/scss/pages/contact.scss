@@ -16,6 +16,7 @@
             background-position: 22.5% 62.5%;
             background-size: 200px;
             image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
             transform: scaleX(-1);
             pointer-events: none;
         }

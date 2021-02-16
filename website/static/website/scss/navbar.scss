@@ -24,6 +24,7 @@ $navbar-height: 4.5rem;
 
         .navbar-brand {
             image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
             top: 10px;
         }
     }

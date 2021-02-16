@@ -72,12 +72,13 @@
         </p>
         <h4>{% translate "Comment aider au projet ?" %}</h4>
         <p>
+            {% url 'contact' as url_contact %}
             {% blocktranslate trimmed %}
             La façon la plus efficace de contribuer au projet est de venir 
             nous en parler ! Vous êtes intéressé.e à écrire du code, aider 
             à la construction du terrain ou participer à l'organisation ? 
             Prenez contact avec nous, que ça soit via le 
-            <a href="{% url 'contact' %}">formulaire de contact</a>, via 
+            <a href="{{ url_contact }}">formulaire de contact</a>, via 
             <a href="{{ links.discord }}" target="_blank">le Discord</a> 
             ou directement en jeu.
             {% endblocktranslate %}

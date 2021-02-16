@@ -21,7 +21,7 @@ section {
         padding: 15vh 0em;
 
         .background {
-            background-image: linear-gradient(transparent 0%, #292b2db8 0%), url(../../img/home-background.png);
+            background-image: linear-gradient(transparent 0%, #292b2db8 0%), url(../../img/backgrounds/home-background.png);
             background-position: center;
             background-size: cover;
             width: 100%;
@@ -120,7 +120,7 @@ section {
         background-color: #202020;
 
         .container {
-            background-image: url(../../img/chevron_1.png);
+            background-image: url(../../img/decorations/chevron_1.png);
             background-repeat: no-repeat;
             background-position: 21% 15%;
             background-size: 200px;
@@ -135,7 +135,7 @@ section {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url(../../img/chevron_1.png);
+                background-image: url(../../img/decorations/chevron_1.png);
                 background-repeat: no-repeat;
                 background-position: 0% 20%;
                 background-size: 200px;
@@ -194,7 +194,7 @@ section {
     &#news {
 
         #news-background {
-            background-image: linear-gradient(transparent 0%, #943a3ab8 0%), url(../../img/gray_concrete_powder.png);
+            background-image: linear-gradient(transparent 0%, #943a3ab8 0%), url(../../img/backgrounds/gray_concrete_powder.png);
             background-position: center;
             background-size: 200px;
             width: 100%;
@@ -213,7 +213,7 @@ section {
         color: #202020;
 
         .container {
-            background-image: url(../../img/chevron_2.png);
+            background-image: url(../../img/decorations/chevron_2.png);
             background-repeat: no-repeat;
             background-position: 100% 0%;
             background-size: 200px;
@@ -326,7 +326,7 @@ section {
     &#staff {
         
         #staff-background {
-            background-image: linear-gradient(transparent 0%, #5f636b94 0%), url(../../img/stone.png);
+            background-image: linear-gradient(transparent 0%, #5f636b94 0%), url(../../img/backgrounds/stone.png);
             background-position: center;
             background-size: 200px;
             width: 100%;

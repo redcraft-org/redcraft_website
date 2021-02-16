@@ -1,6 +1,7 @@
 @import "../colors";
 
 section#conduct-code {
+
     background-color: $brand-dark-2-dark;
 
     .three-main {
@@ -40,6 +41,9 @@ section#conduct-code {
     }
 
     .details {
+        $animation-rule-length: .3s;
+        $animation-distance: 10px;
+
         position: relative;
         
         .code-conduct {
@@ -49,8 +53,8 @@ section#conduct-code {
 
             .text {
                 opacity: 0;
-                transition-duration: .3s;
-                transform: translateY(5px);
+                transition-duration: $animation-rule-length;
+                transform: translateY($animation-distance);
             }
 
             input[name=code-conduct-radio] {
@@ -61,6 +65,28 @@ section#conduct-code {
             input:checked + .text {
                 opacity: 1;
                 transform: translateY(0px);
+            }
+
+            input:not(:checked) + .text {
+                animation: rule-active-out $animation-rule-length;
+            }
+        }
+
+        @keyframes rule-active-out {
+            0% {
+                transform: translateY(0px);
+                opacity: 1;
+                z-index: 2;
+            }
+            50% {
+                opacity: 0;
+            }
+            99% {
+                transform: translateY(-$animation-distance);
+                z-index: -1;
+            }
+            100% {
+                transform: translateY($animation-distance);
             }
         }
     }

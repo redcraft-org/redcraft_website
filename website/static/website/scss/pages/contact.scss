@@ -17,6 +17,7 @@
             background-size: 200px;
             image-rendering: pixelated;
             transform: scaleX(-1);
+            pointer-events: none;
         }
 
         .transition-container {

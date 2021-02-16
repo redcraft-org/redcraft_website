@@ -73,6 +73,10 @@ a {
     }
 }
 
+hr.white {
+    border-top: 1px solid #ffffff1a;
+}
+
 a:hover {
     color: $brand-red-1-dark;
 }

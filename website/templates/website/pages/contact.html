@@ -12,6 +12,9 @@
     </svg>
     <div class="container position-relative">
         <h3 class="section-titre">Contacter le staff</h3>
+        <p>{% translate "En cas de doute sur l'utilisation de ce formulaire, les informations se trouvent plus bas dans la page." %}</p>
+        <a href="#info" class="btn btn-primary">Plus d'infos</a>
+        <hr class="white">
         <form action="#" id="contact-form" method="post">
             <div class="d-flex transition-container">
                 <div class="transition-element contact-from position-absolute active">
@@ -66,7 +69,7 @@
                             <h2>{% translate "Erreur" %}</h2>
                             <p>{% translate "Votre message n'a pas pu être traité" %}</p>
                             <p id="contact-failed-error" class="text-white-50">{% translate "Pas de message d'erreur disponible" %}</p>
-                            {% with icon="fail" animation=0 %}
+                            {% with icon="error" animation=0 %}
                                 {% include "website/components/icon-checkmark-cross.html" %}
                             {% endwith %}
                             <button type="button" class="btn btn-primary" id="form-restart">{% translate "Réessayer" %}</button>

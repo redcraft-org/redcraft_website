@@ -54,8 +54,12 @@
             <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
                     <h3 class="font-weight-bolder my-4">{% translate "Un serveur international." %}</h3>
-                    <p>{% translate "Oubliez les barrières de language. Grâce à un service de traduction instantané, le serveur entier communique dans la
-                        langue de votre choix. RedCraft.org rassemble des personnes de n'importe où dans le monde." %}</p>
+                    <p>
+                        {% blocktranslate trimmed %}
+                        Oubliez les barrières de language. Grâce à un service de traduction instantané, le serveur entier communique dans la
+                        langue de votre choix. RedCraft.org rassemble des personnes de n'importe où dans le monde.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="col-md-5">
                     <img src="{% static 'website/img/backgrounds/home-background.png'%}" class="presentation-img w-100">
@@ -64,8 +68,12 @@
             <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
                     <h3 class="font-weight-bolder my-4">{% translate "Open source et moderne." %}</h3>
-                    <p>{% translate "RedCraft.org a été conçu et pensé depuis le départ pour la flexibilité et la robustesse. L'entièreté du projet est
-                        open source, n'importe qui peut ainsi contribuer à développer le projet !" %}</p>
+                    <p>
+                        {% blocktranslate trimmed %}
+                        RedCraft.org a été conçu et pensé depuis le départ pour la flexibilité et la robustesse. L'entièreté du projet est
+                        open source, n'importe qui peut ainsi contribuer à développer le projet !
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="col-md-5">
                     <img src="{% static 'website/img/backgrounds/home-background-2.png'%}" class="presentation-img w-100">

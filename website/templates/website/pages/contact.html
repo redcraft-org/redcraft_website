@@ -17,6 +17,7 @@
         <hr class="white">
         <form action="#" id="contact-form" method="post">
             <div class="d-flex transition-container">
+                <!-- FIRST MODAL -->
                 <div class="transition-element contact-from position-absolute active">
                     <div class="h-100 d-flex align-items-center">
                         <div class="w-100">
@@ -29,6 +30,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- INFORMATIONS MODAL -->
                 <div class="transition-element contact-details">
                     <div class="form-group">
                         <button type="button" class="btn btn-primary mb-3" id="form-previous-page">{% translate "Retour" %}</button>
@@ -42,7 +44,7 @@
                                     placeholder="Identifiant Discord (Nom#0000)">
                             </div>
                         </div>
-                        <div class="row inputs-other">
+                        <div class="row inputs-other" style="display: none;">
                             <div class="col mb-md-0">
                                 <input type="text" name="email" class="form-control"
                                     placeholder="Adresse email">

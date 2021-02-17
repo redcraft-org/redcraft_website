@@ -12,10 +12,11 @@ urlpatterns = [
     path('rules.html', views.Rules.as_view(), name='rules'),
     path('contact.html', views.Contact.as_view(), name='contact'),
     path('articles.html', views.Articles.as_view(), name='articles'),
+    # path('article/<int:id>-<str:language>-<str:slug>.html', views.Article.as_view(), name='article'),
     path('livemap.html', views.Livemap.as_view(), name='livemap'),
     path('about.html', views.About.as_view(), name='about'),
-    path('r/<str:shortened>', views.UrlReducer.as_view(), name='url_reducer'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('r/<str:shortened>', views.UrlReducer.as_view(), name='url_reducer'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

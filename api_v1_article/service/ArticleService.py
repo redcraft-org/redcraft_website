@@ -43,17 +43,20 @@ class ArticleService:
                     'id': article.id,
                     'title': article_data.title,
                     'overview': article_data.overview,
-                    'url': f"/api/v1/articles/{article.id}-{article_data.language.short_name}-{article_data.slug}"
+                    'short_name': article_data.language.short_name,
+                    'slug': article_data.slug,
+                    'path_img': article.path_img,
                 }
             ]
 
         return {
             'nb_page': nb_page,
             'current_page': current_page,
-            'next_page': next_page and f"/api/v1/articles?page={next_page}&per_page={per_page}",
-            'prev_page': prev_page and f"/api/v1/articles?page={prev_page}&per_page={per_page}",
+            'next_page': next_page,
+            'prev_page': prev_page,
             'nb_article': nb_article,
-            'list': list_article
+            'list': list_article,
+            'per_page': per_page,
         }
 
     def getArticleData(self, id, language=None):

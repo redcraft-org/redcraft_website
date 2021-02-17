@@ -357,8 +357,11 @@ class Articles(BaseViewFrontEnd):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
 
+        current_page = int(self.request.GET.get('page', 1))
+        per_page = int(self.request.GET.get('per_page', 15))
+
         article_service = ArticleService()
-        list_article = article_service.getList(1, 10)
+        list_article = article_service.getList(current_page, per_page)
 
         return {
             **ctx,
@@ -367,6 +370,19 @@ class Articles(BaseViewFrontEnd):
                 'list_article': list_article,
             }
         }
+
+
+# class Article(BaseViewFrontEnd):
+#     template_name = 'website/pages/article.html'
+
+#     def get_context_data(self, **kwargs):
+#         ctx = super().get_context_data()
+#         return {
+#             **ctx,
+#             **{
+#                 'page': 'article',
+#             }
+#         }
 
 
 class Livemap(BaseViewFrontEnd):

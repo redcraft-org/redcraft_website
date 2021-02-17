@@ -30,10 +30,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelectorAll(".server-active").forEach(function(e, i) {
             arr[i] = e.clientHeight;
         });
-        var max = arr.reduce(function (a, b) {
-            return Math.max(a, b);
-        });
-        document.querySelector(".server-active-container").style.height = max + "px";
+        
+        if(arr.length > 0 ) {    
+            var max = arr.reduce(function (a, b) {
+                return Math.max(a, b);
+            });
+            document.querySelector(".server-active-container").style.height = max + "px";
+        }
     }
     resizeServerDetails();
     window.addEventListener('resize', resizeServerDetails);

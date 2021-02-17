@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             document.querySelector(".transition-element.contact-from").classList.remove('active');
             document.querySelector(".transition-element.contact-details").classList.add('active');
 
-            if(document.getElementsByName("request_type")[0].value == "player") {
+            if (document.getElementsByName("request_type")[0].value == "player") {
                 document.querySelector(".row.inputs-player").style.display = "flex";
                 document.querySelector(".row.inputs-other").style.display = "none";
-            }else if(document.getElementsByName("request_type")[0].value == "other") {
+            } else if (document.getElementsByName("request_type")[0].value == "other") {
                 document.querySelector(".row.inputs-player").style.display = "none";
                 document.querySelector(".row.inputs-other").style.display = "flex";
             }
@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("#contact-form").addEventListener("submit", function(evt) {
             evt.preventDefault();
 
-            strip();
+            stripForm();
 
-            if(!validate()) {
+            if (!validate()) {
                 return;
             }
 
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /*
      * Clean form inputs
      */
-    function strip() {
+    function stripForm() {
         const html_username = document.querySelector("input[name=username]");
         html_username.value = html_username.value.trim();
 
@@ -89,47 +89,55 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function validate(showAnimation = true) {
         var returnValue = [];
 
-        if(document.getElementsByName("request_type")[0].value == "player") {
+        if (document.getElementsByName("request_type")[0].value == "player") {
 
             // Nickname
             const username = document.querySelector("input[name=username]").value;
-            if(username == "")
+            if (username == "") {
                 returnValue.push(["input[name=username]", "Le pseudo Minecraft est requis"]);
-            else if(username.length < 4)
+            } else if (username.length < 4) {
                 returnValue.push(["input[name=username]", "Le pseudo Minecraft est trop court"]);
-            else if(username.match("^[a-zA-Z0-9_]{4,16}$") == null)
+            } else if (username.match("^[a-zA-Z0-9_]{4,16}$") == null) {
                 returnValue.push(["input[name=username]", "Le pseudo Minecraft contient des charactères invalides"]);
+            }
 
             // Discord username
             const discord_username = document.querySelector("input[name=discord_username]").value;
-            if(!(discord_username === "") && discord_username.match("^.{3,32}#[0-9]{4}$") == null)
+            if (!(discord_username === "") && discord_username.match("^.{3,32}#[0-9]{4}$") == null) {
                 returnValue.push(["input[name=discord_username]", "Le pseudo Discord ne respecte pas le format abc#0000"]);
+            }
 
-        }else if(document.getElementsByName("request_type")[0].value == "other") {
+        } else if (document.getElementsByName("request_type")[0].value == "other") {
 
             // Email
             const email = document.querySelector("input[name=email]").value;
             // General Email Regex (RFC 5322 Official Standard)
             const regex = /(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g;
-            if(email == "")
+            if (email == "") {
                 returnValue.push(["input[name=email]", "L'email est requis"]);
-            else if(email.match(regex) == null)
-            returnValue.push(["input[name=email]", "L'email ne respect pas le format d'une adresse mail"]);
+            } else if (email.match(regex) == null) {
+                returnValue.push(["input[name=email]", "L'email ne respect pas le format d'une adresse mail"]);
+            }
         }
 
         // Message
         const message = document.querySelector("textarea[name=message]").value;
-        if(message == "")
+        if (message == "") {
             returnValue.push(["textarea[name=message]", "Le message est requis"]);
-        else if(message.length < 30)
+        } else if (message.length < 30) {
             returnValue.push(["textarea[name=message]", "Le message est trop court"]);
-        else if(message.length > 1500)
+        } else if (message.length > 1500) {
             returnValue.push(["textarea[name=message]", "Le message est trop long"]);
+        }
 
         updateErrorMessage(returnValue);
-        if(showAnimation) updateErrorAnimation(returnValue);
+        if (showAnimation) {
+            updateErrorAnimation(returnValue);
+        }
 
-        if(returnValue.length == 0) return true;
+        if (returnValue.length == 0) {
+            return true;
+        }
         return false;
     }
 
@@ -187,8 +195,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function sendRequest(form) {
         disableInputs();
         httpRequest = new XMLHttpRequest()
-        if (!httpRequest)
+        if (!httpRequest) {
             return false;
+        }
 
         httpRequest.onreadystatechange = alertContents;
         httpRequest.open("POST", form.action);

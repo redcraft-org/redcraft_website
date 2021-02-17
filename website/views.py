@@ -357,10 +357,14 @@ class Articles(BaseViewFrontEnd):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data()
 
+        article_service = ArticleService()
+        list_article = article_service.getList(1, 10)
+
         return {
             **ctx,
             **{
-                'page': 'articles'
+                'page': 'articles',
+                'list_article': list_article,
             }
         }
 

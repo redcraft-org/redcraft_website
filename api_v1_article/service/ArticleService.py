@@ -32,9 +32,10 @@ class ArticleService:
         next_page = None if current_page >= nb_page else current_page + 1
         prev_page = None if current_page <= 1 else current_page - 1
 
-        list_article = []
         start_article = (current_page - 1) * per_page
         end_article = start_article + per_page
+
+        list_article = []
         for article in self.articles[start_article:end_article]:
             article_data = article.articledata_set.get(language=self.favorite_language)
             list_article += [
@@ -46,8 +47,6 @@ class ArticleService:
                 }
             ]
 
-        print(next_page)
-        print(prev_page)
         return {
             'nb_page': nb_page,
             'current_page': current_page,

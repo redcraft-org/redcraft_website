@@ -24,6 +24,7 @@ $navbar-height: 4.5rem;
 
         .navbar-brand {
             image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
             top: 10px;
         }
     }
@@ -142,6 +143,7 @@ $navbar-height: 4.5rem;
             pointer-events: all;
             opacity: 1;
             background-color: rgba($brand-dark-2, 0.9);
+
             .navbar-nav {
                 transform: translateY(0rem);
             }

@@ -1,5 +1,6 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <section id="welcome-header">
@@ -7,35 +8,39 @@
     <div class="container d-flex flex-column">
         <div class="welcome-presentation row">
             <div class="col-md-6 d-flex justify-content-center align-items-center">
-                <img class="logo" src="{% static 'website/img/animation2_color.gif' %}" />
+                <img class="logo" src="{% static 'website/img/pages/home/logo_animation_color.gif' %}" />
             </div>
             <div class="col-md-6">
-                <h1 class="mb-2 font-weight-bolder">Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !</h1>
-                <p class="text-description mt-4">Le retour de deux grandes communautés Minecraft, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo ! </p>
-                <b class="text-description">Versions {{ minecraft_versions_min_max | first }} - {{ minecraft_versions_min_max | last }}</b>
+                <h1 class="mb-2 font-weight-bolder">
+                    {% blocktranslate trimmed %}
+                    Bienvenue sur <br /><span class="title-redcraft">RedCraft</span> !
+                    {% endblocktranslate %}
+                </h1>
+                <p class="text-description mt-4">{% translate "Le retour de deux grandes communautés Minecraft, TopRed et KingdomHills, à travers une toute nouvelle infrastructure Open Source. Partage et Innovation seront notre crédo !" %}</p>
+                <b class="text-description">{% translate "Versions" %} {{ minecraft_versions_min_max | first }} - {{ minecraft_versions_min_max | last }}</b>
             </div>
         </div>
         <div class="server-links d-flex flex-column flex-md-row justify-content-center">
-            <a class="link-discord btn mx-2 mb-3 mb-md-0 w-md-75" href="{{ links.discord }}" target="_blank">
+            <a class="link-discord btn btn-primary mx-2 mb-3 mb-md-0 w-md-75" href="{{ links.discord }}" target="_blank">
                 <div class="lead">Serveur <b>Discord</b></div>
-                <div>{{ discord.count_players_online }} joueurs en ligne</div>
-                <small class="text-white-50">Cliquez pour rejoindre</small>
+                <div>{{ discord.count_players_online }} {% translate "joueurs en ligne" %}</div>
+                <small class="text-white-50">{% translate "Cliquez pour rejoindre" %}</small>
             </a>
-            <div class="link-server btn mx-2">
+            <button class="link-server btn btn-primary mx-2">
                 <div class="link-server-animation">
                     <div class="before-click d-flex flex-column justify-content-center ">
-                        <div class="lead">Serveur <b>Minecraft</b></div>
-                        <div>{{ minecraft_server.count_players_online }} joueurs en ligne</div>
-                        <small class="text-white-50">Cliquez pour copier l'IP</small>
+                        <div class="lead">{% translate "Serveur <b>Minecraft</b>" %}</div>
+                        <div>{{ minecraft_server.count_players_online }} {% translate "joueurs en ligne" %}</div>
+                        <small class="text-white-50">{% translate "Cliquez pour copier l'IP" %}</small>
 
                     </div>
                     <div class="ip-copied d-flex flex-column justify-content-center">
                         <div class="lead text-break"><b>play.redcraft.org</b></div>
-                        <div>Adresse IP copiée !</div>
+                        <div>{% translate "Adresse IP copiée !" %}</div>
                     </div>
                 </div>
                 <input type="text" value="{{ minecraft_server.ip_address }}" id="link-server-copy" style="position: absolute; z-index: -2; top: -100%; left: 0;">
-            </div>
+            </button>
         </div>
     </div>
     <svg class="waves waves-bottom"viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;">
@@ -44,37 +49,49 @@
 </section>
 <section id="presentation">
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">Présentation</h4>
+        <h4 class="section-titre">{% translate "Présentation" %}</h4>
         <div class="presentations d-flex flex-column">
             <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
-                    <h3 class="font-weight-bolder my-4">Un serveur international.</h3>
-                    <p>Oubliez les barrières de language. Grâce à un service de traduction instantané, le serveur entier communique dans la
-                        langue de votre choix. RedCraft.org rassemble des personnes de n'importe où dans le monde.</p>
+                    <h3 class="font-weight-bolder my-4">{% translate "Un serveur international." %}</h3>
+                    <p>
+                        {% blocktranslate trimmed %}
+                        Oubliez les barrières de language. Grâce à un service de traduction instantané, le serveur entier communique dans la
+                        langue de votre choix. RedCraft.org rassemble des personnes de n'importe où dans le monde.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% static 'website/img/home-background.png'%}" class="presentation-img w-100">
+                    <img src="{% static 'website/img/backgrounds/home-background.png'%}" class="presentation-img w-100">
                 </div>
             </div>
             <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
-                    <h3 class="font-weight-bolder my-4">Open-source et moderne.</h3>
-                    <p>RedCraft.org a été conçu et pensé depuis le départ pour la flexibilité et la robustesse. L'entièreté du projet est
-                        Open-Source, n'importe qui peut ainsi contribuer à développer le projet !</p>
+                    <h3 class="font-weight-bolder my-4">{% translate "Open source et moderne." %}</h3>
+                    <p>
+                        {% blocktranslate trimmed %}
+                        RedCraft.org a été conçu et pensé depuis le départ pour la flexibilité et la robustesse. L'entièreté du projet est
+                        open source, n'importe qui peut ainsi contribuer à développer le projet !
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% static 'website/img/home-background-2.png'%}" class="presentation-img w-100">
+                    <img src="{% static 'website/img/backgrounds/home-background-2.png'%}" class="presentation-img w-100">
                 </div>
             </div>
             <div class="presentation row justify-content-around" data-sal="slide-up" data-sal-duration="750">
                 <div class="presentation-text col-md-6 d-flex flex-column justify-content-center text-right px-4">
-                    <h3 class="font-weight-bolder my-4">Des années d'expérience.</h3>
-                    <p>Né de la fusion entre <a href="http://topred.fr" target="_blank">TopRed.fr</a> et <a href="https://kingdomhills.fr"
+                    <h3 class="font-weight-bolder my-4">{% translate "Des années d'expérience." %}</h3>
+                    <p>
+                        {% blocktranslate trimmed %}
+                        Né de la fusion entre <a href="http://topred.fr" target="_blank">TopRed.fr</a> et <a href="https://kingdomhills.fr"
                             target="_blank">KingdomHills.fr</a>, RedCraft.org bénéficie de la qualité et du savoir-faire de 2 communautés et
-                        d'un staff actif depuis 2014.</p>
+                        d'un staff actif depuis 2014.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% static 'website/img/RedCraft_website_crew.png'%}" class="presentation-img w-100">
+                    <img src="{% static 'website/img/pages/home/RedCraft_website_crew.png'%}" class="presentation-img w-100">
                 </div>
             </div>
         </div>
@@ -89,7 +106,7 @@
         <path d="M-0.27,24.17 C218.68,235.36 304.46,11.34 500.84,117.92 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #B6B9BD;"></path>
     </svg>
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">Articles</h4>
+        <h4 class="section-titre">{% translate "Articles" %}</h4>
         <div class="news-container row mb-2">
             {% for article in articles %}
                 {% with title=article.title overview=article.overview url=article.url %}
@@ -98,17 +115,17 @@
             {% endfor %}
         </div>
         <div class="article-more text-right">
-            <p><a href="#" class="text-white-50">Voir tous les articles</a></p>
+            <p><a href="#" class="text-white-50">{% translate "Voir tous les articles" %}</a></p>
         </div>
     </div>
 </section>
 <section id="serveurs">
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">Serveurs</h4>
+        <h4 class="section-titre">{% translate "Serveurs" %}</h4>
         <form>
             <div class="row">
                 <div class="col-md-4 servers-listing mb-4 mb-md-0">
-                    <p class="text-black-50"><small>Cliquez sur un serveur pour en savoir plus</small></p>
+                    <p class="text-black-50"><small>{% translate "Cliquez sur un serveur pour en savoir plus" %}</small></p>
                     {% for server in servers_list %}
                         {% with title=server.title overview=server.overview index=forloop.counter0 %}
                             {% include "website/components/server-list.html" %}
@@ -132,13 +149,16 @@
     </svg>
     <div id="staff-background" class="position-absolute"></div>
     <div class="container d-flex flex-column">
-        <h4 class="section-titre">Administrateurs</h4>
+        <h4 class="section-titre">{% translate "Staff" %}</h4>
         <div class="d-flex justify-content-center flex-wrap">
             {% for staff in staff_list %}
                 {% with name=staff.name img=staff.path_img socials=staff.socials index=forloop.counter %}
                     {% include "website/components/staff-member.html" %}
                 {% endwith %}
             {% endfor %}
+        </div>
+        <div class="article-more text-right">
+            <p><a href="stats.html" class="text-white-50">Voir plus sur les membres du staff</a></p> <!-- changer redirection de stats.html vers comingsoon.html -->
         </div>
     </div>
 </section>

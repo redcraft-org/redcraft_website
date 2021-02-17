@@ -3,12 +3,12 @@
 {# Parameters : #}
 {# icon #}
     {# "success", draws a checkmark #}
-    {# "fail", draws a cross #}
+    {# "error", draws a cross #}
 {# animation #}
     {# 0, don't animate, the icon won't appear. #}
         {# In order to show it, a JS function must add the "checkmark-animation" class #}
-        {# to the ".checkmark" element #}
-    {# 1, show the icon with an animation at page load #}
+        {# to the ".checkmark" element when the animation should play #}
+    {# 1, show the icon with an animation when the page is loaded #}
 
 <!-- Reference https://stackoverflow.com/questions/41078478/css-animated-checkmark -->
 <svg class="checkmark my-4{% if animation == 1 %} checkmark-animation{% endif %}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -16,7 +16,7 @@
     {% if icon == "success" %}
         <path class="checkmark-icon" fill="none" d="M 14.1 27.2l7.1 7.2 16.7-16.8"/>
     {% endif %}
-    {% if icon == "fail" %}
+    {% if icon == "error" %}
         <path class="checkmark-icon" fill="none" d="M 17 17 l 18 18"/>
         <path class="checkmark-icon" fill="none" d="M 35 17 l -18 18"/>
     {% endif %}

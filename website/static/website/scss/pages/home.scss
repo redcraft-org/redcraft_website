@@ -345,13 +345,22 @@ section {
             top: 0;
         }
 
-        .staff-img {
+        
+
+        .staff-member .staff-img-container {
+            height: 120px;
+            width: 120px;
+            border-radius: 7px;
+            background-color: $brand-dark-1-dark;
+            overflow: hidden;
             -webkit-filter: drop-shadow(0px 0px 5px #424344);
             -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
             filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#424344')";
-            border-radius: 7px;
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
+
+            .staff-img {
+                image-rendering: pixelated;
+                image-rendering: -moz-crisp-edges;
+            }
         }
     }
 }

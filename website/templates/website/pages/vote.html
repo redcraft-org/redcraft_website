@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <h3 class="font-weight-bold">{{ website.titre }}</h3>
                         <img src="{% static website.path_img %}" class="mw-100 mb-3" alt="logo">
-                        <p>{{ website.explainations }}</p>
+                        <span>{{ website.explainations }}</span>
                     </div>
                     <div class="card-footer">
                         <a href="{{ website.url }}" target="_blank" class="btn btn-primary btn-lg float-right btn-over-white"><i class="fas fa-arrow-right mr-2"></i>{% translate "Voter" %}</a>

@@ -68,9 +68,14 @@ section {
                     background-color: $color-discord;
                     border-color: transparent;
                     
+                    &:focus {
+                        background-color: $color-discord!important;
+                        border-color: $color-discord-dark!important;
+                    }
 
-                    &:hover {
-                        background-color: $color-discord-dark;
+                    &:hover, &:active {
+                        background-color: $color-discord-dark!important;
+                        border-color: $color-discord-dark!important;
                     }
                 }
                 

@@ -143,6 +143,8 @@ $navbar-height: 4.5rem;
             pointer-events: all;
             opacity: 1;
             background-color: rgba($brand-dark-2, 0.9);
+            backdrop-filter: blur(5px)grayscale(0.5);
+
             .navbar-nav {
                 transform: translateY(0rem);
             }

@@ -28,7 +28,7 @@ section#conduct-code {
                 transition-duration: $transition-hover;
             }
 
-            &:hover {
+            &:hover, &:focus {
                 i.fas {
                     color: $brand-dark-1-dark;
                 }
@@ -36,6 +36,10 @@ section#conduct-code {
                 h4 {
                     color: $brand-light-1
                 }
+            }
+
+            &:focus {
+                outline: none;
             }
         }
     }

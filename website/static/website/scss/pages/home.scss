@@ -230,12 +230,17 @@ section {
         .servers-listing {
             .server {
                 cursor: pointer;
-                padding-right: .25rem;
+                padding: 0.25rem;
                 transition-duration: .2s;
 
-                &:hover {
+                &:hover, &:focus {
                     padding-right: 0rem;
-                    padding-left: .25rem;
+                    padding-left: .5rem;
+                    box-shadow: -3px 0px 0 #a3a6aa;
+                }
+
+                &:focus {
+                    outline: none;
                 }
             }
 

@@ -21,12 +21,12 @@
             </div>
         </div>
         <div class="server-links d-flex flex-column flex-md-row justify-content-center">
-            <a class="link-discord btn mx-2 mb-3 mb-md-0 w-md-75" href="{{ links.discord }}" target="_blank">
+            <a class="link-discord btn btn-over-white mx-2 mb-3 mb-md-0 w-md-75" href="{{ links.discord }}" target="_blank">
                 <div class="lead">Serveur <b>Discord</b></div>
                 <div>{{ discord.count_players_online }} {% translate "joueurs en ligne" %}</div>
                 <small class="text-white-50">{% translate "Cliquez pour rejoindre" %}</small>
             </a>
-            <div class="link-server btn mx-2">
+            <button class="link-server btn btn-primary btn-over-white mx-2">
                 <div class="link-server-animation">
                     <div class="before-click d-flex flex-column justify-content-center ">
                         <div class="lead">{% translate "Serveur <b>Minecraft</b>" %}</div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <input type="text" value="{{ minecraft_server.ip_address }}" id="link-server-copy" style="position: absolute; z-index: -2; top: -100%; left: 0;">
-            </div>
+            </button>
         </div>
     </div>
     <svg class="waves waves-bottom"viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;">

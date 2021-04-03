@@ -372,17 +372,21 @@ class Articles(BaseViewFrontEnd):
         }
 
 
-# class Article(BaseViewFrontEnd):
-#     template_name = 'website/pages/article.html'
+class Article(BaseViewFrontEnd):
+    template_name = 'website/pages/article.html'
+    
+    article_service = ArticleService()
 
-#     def get_context_data(self, **kwargs):
-#         ctx = super().get_context_data()
-#         return {
-#             **ctx,
-#             **{
-#                 'page': 'article',
-#             }
-#         }
+    def get_context_data(self, **kwargs):
+        print(kwargs.values())
+        ctx = super().get_context_data()
+        return {
+            **ctx,
+            **{
+                'page': 'article',
+                'article': self.article_service.getArticleData(kwargs['id'], kwargs['language'])
+            }
+        }
 
 
 class Livemap(BaseViewFrontEnd):

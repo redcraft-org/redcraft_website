@@ -19,7 +19,7 @@ class ArticleService:
                     'id': article.id,
                     'title': article_data.title,
                     'overview': article_data.overview,
-                    'url': f"/api/v1/articles/{article.id}-{article_data.language.short_name}-{article_data.slug}"
+                    'url': f"/article/{article_data.language.short_name}/{article.id}-{article_data.slug}.html"
                 }
             ]
 
@@ -65,7 +65,7 @@ class ArticleService:
             language_object = language and models.Language.objects.get(short_name=language)
         except models.Language.DoesNotExist:
             return {
-                'err': 'this language is not supported',
+                'err': f'the language `{language}` is not supported',
                 'list_language': [article_data.language.short_name for article_data in article.articledata_set.all()]
             }
 

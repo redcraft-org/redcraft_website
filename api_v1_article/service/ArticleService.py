@@ -8,7 +8,7 @@ class ArticleService:
 
     def __init__(self, favorite_language=None):
         self.articles = models.Article.objects.all()
-        self.favorite_language = favorite_language if favorite_language else models.Language.objects.get(short_name='fr')
+        # self.favorite_language = favorite_language if favorite_language else models.Language.objects.get(short_name='fr')
 
     def getLastArticle(self, nb):
         list_article = []

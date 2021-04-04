@@ -46,6 +46,7 @@ class ArticleService:
                     'short_name': article_data.language.short_name,
                     'slug': article_data.slug,
                     'path_img': article.path_img,
+                    'url': f"/article/{article_data.language.short_name}/{article.id}-{article_data.slug}.html"
                 }
             ]
 

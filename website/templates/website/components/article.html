@@ -1,5 +1,20 @@
+{# Parameters : #}
+{# "url": the article url #}
+{# "title": the article title #}
+{# "overview": the article overview (small intro text) #}
+{# "size": #}
+    {# "big": displays the news card with col-12 #}
+    {# "small" (or nothing): displays the news card with col-md-4 col-sm-12 #}
+{# "background": #}
+    {# "white" (default): white background #}
+    {# "black": black background #}
+
+{% if size == "big" %}
+<div class="col-12 mb-3 mt-3">
+{% else %}
 <div class="col-md-4 col-sm-12 mb-3 mt-3">
-    <div class="news card">
+{% endif %}
+    <div class="news card{% if background == "black" %} bg-dark{% endif %}">
         <div class="card-body">
             <h5 class="news-title card-title">
                 <a href="{{ url }}">{{ title }}</a>

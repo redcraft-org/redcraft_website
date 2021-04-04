@@ -112,6 +112,10 @@
         border-color: $brand-red-1!important;
     }
 
+    &.bg-dark {
+        background-color: $brand-dark-2!important;
+    }
+
     .card-footer {
         border-top-width: 0px;
         background-color: inherit;

@@ -109,7 +109,7 @@
         <h4 class="section-titre">{% translate "Articles" %}</h4>
         <div class="news-container row mb-2">
             {% for article in articles %}
-                {% with title=article.title overview=article.overview url=article.url %}
+                {% with title=article.title overview=article.overview url=article.url size="small" %}
                     {% include "website/components/article.html" %}
                 {% endwith %}
             {% endfor %}

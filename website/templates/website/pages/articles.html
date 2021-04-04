@@ -8,7 +8,7 @@
 <section id="top">
     <div class="container">
         <h3 class="section-titre">Liste des articles page {{ list_article.current_page }}</h3>
-        <p>{{ list_article }}</p>
+        {# <p>{{ list_article }}</p> #}
         <!--/articles?page={prev_page}&per_page={per_page}"-->
         {% if list_article.prev_page %}
         <a href="{% url 'articles' %}?page={{ list_article.prev_page }}" class="btn btn-primary">Page précédente</a>
@@ -18,8 +18,11 @@
         {% endif %}
 
         {% for article in list_article.list %}
-            {{ article.title }}
+            {% with title=article.title overview=article.overview url=article.url size="big" background="black" %}
+                {% include "website/components/article.html" %}
+            {% endwith %}
         {% endfor %}
+
     </div>
 </section>
 {% endblock %}

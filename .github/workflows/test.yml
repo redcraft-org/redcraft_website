@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@master
-          
+
       - name: Shutdown Ubuntu MySQL
         run: sudo service mysql stop
 
@@ -30,9 +30,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run test suite
+      - name: Setup env and run migrations
         run: |
           cp .env.example .env
           python manage.py makemigrations
           python manage.py migrate
-          python manage.py test
+
+      - name: Run test suite
+        run: python manage.py test

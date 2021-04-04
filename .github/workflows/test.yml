@@ -21,8 +21,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Start MySQL service
-        run: |
-          sudo systemctl start mysql
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: 'redcraft'
+          mysql user: 'user'
+          mysql password: 'password'
 
       - name: Run test suite
         run: |

@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout code
@@ -20,7 +20,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Start MySQL service
+        run: |
+          sudo systemctl start mysql
+
       - name: Run test suite
         run: |
           cp .env.example .env
+          python manage.py makemigrations
+          python manage.py migrate
           python manage.py test

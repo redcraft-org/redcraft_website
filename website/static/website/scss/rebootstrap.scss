@@ -12,11 +12,11 @@
 
     &.btn-primary {
         background-color: $brand-red-1;
-        border-color: $brand-red-1-dark;
+        border-color: $brand-red-1;
         color: white;
 
         &:hover {
-            background-color: $brand-red-1-dark;
+            border-color: $brand-red-1-dark;
             color: white!important;
         }
 
@@ -105,7 +105,7 @@
 .card {
     border-width: 3px;
     border-radius: 7px;
-    border-color: $brand-dark-1!important;
+    border-color: $brand-light-2!important;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
     &.border-primary {
@@ -116,6 +116,11 @@
         border-top-width: 0px;
         background-color: inherit;
         padding-top: 0px;
+    }
+
+    &.bg-dark {
+        background-color: $brand-dark-2!important;
+        color: #fff;
     }
 }
 

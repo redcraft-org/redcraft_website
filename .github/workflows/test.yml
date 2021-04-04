@@ -33,7 +33,6 @@ jobs:
       - name: Setup env and run migrations
         run: |
           cp .env.example .env
-          python manage.py makemigrations
           python manage.py migrate
 
       - name: Run test suite

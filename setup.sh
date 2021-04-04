@@ -14,4 +14,6 @@ pip install -r requirements.txt
 
 python manage.py migrate
 
+python manage.py loaddata ./fixtures/data.json
+
 python manage.py sass website/static/website/scss/ website/static/website/css/

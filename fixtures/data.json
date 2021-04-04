@@ -1,0 +1,18 @@
+[
+    {
+      "model": "api_v1_article.language",
+      "pk": 1,
+      "fields": {
+        "short_name": "Fr",
+        "name": "Francais"
+      }
+    },
+    {
+      "model": "api_v1_article.language",
+      "pk": 2,
+      "fields": {
+        "short_name": "En",
+        "name": "English"
+      }
+    }
+  ]

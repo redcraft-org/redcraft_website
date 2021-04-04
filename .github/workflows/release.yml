@@ -1,11 +1,11 @@
 name: Deploy to remote server
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
       - development
-      - testing
 
 jobs:
   build:
@@ -41,8 +41,7 @@ jobs:
       - name: Prepare SSH folder
         run: mkdir -p ~/.ssh
 
-      - name: Testing settings
-        if: github.ref == 'refs/heads/testing'
+      - name: Default testing settings
         run: |
           echo "SSH_HOST=${{ secrets.SSH_HOST_TESTING }}" >> $GITHUB_ENV
           echo "SSH_USER=${{ secrets.SSH_USER_TESTING }}" >> $GITHUB_ENV
